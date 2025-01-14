@@ -6,14 +6,19 @@ import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import ForgotPass from './pages/ForgotPassword.jsx';
 import PinLogin from './pages/PinLogin.jsx';
+import Topup from "./pages/Top-up.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Home />,
   },
   {
-    path: '/register',
+    path: "/top-up",
+    element: <Topup />,
+  },
+  {
+    path: "/register",
     element: <Register />,
   },
   {
@@ -30,10 +35,7 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

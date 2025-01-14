@@ -28,31 +28,31 @@ function PinLogin() {
             <label htmlFor="" className="flex flex-col gap-1">
                 <input
                   type="text"
-                  className="w-16 h-20 input border-b-info box-border pl-5"
+                  className="w-16 h-20 input  border-b-info box-border pl-5"
                 />
               </label>
             <label htmlFor="" className="flex flex-col gap-1">
                 <input
                   type="text"
-                  className="w-16 h-20 input border-b-info box-border pl-5"
+                  className="w-16 h-20 input  border-b-info box-border pl-5"
                   />
               </label>
             <label htmlFor="" className="flex flex-col gap-1">
                 <input
                   type="text"
-                  className="w-16 h-20 input border-b-info box-border pl-5"
+                  className="w-16 h-20 input  border-b-info box-border pl-5"
                   />
               </label>
             <label htmlFor="" className="flex flex-col gap-1">
                 <input
                   type="text"
-                  className="w-16 h-20 input border-b-info box-border pl-5"
+                  className="w-16 h-20 input none border-b-info box-border pl-5"
                   />
               </label>
             <label htmlFor="" className="flex flex-col gap-1">
                 <input
                   type="text"
-                  className="w-16 h-20 input border-b-info box-border pl-5"
+                  className="w-16 h-20 input  border-b-info box-border pl-5"
                   />
               </label>
                 </div>
