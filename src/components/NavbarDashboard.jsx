@@ -1,16 +1,27 @@
-import React from 'react'
-import ppay  from '../assets/icons/ppay.svg'
+import React from "react";
+import ppay from "../assets/icons/ppay_invert.svg";
+import avatar from "../assets/images/avatar.png";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 function NavbarDashboard() {
-    return (
-        <nav className='flex justify-between navbar bg-primary px-32 py-4'>
-          <img className='h-8' src={ppay} alt="ppay" />
-          <div className='flex gap-6'>
-            <button className='btn text-neutral bg-primary border border-neutral text-sm font-normal'>Sign In</button>
-            <button className='btn bg-neutral border-none text-primary text-sm font-normal'>Sign Up</button>
+  return (
+    <nav className="flex justify-between navbar bg-neutral px-32 py-4">
+      <img className="h-8" src={ppay} alt="ppay" />
+      <div className="flex gap-6">
+        <div>
+          <span className="text-info">Ghaluh Wizard</span>
+        </div>
+        <div className="avatar online placeholder">
+          <div className="w-12 h-12 rounded-full">
+            <img src={avatar} alt="avatar" />
           </div>
-        </nav>
-      )
+        </div>
+        <div className="text-2xl">
+          <MdKeyboardArrowDown />
+        </div>
+      </div>
+    </nav>
+  );
 }
 
-export default NavbarDashboard
+export default NavbarDashboard;
