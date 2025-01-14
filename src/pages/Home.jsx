@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+<<<<<<< HEAD:src/page/Home.jsx
 import Cellphone from "../assets/images/home-page.png";
 import Appstore from "../assets/icons/appstore.svg";
 import Gplay from "../assets/icons/gplay.svg";
@@ -99,6 +100,14 @@ function Home() {
         </div>
       </main>
     </>
+=======
+
+function Home() {
+  return (
+    <div>
+        <Navbar />
+    </div>
+>>>>>>> ce2e3aa6da51731a80f409b198aa1b1842afc757:src/pages/Home.jsx
   );
 }
 
