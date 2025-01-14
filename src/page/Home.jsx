@@ -9,6 +9,7 @@ import dell from "../assets/icons/dell.svg";
 import dropbox from "../assets/icons/dropbox.svg";
 import hnm from "../assets/icons/hnm.svg";
 import microsoft from "../assets/icons/microsoft.svg";
+import { CiHeadphones } from "react-icons/ci";
 
 function Home() {
   return (
@@ -50,6 +51,51 @@ function Home() {
           <img src={airbnb} alt="airbnb" />
           <img src={canon} alt="canon" />
           <img src={dell} alt="dell" />
+        </div>
+        <div className="py-36 px-32 flex justify-around items-center">
+          <div className="flex flex-col gap-6">
+            <div>
+              <span className="text-4xl font-medium">About The Aplication</span>
+            </div>
+            <div className="max-w-lg">
+              <span className="text-base text-info">
+                We have some great features from the application and it’s
+                totally free to use by all users around the world.
+              </span>
+            </div>
+          </div>
+          <div className="flex gap-6">
+            <div className="rounded-lg bg-primary w-52 flex flex-col gap-5 py-9 text-center px-3 items-center">
+              <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
+                <CiHeadphones />
+              </div>
+              <div className="text-lg font-bold text-neutral">24/7 Support</div>
+              <div className="text-base text-neutral">
+                We have 24/7 contact support so you can contact us whenever you
+                want and we will respond it.
+              </div>
+            </div>
+            <div className="rounded-lg bg-primary w-52 flex flex-col gap-5 py-9 text-center px-3 items-center">
+              <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
+                <CiHeadphones />
+              </div>
+              <div className="text-lg font-bold text-neutral">24/7 Support</div>
+              <div className="text-base text-neutral">
+                We have 24/7 contact support so you can contact us whenever you
+                want and we will respond it.
+              </div>
+            </div>
+            <div className="rounded-lg bg-primary w-52 flex flex-col gap-5 py-9 text-center px-3 items-center">
+              <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
+                <CiHeadphones />
+              </div>
+              <div className="text-lg font-bold text-neutral">24/7 Support</div>
+              <div className="text-base text-neutral">
+                We have 24/7 contact support so you can contact us whenever you
+                want and we will respond it.
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </>
