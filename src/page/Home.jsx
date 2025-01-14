@@ -3,13 +3,19 @@ import Navbar from "../components/Navbar";
 import Cellphone from "../assets/images/home-page.png";
 import Appstore from "../assets/icons/appstore.svg";
 import Gplay from "../assets/icons/gplay.svg";
+import airbnb from "../assets/icons/airbnb.svg";
+import canon from "../assets/icons/canon.svg";
+import dell from "../assets/icons/dell.svg";
+import dropbox from "../assets/icons/dropbox.svg";
+import hnm from "../assets/icons/hnm.svg";
+import microsoft from "../assets/icons/microsoft.svg";
 
 function Home() {
   return (
     <>
       <Navbar />
-      <main className="px-32">
-        <div className="py-36 flex">
+      <main>
+        <div className="py-36 flex px-32">
           <div className="flex flex-col gap-6 w-1/2">
             <div className="text-5xl text-secondary font-medium flex flex-col gap-4 max-w-3xl">
               <span>Smart Way to Your Financial</span> <span>Business</span>
@@ -36,6 +42,14 @@ function Home() {
           <div className="flex shrink-0 w-1/2 justify-center">
             <img src={Cellphone} alt="cellphone" />
           </div>
+        </div>
+        <div className="bg-abuMuda h-44 flex justify-between py-9 px-32">
+          <img src={microsoft} alt="microsoft" />
+          <img src={dropbox} alt="dropbox" />
+          <img src={hnm} alt="hnm" />
+          <img src={airbnb} alt="airbnb" />
+          <img src={canon} alt="canon" />
+          <img src={dell} alt="dell" />
         </div>
       </main>
     </>
