@@ -13,7 +13,7 @@ function Top_up() {
    useState(0)
   return (
     <div className='flex flex-col gap-8'>
-     <NavbarDashboard/>
+     <NavbarDashboard page={"Top Up"}/>
      <section className='px-9 py-4 flex flex-col gap-8'>
        <div className='text-secondary font-bold text-base'>Top Up Account</div>
        <div className='flex gap-8'>
