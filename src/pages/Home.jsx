@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Cellphone from "../assets/images/home-page.png";
 import Appstore from "../assets/icons/appstore.svg";
 import Gplay from "../assets/icons/gplay.svg";
@@ -9,7 +10,16 @@ import dell from "../assets/icons/dell.svg";
 import dropbox from "../assets/icons/dropbox.svg";
 import hnm from "../assets/icons/hnm.svg";
 import microsoft from "../assets/icons/microsoft.svg";
+import star from "../assets/icons/star.svg";
+import mobile from "../assets/images/Mobile-dashboard.png";
+import avatar from "../assets/images/avatar.png";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
 import { CiHeadphones } from "react-icons/ci";
+import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { IoDownloadOutline } from "react-icons/io5";
+import { PiMoneyWavy } from "react-icons/pi";
+import { LuUserCheck } from "react-icons/lu";
 
 function Home() {
   return (
@@ -18,8 +28,8 @@ function Home() {
       <main>
         <div className="py-36 flex px-32">
           <div className="flex flex-col gap-6 w-1/2">
-            <div className="text-5xl text-secondary font-medium flex flex-col gap-4 max-w-3xl">
-              <span>Smart Way to Your Financial</span> <span>Business</span>
+            <div className="text-5xl text-secondary font-medium max-w-3xl">
+              Smart Way to Your Financial Business
             </div>
             <div className="max-w-md">
               <span className="text-base text-info font-light">
@@ -52,7 +62,7 @@ function Home() {
           <img src={canon} alt="canon" />
           <img src={dell} alt="dell" />
         </div>
-        <div className="py-36 px-32 flex justify-around items-center">
+        <div className="py-36 px-32 gap-10 flex justify-around items-center">
           <div className="flex flex-col gap-6">
             <div>
               <span className="text-4xl font-medium">About The Aplication</span>
@@ -77,27 +87,169 @@ function Home() {
             </div>
             <div className="rounded-lg bg-primary w-52 flex flex-col gap-5 py-9 text-center px-3 items-center">
               <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
-                <CiHeadphones />
+                <IoShieldCheckmarkOutline />
               </div>
-              <div className="text-lg font-bold text-neutral">24/7 Support</div>
+              <div className="text-lg font-bold text-neutral">Data Privacy</div>
               <div className="text-base text-neutral">
-                We have 24/7 contact support so you can contact us whenever you
-                want and we will respond it.
+                We make sure your data is safe in our database and we will
+                encrypt any data you submitted to us.
               </div>
             </div>
             <div className="rounded-lg bg-primary w-52 flex flex-col gap-5 py-9 text-center px-3 items-center">
               <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
-                <CiHeadphones />
+                <IoDownloadOutline />
               </div>
-              <div className="text-lg font-bold text-neutral">24/7 Support</div>
+              <div className="text-lg font-bold text-neutral">
+                Easy Download
+              </div>
               <div className="text-base text-neutral">
-                We have 24/7 contact support so you can contact us whenever you
-                want and we will respond it.
+                Zwallet is 100% totally free to use it’s now available on Google
+                Play Store and App Store.
               </div>
             </div>
           </div>
         </div>
+        <div className="bg-primary flex justify-center items-end py-24 px-32 gap-56">
+          <div>
+            <img src={mobile} alt="" />
+          </div>
+          <div className="flex flex-col gap-6">
+            <div className="text-neutral font-medium text-4xl">
+              All The Great Zwallet Features.
+            </div>
+            <div className="text-base text-neutral font-light">
+              We have some great features from the application and it’s totally
+              free to use by all users around the world.
+            </div>
+            <div className="flex gap-3">
+              <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
+                <PiMoneyWavy />
+              </div>
+              <div className="flex text-neutral flex-col gap-2 justify-center">
+                <div className="font-semibold text-lg">Small Fee</div>
+                <div className="text-base font-light">
+                  We only charge 5% of every success transaction done in Zwallet
+                  app.
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
+                <IoShieldCheckmarkOutline />
+              </div>
+              <div className="flex text-neutral flex-col gap-2 justify-center">
+                <div className="font-semibold text-lg">Data Secured</div>
+                <div className="text-base font-light">
+                  All your data is secured properly in our system and it’s
+                  encrypted.
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
+                <LuUserCheck />
+              </div>
+              <div className="flex text-neutral flex-col gap-2 justify-center">
+                <div className="font-semibold text-lg">User Friendly</div>
+                <div className="text-base font-light">
+                  Zwallet come up with modern and sleek design and not
+                  complicated.
+                </div>
+              </div>
+            </div>
+            <div>
+              <button className="btn btn-neutral font-light text-primary px-11">
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="px-32 flex flex-col gap-20 text-center py-20">
+          <div className="text-5xl font-medium">Here From Our Customer</div>
+          <div className="text-info">
+            We always do our best for our customers to stay comfortable using
+            the applications we provide
+          </div>
+          <div className="flex gap-11 items-center justify-center">
+            <div className="btn hover:bg-primary hover:text-neutral rounded-full w-12 aspect-square border-none bg-abuMuda">
+              <FaArrowLeftLong />
+            </div>
+            <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
+              <div className="avatar placeholder">
+                <div className="w-12 h-12 rounded-full">
+                  <img src={avatar} alt="avatar" />
+                </div>
+              </div>
+              <div className="text-lg font-bold">Sherina Claw</div>
+              <div className="flex gap-4 items-center">
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <div className="text-info">5.0</div>
+              </div>
+              <div className="text-5xl font-bold">“</div>
+              <div className="text-base text-info">
+                “I use Zwallet to manage all financial needs. It’s super easy to
+                use and it’s 100% free app”
+              </div>
+            </div>
+            <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
+              <div className="avatar placeholder">
+                <div className="w-12 h-12 rounded-full">
+                  <img src={avatar} alt="avatar" />
+                </div>
+              </div>
+              <div className="text-lg font-bold">James Bond</div>
+              <div className="flex gap-4 items-center">
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <div className="text-info">5.0</div>
+              </div>
+              <div className="text-5xl font-bold">“</div>
+              <div className="text-base text-info">
+                “Since I’m using this app, I’m not going to move to another
+                similar app. Thank you Zwallet!”
+              </div>
+            </div>
+            <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
+              <div className="avatar placeholder">
+                <div className="w-12 h-12 rounded-full">
+                  <img src={avatar} alt="avatar" />
+                </div>
+              </div>
+              <div className="text-lg font-bold">Ujang Kayu</div>
+              <div className="flex gap-4 items-center">
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <div className="text-info">5.0</div>
+              </div>
+              <div className="text-5xl font-bold">“</div>
+              <div className="text-base text-info">
+                “I use this app since 2 years ago and this is the best app that
+                I’ve ever use in my entire life”
+              </div>
+            </div>
+            <div className="btn hover:bg-primary hover:text-neutral rounded-full w-12 aspect-square border-none bg-abuMuda">
+              <FaArrowRightLong />
+            </div>
+          </div>
+          <div className="flex gap-3 justify-center">
+            <div className="bg-primary w-6 rounded-full"></div>
+            <div className="bg-abuMuda w-2 aspect-square rounded-full"></div>
+            <div className="bg-abuMuda w-2 aspect-square rounded-full"></div>
+            <div className="bg-abuMuda w-2 aspect-square rounded-full"></div>
+          </div>
+        </div>
       </main>
+      <Footer />
     </>
   );
 }

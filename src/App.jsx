@@ -1,11 +1,11 @@
-// import React from 'react'
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import './App.css'
-import Home from './pages/Home.jsx';
-import Register from './pages/Register.jsx';
-import Login from './pages/Login.jsx';
-import ForgotPass from './pages/ForgotPassword.jsx';
-import PinLogin from './pages/PinLogin.jsx';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home.jsx";
+import React from "react";
+import Register from "./pages/Register.jsx";
+import Login from "./pages/Login.jsx";
+import ForgotPass from "./pages/ForgotPassword.jsx";
+import PinLogin from "./pages/PinLogin.jsx";
 import Topup from "./pages/Top-up.jsx";
 
 const router = createBrowserRouter([
@@ -22,15 +22,15 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: '/login',
+    path: "/login",
     element: <Login />,
   },
   {
-    path: '/forgotPass',
+    path: "/forgotPass",
     element: <ForgotPass />,
   },
   {
-    path: '/pinLogin',
+    path: "/pinLogin",
     element: <PinLogin />,
   },
 ]);
