@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Cellphone from "../assets/images/home-page.png";
 import Appstore from "../assets/icons/appstore.svg";
 import Gplay from "../assets/icons/gplay.svg";
@@ -15,6 +16,10 @@ import avatar from "../assets/images/avatar.png";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { CiHeadphones } from "react-icons/ci";
+import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { IoDownloadOutline } from "react-icons/io5";
+import { PiMoneyWavy } from "react-icons/pi";
+import { LuUserCheck } from "react-icons/lu";
 
 function Home() {
   return (
@@ -82,7 +87,7 @@ function Home() {
             </div>
             <div className="rounded-lg bg-primary w-52 flex flex-col gap-5 py-9 text-center px-3 items-center">
               <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
-                <CiHeadphones />
+                <IoShieldCheckmarkOutline />
               </div>
               <div className="text-lg font-bold text-neutral">Data Privacy</div>
               <div className="text-base text-neutral">
@@ -92,7 +97,7 @@ function Home() {
             </div>
             <div className="rounded-lg bg-primary w-52 flex flex-col gap-5 py-9 text-center px-3 items-center">
               <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
-                <CiHeadphones />
+                <IoDownloadOutline />
               </div>
               <div className="text-lg font-bold text-neutral">
                 Easy Download
@@ -118,7 +123,7 @@ function Home() {
             </div>
             <div className="flex gap-3">
               <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
-                <CiHeadphones />
+                <PiMoneyWavy />
               </div>
               <div className="flex text-neutral flex-col gap-2 justify-center">
                 <div className="font-semibold text-lg">Small Fee</div>
@@ -130,7 +135,7 @@ function Home() {
             </div>
             <div className="flex gap-3">
               <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
-                <CiHeadphones />
+                <IoShieldCheckmarkOutline />
               </div>
               <div className="flex text-neutral flex-col gap-2 justify-center">
                 <div className="font-semibold text-lg">Data Secured</div>
@@ -142,7 +147,7 @@ function Home() {
             </div>
             <div className="flex gap-3">
               <div className="w-14 aspect-square bg-neutral rounded-full flex justify-center items-center text-3xl text-primary">
-                <CiHeadphones />
+                <LuUserCheck />
               </div>
               <div className="flex text-neutral flex-col gap-2 justify-center">
                 <div className="font-semibold text-lg">User Friendly</div>
@@ -175,7 +180,7 @@ function Home() {
                   <img src={avatar} alt="avatar" />
                 </div>
               </div>
-              <div className="text-lg font-bold">Ujang Kayu</div>
+              <div className="text-lg font-bold">Sherina Claw</div>
               <div className="flex gap-4 items-center">
                 <img src={star} alt="star" />
                 <img src={star} alt="star" />
@@ -186,8 +191,8 @@ function Home() {
               </div>
               <div className="text-5xl font-bold">“</div>
               <div className="text-base text-info">
-                “I use this app since 2 years ago and this is the best app that
-                I’ve ever use in my entire life”
+                “I use Zwallet to manage all financial needs. It’s super easy to
+                use and it’s 100% free app”
               </div>
             </div>
             <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
@@ -196,7 +201,7 @@ function Home() {
                   <img src={avatar} alt="avatar" />
                 </div>
               </div>
-              <div className="text-lg font-bold">Ujang Kayu</div>
+              <div className="text-lg font-bold">James Bond</div>
               <div className="flex gap-4 items-center">
                 <img src={star} alt="star" />
                 <img src={star} alt="star" />
@@ -207,8 +212,8 @@ function Home() {
               </div>
               <div className="text-5xl font-bold">“</div>
               <div className="text-base text-info">
-                “I use this app since 2 years ago and this is the best app that
-                I’ve ever use in my entire life”
+                “Since I’m using this app, I’m not going to move to another
+                similar app. Thank you Zwallet!”
               </div>
             </div>
             <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
@@ -236,8 +241,15 @@ function Home() {
               <FaArrowRightLong />
             </div>
           </div>
+          <div className="flex gap-3 justify-center">
+            <div className="bg-primary w-6 rounded-full"></div>
+            <div className="bg-abuMuda w-2 aspect-square rounded-full"></div>
+            <div className="bg-abuMuda w-2 aspect-square rounded-full"></div>
+            <div className="bg-abuMuda w-2 aspect-square rounded-full"></div>
+          </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
