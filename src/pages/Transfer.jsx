@@ -1,7 +1,7 @@
-import Send from "../assets/Send.svg";
+import Send from "../assets/icons/Send.svg";
 import search from "../assets/icons/Search.svg";
-import arcane from "../assets/arcane.jpg";
-import Star from "../assets/Star.svg";
+import arcane from "../assets/images/arcane.jpg";
+import StarBigger from "../assets/icons/StarBigger.svg";
 
 function Transfer() {
   return (
@@ -96,7 +96,7 @@ function Transfer() {
                         </div>
                       </div>
                       <div className="px-4 py-2 w-[78px] md:w-[77px] md:h-[72px] flex items-center">
-                        <img src={Star} alt="" />
+                        <img src={StarBigger} alt="" />
                       </div>
                     </div>
                   </td>
@@ -120,7 +120,7 @@ function Transfer() {
                         </div>
                       </div>
                       <div className="px-4 py-2 w-[78px] md:w-[77px] md:h-[72px] flex items-center">
-                        <img src={Star} alt="" />
+                        <img src={StarBigger} alt="" />
                       </div>
                     </div>
                   </td>
@@ -144,7 +144,7 @@ function Transfer() {
                         </div>
                       </div>
                       <div className="px-4 py-2 w-[78px] md:w-[77px] md:h-[72px] flex items-center">
-                        <img src={Star} alt="" />
+                        <img src={StarBigger} alt="" />
                       </div>
                     </div>
                   </td>
@@ -168,7 +168,7 @@ function Transfer() {
                         </div>
                       </div>
                       <div className="px-4 py-2 w-[78px] md:w-[77px] md:h-[72px] flex items-center">
-                        <img src={Star} alt="" />
+                        <img src={StarBigger} alt="" />
                       </div>
                     </div>
                   </td>
