@@ -1,9 +1,10 @@
-import Send from "../assets/Send.svg";
-import arcane from "../assets/arcane.jpg";
-import Star from "../assets/Star.svg";
-import verified from "../assets/verified.svg";
-import money from "../assets/u_money-bill.svg";
+import Send from "../assets/icons/Send.svg";
+import arcane from "../assets/images/arcane.jpg";
+import StarBigger from "../assets/icons/StarBigger.svg";
+import verified from "../assets/icons/verified.svg";
+import money from "../assets/icons/u_money-bill.svg";
 import { useState } from "react";
+import Pin from "../components/Pin";
 
 function TransferDetail() {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,7 +88,7 @@ function TransferDetail() {
                   </div>
                 </div>
                 <div>
-                  <img src={Star} alt="Favorite" />
+                  <img src={StarBigger} alt="Favorite" />
                 </div>
               </div>
             </div>
@@ -137,19 +138,7 @@ function TransferDetail() {
           </div>
         </div>
       </div>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <div className="font-semibold">Transfer to Arcane</div>
-            <div className="h-[510px] w-[556px] border">
-              <div className="w-[556px] h-[377px] flex flex-col">
-                <div>Enter Your Pin</div>
-                <div>Enter Your Pin for transaction</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {isOpen && <Pin />}
     </div>
   );
 }
