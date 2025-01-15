@@ -9,6 +9,7 @@ import dropbox from "../assets/icons/dropbox.svg";
 import hnm from "../assets/icons/hnm.svg";
 import microsoft from "../assets/icons/microsoft.svg";
 import { CiHeadphones } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -27,9 +28,9 @@ function Home() {
               </span>
             </div>
             <div>
-              <button className="btn btn-primary font-light px-8 text-neutral">
+              <Link to="/dashboard"><button className="btn btn-primary font-light px-8 text-neutral">
                 Get Started
-              </button>
+              </button></Link>
             </div>
             <div>
               <span>Available on</span>
