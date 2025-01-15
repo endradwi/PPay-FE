@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Bri from "../assets/bri.png";
-import Dana from "../assets/dana.png";
-import Bca from "../assets/bca.png";
-import Gopay from "../assets/gopay.png";
-import Ovo from "../assets/ovo.png";
+import Bri from "../assets/icons/bri.png";
+import Dana from "../assets/icons/dana.png";
+import Bca from "../assets/icons/bca.png";
+import Gopay from "../assets/icons/gopay.png";
+import Ovo from "../assets/icons/ovo.png";
 import { MdOutlineVerified } from "react-icons/md";
 //  import { LiaMoneyBillSolid } from "react-icons/lia";
 
