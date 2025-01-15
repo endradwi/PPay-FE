@@ -1,12 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home.jsx";
-import React from "react";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import ForgotPass from "./pages/ForgotPassword.jsx";
 import PinLogin from "./pages/PinLogin.jsx";
 import Topup from "./pages/Top-up.jsx";
+import Transfer from "./pages/Transfer.jsx";
+import TransferDetail from "./pages/TransferDetail.jsx";
+import PopupPin from "./pages/PopupPin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,18 @@ const router = createBrowserRouter([
   {
     path: "/pinLogin",
     element: <PinLogin />,
+  },
+  {
+    path: "/transfer",
+    element: <Transfer />,
+  },
+  {
+    path: "/transfer-detail",
+    element: <TransferDetail />,
+  },
+  {
+    path: "/popup-pin",
+    element: <PopupPin />,
   },
 ]);
 function App() {

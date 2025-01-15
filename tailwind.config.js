@@ -4,9 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.jsx"],
   theme: {
     extend: {
-      colors:{
-        abuMuda:"#E8E8E84D"
-      } 
+      colors: {
+        abuMuda: "#E8E8E84D",
+      },
     },
   },
   daisyui: {
