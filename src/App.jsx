@@ -10,8 +10,8 @@ import Transfer from "./pages/Transfer.jsx";
 import TransferDetail from "./pages/TransferDetail.jsx";
 import PopupPin from "./pages/PopupPin.jsx";
 import Profile from "./pages/Profile";
-import ChangePin from "./pages/ChangePin";
-import ChangePass from "./pages/ChangePassword";
+import ChangePin from "./pages/ChangePin.jsx";
+import ChangePass from "./pages/ChangePassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +63,7 @@ const router = createBrowserRouter([
     element: <ChangePass />,
   },
 ]);
+
 function App() {
   return <RouterProvider router={router} />;
 }
