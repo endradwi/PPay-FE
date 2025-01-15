@@ -1,4 +1,3 @@
-import React from "react";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
 import topUp from "../assets/icons/top-up.svg";

@@ -8,7 +8,6 @@ import PinLogin from "./pages/PinLogin.jsx";
 import Topup from "./pages/Top-up.jsx";
 import Transfer from "./pages/Transfer.jsx";
 import TransferDetail from "./pages/TransferDetail.jsx";
-import PopupPin from "./pages/PopupPin.jsx";
 import Profile from "./pages/Profile";
 import ChangePin from "./pages/ChangePin.jsx";
 import ChangePass from "./pages/ChangePassword.jsx";
@@ -46,10 +45,6 @@ const router = createBrowserRouter([
   {
     path: "/transfer-detail",
     element: <TransferDetail />,
-  },
-  {
-    path: "/popup-pin",
-    element: <PopupPin />,
   },
   {
     path: "/profile",
