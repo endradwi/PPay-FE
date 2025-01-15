@@ -9,6 +9,7 @@ import Topup from "./pages/Top-up.jsx";
 import Transfer from "./pages/Transfer.jsx";
 import TransferDetail from "./pages/TransferDetail.jsx";
 import PopupPin from "./pages/PopupPin.jsx";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/popup-pin",
     element: <PopupPin />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 function App() {
