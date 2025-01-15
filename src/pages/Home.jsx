@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import Cellphone from "../assets/images/home-page.png";
 import Appstore from "../assets/icons/appstore.svg";

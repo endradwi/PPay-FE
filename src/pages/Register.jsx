@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import image from "../assets/images/Register_Image.png";
 import logo from "../assets/icons/ppay_logo2.png";
 import { FcGoogle } from "react-icons/fc";
