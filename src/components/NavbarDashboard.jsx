@@ -5,7 +5,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 
 function NavbarDashboard(props) {
   return (
-    <nav className="flex justify-between navbar bg-primary md:bg-neutral px-5 md:px-32 py-4">
+    <nav className="flex justify-between navbar bg-primary md:bg-neutral px-5 md:px-12 lg:px-32 py-4">
       <img className="h-8 md:block hidden" src={ppay} alt="ppay" />
       <div className="flex gap-3 md:gap-6 items-center">
         <div className="hidden md:block">
