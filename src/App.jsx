@@ -12,6 +12,7 @@ import PopupPin from "./pages/PopupPin.jsx";
 import Profile from "./pages/Profile";
 import ChangePin from "./pages/ChangePin.jsx";
 import ChangePass from "./pages/ChangePassword.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: "/change-password",
     element: <ChangePass />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 
