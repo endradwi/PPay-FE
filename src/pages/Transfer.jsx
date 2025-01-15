@@ -1,5 +1,5 @@
 import Send from "../assets/Send.svg";
-import search from "../assets/Search.svg";
+import search from "../assets/icons/Search.svg";
 import arcane from "../assets/arcane.jpg";
 import Star from "../assets/Star.svg";
 
