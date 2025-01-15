@@ -10,8 +10,8 @@ import { FaGithub } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-primary pt-16 pb-9 px-32 flex gap-7 flex-col">
-      <div className="border-b-2 border-b-abuMuda pb-24 flex justify-between">
+    <footer className="bg-primary pt-16 pb-9 md:px-12 px-6 xl:px-32 flex gap-7 flex-col">
+      <div className="border-b-2 border-b-abuMuda pb-24 gap-8 flex flex-col xl:flex-row justify-between">
         <div className="flex flex-col gap-6 max-w-64">
           <div className="w-56">
             <img src={ppay} alt="ppay" />
@@ -59,7 +59,7 @@ function Footer() {
             NEWSLETTER
           </label>
           <div className="flex flex-col gap-4">
-            <div className="w-72 h-11 rounded-lg overflow-hidden relative">
+            <div className="w-full lg:w-72 h-11 rounded-lg overflow-hidden relative">
               <input
                 type="email"
                 id="subscriber"
@@ -69,7 +69,7 @@ function Footer() {
               />
               <FiMail className="absolute top-[13px] text-lg left-3 text-gray-400" />
             </div>
-            <button className="btn btn-neutral w-full h-9 font-light text-primary">
+            <button className="btn btn-neutral lg:w-72 w-full h-9 font-light text-primary">
               Subscribe
             </button>
           </div>
