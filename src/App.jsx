@@ -6,6 +6,7 @@ import Login from "./pages/Login.jsx";
 import ForgotPass from "./pages/ForgotPassword.jsx";
 import PinLogin from "./pages/PinLogin.jsx";
 import Topup from "./pages/Top-up.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/pinLogin",
     element: <PinLogin />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 
