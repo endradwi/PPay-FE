@@ -8,7 +8,8 @@ import PinLogin from "./pages/PinLogin.jsx";
 import Topup from "./pages/Top-up.jsx";
 import Transfer from "./pages/Transfer.jsx";
 import TransferDetail from "./pages/TransferDetail.jsx";
-import Profile from "./pages/Profile";
+import HistoryTransaction from "./pages/HistoryTransaction.jsx";
+import Profile from "./pages/Profile.jsx";
 import ChangePin from "./pages/ChangePin.jsx";
 import ChangePass from "./pages/ChangePassword.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/transfer-detail",
     element: <TransferDetail />,
+  },
+  {
+    path: "/historyTransaction",
+    element: <HistoryTransaction />,
   },
   {
     path: "/profile",
