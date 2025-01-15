@@ -8,6 +8,11 @@ import PinLogin from "./pages/PinLogin.jsx";
 import Topup from "./pages/Top-up.jsx";
 import Transfer from "./pages/Transfer.jsx";
 import TransferDetail from "./pages/TransferDetail.jsx";
+import PopupPin from "./pages/PopupPin.jsx";
+import Profile from "./pages/Profile";
+import ChangePin from "./pages/ChangePin.jsx";
+import ChangePass from "./pages/ChangePassword.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +47,28 @@ const router = createBrowserRouter([
     path: "/transfer-detail",
     element: <TransferDetail />,
   },
+  {
+    path: "/popup-pin",
+    element: <PopupPin />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/change-pin",
+    element: <ChangePin />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePass />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
 ]);
+
 function App() {
   return <RouterProvider router={router} />;
 }
