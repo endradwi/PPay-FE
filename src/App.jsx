@@ -10,6 +10,8 @@ import Transfer from "./pages/Transfer.jsx";
 import TransferDetail from "./pages/TransferDetail.jsx";
 import PopupPin from "./pages/PopupPin.jsx";
 import Profile from "./pages/Profile";
+import ChangePin from "./pages/ChangePin";
+import ChangePass from "./pages/ChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/change-pin",
+    element: <ChangePin />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePass />,
   },
 ]);
 function App() {
