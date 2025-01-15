@@ -9,9 +9,11 @@ import dell from "../assets/icons/dell.svg";
 import dropbox from "../assets/icons/dropbox.svg";
 import hnm from "../assets/icons/hnm.svg";
 import microsoft from "../assets/icons/microsoft.svg";
-import wavedown from "../assets/icons/wavedown.svg";
-import waveup from "../assets/icons/waveup.svg";
+import star from "../assets/icons/star.svg";
 import mobile from "../assets/images/Mobile-dashboard.png";
+import avatar from "../assets/images/avatar.png";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
 import { CiHeadphones } from "react-icons/ci";
 
 function Home() {
@@ -21,8 +23,8 @@ function Home() {
       <main>
         <div className="py-36 flex px-32">
           <div className="flex flex-col gap-6 w-1/2">
-            <div className="text-5xl text-secondary font-medium flex flex-col gap-4 max-w-3xl">
-              <span>Smart Way to Your Financial</span> <span>Business</span>
+            <div className="text-5xl text-secondary font-medium max-w-3xl">
+              Smart Way to Your Financial Business
             </div>
             <div className="max-w-md">
               <span className="text-base text-info font-light">
@@ -154,6 +156,84 @@ function Home() {
               <button className="btn btn-neutral font-light text-primary px-11">
                 Get Started
               </button>
+            </div>
+          </div>
+        </div>
+        <div className="px-32 flex flex-col gap-20 text-center py-20">
+          <div className="text-5xl font-medium">Here From Our Customer</div>
+          <div className="text-info">
+            We always do our best for our customers to stay comfortable using
+            the applications we provide
+          </div>
+          <div className="flex gap-11 items-center justify-center">
+            <div className="btn hover:bg-primary hover:text-neutral rounded-full w-12 aspect-square border-none bg-abuMuda">
+              <FaArrowLeftLong />
+            </div>
+            <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
+              <div className="avatar placeholder">
+                <div className="w-12 h-12 rounded-full">
+                  <img src={avatar} alt="avatar" />
+                </div>
+              </div>
+              <div className="text-lg font-bold">Ujang Kayu</div>
+              <div className="flex gap-4 items-center">
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <div className="text-info">5.0</div>
+              </div>
+              <div className="text-5xl font-bold">“</div>
+              <div className="text-base text-info">
+                “I use this app since 2 years ago and this is the best app that
+                I’ve ever use in my entire life”
+              </div>
+            </div>
+            <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
+              <div className="avatar placeholder">
+                <div className="w-12 h-12 rounded-full">
+                  <img src={avatar} alt="avatar" />
+                </div>
+              </div>
+              <div className="text-lg font-bold">Ujang Kayu</div>
+              <div className="flex gap-4 items-center">
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <div className="text-info">5.0</div>
+              </div>
+              <div className="text-5xl font-bold">“</div>
+              <div className="text-base text-info">
+                “I use this app since 2 years ago and this is the best app that
+                I’ve ever use in my entire life”
+              </div>
+            </div>
+            <div className="rounded-lg bg-abuMuda w-72 flex flex-col gap-5 py-14 text-secondary text-center px-3 items-center">
+              <div className="avatar placeholder">
+                <div className="w-12 h-12 rounded-full">
+                  <img src={avatar} alt="avatar" />
+                </div>
+              </div>
+              <div className="text-lg font-bold">Ujang Kayu</div>
+              <div className="flex gap-4 items-center">
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <img src={star} alt="star" />
+                <div className="text-info">5.0</div>
+              </div>
+              <div className="text-5xl font-bold">“</div>
+              <div className="text-base text-info">
+                “I use this app since 2 years ago and this is the best app that
+                I’ve ever use in my entire life”
+              </div>
+            </div>
+            <div className="btn hover:bg-primary hover:text-neutral rounded-full w-12 aspect-square border-none bg-abuMuda">
+              <FaArrowRightLong />
             </div>
           </div>
         </div>
