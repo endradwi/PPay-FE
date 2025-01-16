@@ -13,20 +13,12 @@ function Transfer() {
         <NavbarDashboard page={"Transfer"} />
         <div className="flex box-border">
           <Sidebar />
-      <div className="flex flex-col gap-y-4">
-        <div className="hidden md:flex flex-row gap-4 items-center">
-          <Link to="/transfer-detail"><img src={Send} alt="" className="h-6 w-6" /></Link>
-          <div className="text-base font-semibold">Transfer Money</div>
-        </div>
-        <div className="hidden md:flex flex-row gap-3 items-center">
-          <div>
-            <div className="flex flex-row gap-2 h-11 w-36 items-center">
-              <div className="bg-primary h-6 w-6 rounded-full flex items-center justify-center">
-                <div className="text-xs text-neutral">1</div>
-              </div>
-              <div>
-                <div className="text-primary">Find People</div>
-              </div>
+          <div className="flex flex-col gap-y-4 px-8 pt-6">
+            <div className="hidden md:flex flex-row gap-4 items-center">
+              <Link to="/transfer-detail">
+                <img src={Send} alt="" className="h-6 w-6" />
+              </Link>
+              <div className="text-base font-semibold">Transfer Money</div>
             </div>
             <div className="hidden md:flex flex-row gap-3 items-center">
               <div>
