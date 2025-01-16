@@ -1,44 +1,44 @@
 import React from "react";
 
-import User1 from "../assets/icons/user1.svg"
-import User2 from "../assets/icons/user2.svg"
+import User1 from "../assets/icons/user1.svg";
+import User2 from "../assets/icons/user2.svg";
 
 function TransactionHistory() {
-    const userId = 101;
-    const transactions = [
-        {
-        id: 1,
-        sender_id: 101,
-        sender_fullname: "John Doe",
-        sender_image: User1,
-        type: "Transfer",
-        transfer_amount: 150000,
-        },
-        {
-        id: 2,
-        sender_id: 102,
-        sender_fullname: "Jane Smith",
-        sender_image: User2,
-        type: "Payment",
-        transfer_amount: 250000,
-        },
-        {
-        id: 3,
-        sender_id: 103,
-        sender_fullname: "Alice Johnson",
-        sender_image: User1,
-        type: "Refund",
-        transfer_amount: 50000,
-        },
-        {
-        id: 4,
-        sender_id: 104,
-        sender_fullname: "Bob Brown",
-        sender_image: User2,
-        type: "Transfer",
-        transfer_amount: 100000,
-        },
-    ];
+  const userId = 101;
+  const transactions = [
+    {
+      id: 1,
+      sender_id: 101,
+      sender_fullname: "John Doe",
+      sender_image: User1,
+      type: "Transfer",
+      transfer_amount: 150000,
+    },
+    {
+      id: 2,
+      sender_id: 102,
+      sender_fullname: "Jane Smith",
+      sender_image: User2,
+      type: "Payment",
+      transfer_amount: 250000,
+    },
+    {
+      id: 3,
+      sender_id: 103,
+      sender_fullname: "Alice Johnson",
+      sender_image: User1,
+      type: "Refund",
+      transfer_amount: 50000,
+    },
+    {
+      id: 4,
+      sender_id: 104,
+      sender_fullname: "Bob Brown",
+      sender_image: User2,
+      type: "Transfer",
+      transfer_amount: 100000,
+    },
+  ];
 
   return (
     <>

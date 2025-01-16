@@ -10,7 +10,7 @@ import quit from "../assets/icons/logout-side.svg";
 const Sidebar = () => {
   return (
     <>
-      <main className="hidden md:inline-block px-5 py-6 text-sm text-gray-600 bg-white border-r border-gray-200 border-solid w-[261px] font-montserrat shadow-lg">
+      <main className="hidden md:inline-block px-5 py-6 text-sm text-gray-600 bg-white border-r border-gray-200 border-solid w-[261px] flex-shrink-0 font-montserrat shadow-lg h-screen">
         <div className="inline-block w-full">
           <Link to="/dashboard">
             <button className="w-full h-10 items-center pl-2 flex rounded-md bg-primary text-white focus:text-blue-600  focus:border-l-4 focus:border-blue-600 focus:border-solid focus:bg-blue-600 focus:bg-opacity-10">
