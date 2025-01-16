@@ -7,9 +7,9 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 function NavbarDashboard(props) {
   return (
-    <nav className="flex justify-between md:justify-between navbar border-solid shadow-md bg-primary md:bg-neutral px-5 md:px-12 lg:px-32 py-4">
+    <nav className="flex justify-between md:justify-between navbar border-solid shadow-md bg-primary md:bg-neutral px-5 md:px-7 py-4">
       <Link className="md:block hidden" to={"/"}>
-        <img className="h-8 md:block hidden" src={ppay} alt="ppay" />
+        <img className="h-10 md:block hidden" src={ppay} alt="ppay" />
       </Link>
       <div className="flex gap-3 md:gap-6 items-center">
         <div className="hidden md:block">
