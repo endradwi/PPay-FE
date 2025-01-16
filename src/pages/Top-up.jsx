@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import Bri from '../assets/icons/bri.png'
 import Dana from '../assets/icons/dana.png'
 import Bca from '../assets/icons/bca.png'
@@ -7,13 +7,16 @@ import Ovo from '../assets/icons/ovo.png'
 import { MdOutlineVerified } from "react-icons/md";
 //  import { LiaMoneyBillSolid } from "react-icons/lia";
 import NavbarDashboard from '../components/NavbarDashboard'
+import Sidebar from '../components/Sidebar'
 
 
 function Top_up() {
-   useState(0)
   return (
-    <div className='flex flex-col gap-8'>
+    <div>
      <NavbarDashboard page={"Top Up"}/>
+     <div className='flex'>
+      <Sidebar page={"top-up"}/>
+    <div className='flex flex-col gap-8'>
      <section className='px-9 py-4 flex flex-col gap-8'>
        <div className='text-secondary font-bold text-base'>Top Up Account</div>
        <div className='flex gap-8'>
@@ -129,6 +132,8 @@ function Top_up() {
          </div>
        </div>
      </section>
+      </div>
+     </div>
    </div>
   )
 }

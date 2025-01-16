@@ -16,7 +16,7 @@ function Register() {
   return (
     <div>
       <div className="flex h-screen bg-primary">
-        <div className="md:py-12 py-20 px-5 md:px-36 rounded-none md:rounded-r-[100px] w-[830px] bg-neutral flex flex-col gap-2">
+        <div className="md:py-12 py-20 px-5 md:px-56 rounded-none md:rounded-r-[100px] w-[1000px] bg-neutral flex flex-col gap-2">
           <div className="items-center">
             <img src={logo} alt="" className="w-32 h-10" />
           </div>
@@ -46,7 +46,7 @@ function Register() {
               <hr className="w-[200px] h-0.5 bg-info"/>
             </div>
           </div>
-          <form className="w-full flex flex-col gap-2">
+          <form className="w-full flex flex-col gap-4">
             <label htmlFor="" className="flex flex-col gap-1">
               <div>
                 <span className="text-base font-medium">Email</span>
@@ -82,7 +82,8 @@ function Register() {
             </label>
             <button className="btn btn-primary text-neutral">Register</button>
           </form>
-          <div className="w-full flex justify-center">Have An Account?<span className="text-primary">
+          <div className="w-full flex justify-center gap-1">Have An Account?
+            <span className="link link-primary">
             <Link to="/login">Login</Link></span></div>
         </div>
         <div className="flex-1 md:flex justify-center items-center hidden">
