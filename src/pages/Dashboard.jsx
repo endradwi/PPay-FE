@@ -20,7 +20,7 @@ function Dashboard() {
           <Sidebar page={"dashboard"} side={"sidebar"}/>
           <main className="w-full p-4 md:p-8">
             <section className="w-full  max-md:max-w-full">
-              <div className="flex gap-5 md:w-full w-[715px] md:top-0 top-14 md:rounded-none rounded-2xl md:px-0 px-10 max-xl:flex-col max-md:gap-0 md:relative absolute shadow-lg md:shadow-none bg-white">
+              <div className="flex gap-5 md:w-full w-[715px] md:top-0 top-14 md:rounded-none rounded-2xl md:px-0 px-10 max-xl:flex-col max-md:gap-0 md:static absolute shadow-lg md:shadow-none bg-white">
                 <div className="flex flex-col  w-[33%] max-md:ml-0 max-xl:w-full">
                   <div className="flex md:flex-col justify-between grow items-center md:items-start py-5 pr-16 pl-3.5 rounded-none md:rounded-md border-none md:border md:border-solid max-md:pr-5 max-md:mt-5">
                     <div className="flex justify-start py-8 flex-col gap-3 text-base tracking-normal leading-6 text-gray-600">
