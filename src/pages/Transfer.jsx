@@ -1,10 +1,10 @@
-import Send from "../assets/icons/Send.svg";
 import search from "../assets/icons/Search.svg";
 import arcane from "../assets/images/arcane.jpg";
 import StarBigger from "../assets/icons/StarBigger.svg";
 import { Link } from "react-router-dom";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
+import { GrSend } from "react-icons/gr";
 
 function Transfer() {
   return (
@@ -12,17 +12,13 @@ function Transfer() {
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"Transfer"} />
         <div className="flex box-border">
-          <Sidebar />
-          <div className="flex flex-col gap-y-4 px-8 pt-6">
+          <Sidebar page={"transfer"} side={"sidebar"}/>
+          <div className="flex flex-col gap-y-4 px-8 pt-10">
             <div className="hidden md:flex flex-row gap-4 items-center">
-              <Link to="/transfer-detail">
-                <img src={Send} alt="" className="h-6 w-6" />
-              </Link>
-              <div className="text-base font-semibold">Transfer Money</div>
               <div className="flex flex-col gap-y-4">
                 <div className="hidden md:flex flex-row gap-4 items-center">
                   <Link to="/transfer-detail">
-                    <img src={Send} alt="" className="h-6 w-6" />
+                  <GrSend className="w-5 h-5 text-primary"/>
                   </Link>
                   <div className="text-base font-semibold">Transfer Money</div>
                 </div>
@@ -202,6 +198,7 @@ function Transfer() {
                 </div>
               </div>
             </div>
+            <Sidebar page={"transfer"} side={"transfer"}/>
           </div>
         </div>
       </div>
