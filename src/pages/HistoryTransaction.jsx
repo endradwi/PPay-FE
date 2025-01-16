@@ -11,7 +11,7 @@ function HistoryTransaction() {
     <div>
       <NavbarDashboard />
       <div className="flex">
-        <Sidebar />
+        <Sidebar page={"historyTransaction"}/>
         <div className="flex pl-10  pr-20 pb-16 flex-col gap-0 md:gap-y-8">
           <div className="flex items-center gap-5 md:bg-transparent bg-primary h-20">
             <RxCounterClockwiseClock className="text-primary w-7 h-7 hidden md:block" />

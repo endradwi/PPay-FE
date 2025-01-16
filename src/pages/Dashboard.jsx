@@ -17,7 +17,7 @@ function Dashboard() {
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"dashboard"} />
         <div className="flex box-border">
-          <Sidebar />
+          <Sidebar page={"dashboard"}/>
           <main className="w-full p-4 md:p-8">
             <section className="w-full max-md:max-w-full">
               <div className="flex gap-5 max-xl:flex-col max-md:gap-0">

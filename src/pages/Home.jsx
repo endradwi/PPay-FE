@@ -19,6 +19,7 @@ import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { IoDownloadOutline } from "react-icons/io5";
 import { PiMoneyWavy } from "react-icons/pi";
 import { LuUserCheck } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -36,11 +37,11 @@ function Home() {
                 wasting much of your times.
               </span>
             </div>
-            <div>
+            <Link to="/dashboard"><div>
               <button className="btn btn-primary font-light px-8 text-neutral">
                 Get Started
               </button>
-            </div>
+            </div></Link>
             <div>
               <span>Available on</span>
             </div>
@@ -157,9 +158,9 @@ function Home() {
               </div>
             </div>
             <div>
-              <button className="btn w-full md:w-44 btn-neutral font-light text-primary px-11">
+             <Link to="/dashboard" className="btn w-full md:w-44 btn-neutral font-light text-primary px-11"> <button >
                 Get Started
-              </button>
+              </button> </Link>
             </div>
           </div>
         </div>
