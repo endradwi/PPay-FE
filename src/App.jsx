@@ -9,7 +9,7 @@ import Topup from "./pages/Top-up.jsx";
 import Transfer from "./pages/Transfer.jsx";
 import TransferDetail from "./pages/TransferDetail.jsx";
 import HistoryTransaction from "./pages/HistoryTransaction.jsx";
-import Profile from "./pages/Profile.jsx";
+import Profile from "./pages/ProfilePage.jsx";
 import ChangePin from "./pages/ChangePin.jsx";
 import ChangePass from "./pages/ChangePassword.jsx";
 import Dashboard from "./pages/Dashboard.jsx";

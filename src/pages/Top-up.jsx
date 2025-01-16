@@ -15,7 +15,7 @@ function Top_up() {
     <div>
      <NavbarDashboard page={"Top Up"}/>
      <div className='flex'>
-      <Sidebar/>
+      <Sidebar page={"top-up"}/>
     <div className='flex flex-col gap-8'>
      <section className='px-9 py-4 flex flex-col gap-8'>
        <div className='text-secondary font-bold text-base'>Top Up Account</div>

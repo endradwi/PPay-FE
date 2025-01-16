@@ -13,7 +13,7 @@ function Profile() {
     <>
       <NavbarDashboard />
       <div className="flex">
-        <Sidebar />
+        <Sidebar page={"profile"}/>
         <div className="flex flex-col gap-8">
           <section className="px-9 py-4 flex flex-col gap-8">
             <div className="flex gap-2 text-secondary font-bold text-base">
@@ -102,7 +102,7 @@ function Profile() {
                     <input
                       type="text"
                       placeholder="Type here"
-                      className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
+                      className="input focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
                     {/* <span className="absolute left-14 flex items-center cursor-pointer"><LiaMoneyBillSolid className='w-10' /></span> */}
                   </div>
