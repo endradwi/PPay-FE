@@ -11,19 +11,19 @@ import Sidebar from "../components/Sidebar";
 function Profile() {
   return (
     <>
-      <NavbarDashboard />
-      <div className="flex">
-        <Sidebar page={"profile"} side={"sidebar"} />
-        <div className="flex flex-col gap-8 pt-6">
-          <section className="px-9 py-4 flex flex-col gap-8">
+      <div className="w-full flex flex-col box-border h-fit-content">
+
+      <NavbarDashboard page={"profile"}/>
+      <div className="flex box-border">
+          <Sidebar page={"profile"} side={"sidebar"}/>
+          <main className="flex flex-col gap-8 w-full p-4 md:p-8">
             <div className="flex gap-2">
               <div className=" text-secondary">
                 <CgProfile className="text-primary w-6 h-6" />
               </div>
               <div className="font-semibold text-base">Profile</div>
             </div>
-            <div className="flex gap-8">
-              <div className="md:px-9 md:py-4 flex flex-col gap-4 w-[1056px] h-[746px] md:border-2 md:border-abuMuda">
+            <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
                 <div className="flex flex-col gap-3">
                   <div className="text-secondary font-bold text-base">
                     Account Information
@@ -71,7 +71,6 @@ function Profile() {
                       placeholder="Type here"
                       className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
-                    {/* <span className="absolute left-14 flex items-center cursor-pointer"><LiaMoneyBillSolid className='w-10' /></span> */}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -89,7 +88,6 @@ function Profile() {
                       placeholder="Type here"
                       className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
-                    {/* <span className="absolute left-14 flex items-center cursor-pointer"><LiaMoneyBillSolid className='w-10' /></span> */}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -107,7 +105,6 @@ function Profile() {
                       placeholder="Type here"
                       className="input focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
-                    {/* <span className="absolute left-14 flex items-center cursor-pointer"><LiaMoneyBillSolid className='w-10' /></span> */}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -140,8 +137,7 @@ function Profile() {
                   </button>
                 </div>
               </div>
-            </div>
-          </section>
+          </main>
         </div>
       </div>
     </>

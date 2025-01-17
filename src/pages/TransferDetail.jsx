@@ -1,12 +1,13 @@
 import Send from "../assets/icons/Send.svg";
 import arcane from "../assets/images/arcane.jpg";
 import StarBigger from "../assets/icons/StarBigger.svg";
-import verified from "../assets/icons/verified.svg";
+// import verified from "../assets/icons/verified.svg";
 import money from "../assets/icons/u_money-bill.svg";
 import { useState } from "react";
 import Pin from "../components/Pin";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
+import { MdOutlineVerified } from "react-icons/md";
 
 function TransferDetail() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,8 +20,8 @@ function TransferDetail() {
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"Transfer"} />
         <div className="flex box-border w-full">
-          <Sidebar />
-          <div className="flex flex-col gap-y-4 px-0 pt-0 md:px-8 md:pt-6">
+          <Sidebar page={"transfer"} side={"sidebar"}/>
+          <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
             <div className="hidden md:flex flex-row gap-4 items-center">
               <img src={Send} alt="" className="h-6 w-6" />
               <div className="text-base font-semibold">Transfer Money</div>
@@ -63,34 +64,27 @@ function TransferDetail() {
                 </div>
               </div>
             </div>
-            <div className="flex md:border h-[720px] w-full">
+            <form className="md:border h-[720px] w-full">
               <div className="px-5 py-4 md:px-8 md:py-6">
                 <div>
                   <div className="font-semibold pb-5">People Information</div>
                 </div>
                 <div className="pb-6">
-                  <div className="w-[335px] md:w-[994px] h-[115px] bg-gray-200 px-5 rounded-md flex items-center justify-between">
-                    <div className="flex flex-row gap-5 items-center">
-                      <div>
-                        <div className="avatar">
-                          <div className="w-20 h-20 rounded overflow-hidden flex items-center justify-center">
-                            <img
-                              src={arcane}
-                              alt="Tailwind-CSS-Avatar-component"
-                              className="object-cover object-center w-full h-full"
-                            />
-                          </div>
+                  <div className="w-full h-[115px] bg-gray-200 px-5 rounded-md flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="avatar">
+                        <div className="w-20 h-20 rounded">
+                          <img src={arcane} />
                         </div>
                       </div>
-                      <div className="flex flex-col gap-y-2">
-                        <div>Arcane</div>
-                        <div>(239) 555-0108</div>
-                        <div>
-                          <div className="flex flex-row gap-2 bg-primary justify-center rounded-md px-2 py-1">
-                            <img src={verified} alt="" />
-                            <div className="text-neutral">Verified</div>
-                          </div>
+                      <div className="flex flex-col gap-2">
+                        <div className="text-secondary font-bold text-sm">
+                        Arcane
                         </div>
+                        <div className="text-info text-sm">(239) 555-0108</div>
+                        <span className="w-24 h-6 bg-primary text-white rounded-md flex items-center gap-2 justify-center ">
+                          <MdOutlineVerified /> Verified
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -105,7 +99,7 @@ function TransferDetail() {
                     to the next steps.
                   </div>
                   <div className="pb-5">
-                    <div className="h-16 w-[335px] md:w-full border flex justify-right gap-2 items-center px-3">
+                    <div className="h-16 w-full border flex justify-right gap-2 items-center px-3">
                       <img src={money} alt="" />
                       <input
                         type="text"
@@ -122,7 +116,7 @@ function TransferDetail() {
                     coffee or something
                   </div>
                   <div>
-                    <div className="h-[223px] w-[335px] md:w-[994px] border flex justify-right gap-2 items-start px-3">
+                    <div className="h-[223px] w-full border flex justify-right gap-2 items-start px-3">
                       <input
                         type="text"
                         placeholder="Enter Some Notes"
@@ -133,7 +127,7 @@ function TransferDetail() {
                 </div>
                 <div>
                   <button
-                    className="md:w-[994px] w-[335px] h-[45px] bg-primary"
+                    className="w-full h-[45px] bg-primary"
                     onClick={togglePopup}
                   >
                     <div className="text-white font-normal text-sm">
@@ -142,7 +136,7 @@ function TransferDetail() {
                   </button>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
           {isOpen && <Pin />}
         </div>
