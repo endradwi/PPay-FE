@@ -59,8 +59,8 @@ function Register() {
   return (
     <>
       <div>
-        <div className="flex h-screen bg-primary">
-          <div className="md:py-12 py-20 px-5 md:px-56 rounded-none md:rounded-r-[100px] w-[1000px] bg-neutral flex flex-col gap-2">
+        <div className="inline-block md:flex h-full md:h-screen w-full bg-primary">
+          <div className="md:py-12 py-20 px-5 md:px-56 rounded-none md:rounded-r-[100px] w-full md:w-[1000px] bg-neutral flex flex-col gap-2">
             <div className="items-center">
               <img src={logo} alt="" className="w-32 h-10" />
             </div>
@@ -73,29 +73,28 @@ function Register() {
               wherever you are. Desktop, laptop, mobile phone? we cover all of
               that for you!
             </div>
-            <div className="w-full flex flex-row md:flex-col justify-center items-center gap-3">
-              <div className="btn border-abuMuda rounded-full w-[360px] md:w-full h-10 border flex justify-between md:justify-center items-center">
-                <button className="w-full text-lg font-medium flex justify-center items-center gap-3 text-info">
+            <div className=" flex flex-row md:flex-col justify-between md:justify-center w-full items-center gap-3">
+              <div className="btn border-primary rounded-full  h-10 border py-3.5 px-20 md:px-44 flex items-center">
+                
                   <FcGoogle />
                   <span className="md:block hidden ">Sign In With Google</span>
-                </button>
               </div>
-              <div className="btn border-abuMuda rounded-full w-[360px] md:w-full h-10 border flex justify-between md:justify-center items-center">
-                <button className="w-full text-lg font-medium flex justify-center items-center gap-3 text-info">
+              <div className="btn border-primary rounded-full  h-10 border py-3.5 px-20 md:px-[10.5rem] flex items-center">
+              
                   <FaFacebook className="text-blue-700" />
                   <span className="md:block hidden ">
                     Sign In With Facebook
                   </span>
-                </button>
+      
               </div>
             </div>
-            <div className="flex justify-between items-center gap-5">
+            <div className="flex justify-between items-center gap-5 w-full">
               <div>
-                <hr className="w-[200px] h-0.5 bg-info" />
+                <hr className="w-40 md:w-[250px] h-0.5 bg-info" />
               </div>
               <div className="text-info">or</div>
               <div>
-                <hr className="w-[200px] h-0.5 bg-info" />
+                <hr className="w-40 md:w-[250px] h-0.5 bg-info" />
               </div>
             </div>
             {status === 500 && (
