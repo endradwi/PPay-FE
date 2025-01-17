@@ -18,14 +18,14 @@ function TransferDetail() {
     <div>
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"Transfer"} />
-        <div className="flex box-border">
+        <div className="flex box-border w-full">
           <Sidebar />
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-4 px-0 pt-0 md:px-8 md:pt-6">
             <div className="hidden md:flex flex-row gap-4 items-center">
               <img src={Send} alt="" className="h-6 w-6" />
               <div className="text-base font-semibold">Transfer Money</div>
             </div>
-            <div className="flex flex-row gap-3 items-center">
+            <div className="hidden md:flex flex-row gap-3 items-center">
               <div>
                 <div className="flex flex-row gap-2 h-11 w-36 items-center">
                   <div className="bg-info h-6 w-6 rounded-full flex items-center justify-center">
@@ -63,13 +63,13 @@ function TransferDetail() {
                 </div>
               </div>
             </div>
-            <div className="border h-[720px] w-[1061px]">
-              <div className="px-8 py-6">
+            <div className="flex md:border h-[720px] w-full">
+              <div className="px-5 py-4 md:px-8 md:py-6">
                 <div>
                   <div className="font-semibold pb-5">People Information</div>
                 </div>
                 <div className="pb-6">
-                  <div className="w-[994px] h-[115px] bg-gray-200 px-5 rounded-md flex items-center justify-between">
+                  <div className="w-[335px] md:w-[994px] h-[115px] bg-gray-200 px-5 rounded-md flex items-center justify-between">
                     <div className="flex flex-row gap-5 items-center">
                       <div>
                         <div className="avatar">
@@ -99,13 +99,13 @@ function TransferDetail() {
                   </div>
                 </div>
                 <div>
-                  <div>Amount</div>
-                  <div className="pb-4">
+                  <div className="font-medium text-sm md:text-base">Amount</div>
+                  <div className="pb-4 max-w-[335px] md:max-w-fit text-xs md:text-sm">
                     Type the amount you want to transfer and then press continue
                     to the next steps.
                   </div>
                   <div className="pb-5">
-                    <div className="h-16 w-[994px] border flex justify-right gap-2 items-center px-3">
+                    <div className="h-16 w-[335px] md:w-full border flex justify-right gap-2 items-center px-3">
                       <img src={money} alt="" />
                       <input
                         type="text"
@@ -116,13 +116,13 @@ function TransferDetail() {
                   </div>
                 </div>
                 <div>
-                  <div>Notes</div>
-                  <div className="pb-5">
+                  <div className="font-medium text-sm md:text-base">Notes</div>
+                  <div className="pb-4 max-w-[335px] md:max-w-fit text-xs md:text-sm">
                     You can add some notes for this transfer such as payment
                     coffee or something
                   </div>
                   <div>
-                    <div className="h-[223px] w-[994px] border flex justify-right gap-2 items-start px-3">
+                    <div className="h-[223px] w-[335px] md:w-[994px] border flex justify-right gap-2 items-start px-3">
                       <input
                         type="text"
                         placeholder="Enter Some Notes"
@@ -133,7 +133,7 @@ function TransferDetail() {
                 </div>
                 <div>
                   <button
-                    className="w-[994px] h-[45px] bg-primary"
+                    className="md:w-[994px] w-[335px] h-[45px] bg-primary"
                     onClick={togglePopup}
                   >
                     <div className="text-white font-normal text-sm">

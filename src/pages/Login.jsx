@@ -30,7 +30,7 @@ function Login() {
   return (
     <div>
       <div className="md:flex block h-screen bg-primary">
-        <div className="md:py-28 md:px-36 px-5 py-40 rounded-none md:rounded-r-[100px] w-full h-full md:w-[800px] bg-neutral flex flex-col gap-2">
+        <div className="md:py-28 md:px-36 px-5 py-40 rounded-none md:rounded-r-[100px] w-full h-full md:w-[1000px] bg-neutral flex flex-col gap-2">
           <div className="items-center">
             <img src={logo} alt="" className="w-32 h-10" />
           </div>
@@ -108,12 +108,15 @@ function Login() {
                 </div>
               </div>
             </label>
+            <Link to="/forgotPass"><div className="w-full flex justify-end">
+              <span className="link link-primary">Forgot Password?</span>
+            </div></Link>
             <button className="btn btn-primary text-neutral">Login</button>
           </form>
-          <div className="w-full flex justify-center">
+          <div className="w-full flex justify-center gap-2">
             Not Have An Account?
-            <span className="text-primary">
-              <Link to="/forgotPass">Register</Link>
+            <span className="link link-primary">
+              <Link to="/register">Register</Link>
             </span>
           </div>
         </div>
