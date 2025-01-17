@@ -1,71 +1,127 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { Suspense } from "react";
 import "./App.css";
-import Home from "./pages/Home.jsx";
-import Register from "./pages/Register.jsx";
-import Login from "./pages/Login.jsx";
-import ForgotPass from "./pages/ForgotPassword.jsx";
-import PinLogin from "./pages/PinLogin.jsx";
-import Topup from "./pages/Top-up.jsx";
-import Transfer from "./pages/Transfer.jsx";
-import TransferDetail from "./pages/TransferDetail.jsx";
-import HistoryTransaction from "./pages/HistoryTransaction.jsx";
-import Profile from "./pages/Profile.jsx";
-import ChangePin from "./pages/ChangePin.jsx";
-import ChangePass from "./pages/ChangePassword.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import Loader from "./components/Loader.jsx";
+
+// Lazy load pages
+const Home = React.lazy(() => import("./pages/Home.jsx"));
+const Register = React.lazy(() => import("./pages/Register.jsx"));
+const Login = React.lazy(() => import("./pages/Login.jsx"));
+const ForgotPass = React.lazy(() => import("./pages/ForgotPassword.jsx"));
+const PinLogin = React.lazy(() => import("./pages/PinLogin.jsx"));
+const Topup = React.lazy(() => import("./pages/Top-up.jsx"));
+const Transfer = React.lazy(() => import("./pages/Transfer.jsx"));
+const TransferDetail = React.lazy(() => import("./pages/TransferDetail.jsx"));
+const HistoryTransaction = React.lazy(() => import("./pages/HistoryTransaction.jsx"));
+const Profil = React.lazy(() => import("./pages/ProfilePage.jsx"));
+const ChangePin = React.lazy(() => import("./pages/ChangePin.jsx"));
+const ChangePass = React.lazy(() => import("./pages/ChangePassword.jsx"));
+const Dashboard = React.lazy(() => import("./pages/Dashboard.jsx"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <Home />
+      </Suspense>
+    ),
   },
   {
     path: "/top-up",
-    element: <Topup />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <Topup />
+      </Suspense>
+    ),
   },
   {
     path: "/register",
-    element: <Register />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <Register />
+      </Suspense>
+    ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <Login />
+      </Suspense>
+    ),
   },
   {
-    path: "/forgotPass",
-    element: <ForgotPass />,
+    path: "/lupaKata-Sandi",
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <ForgotPass />
+      </Suspense>
+    ),
   },
   {
-    path: "/pinLogin",
-    element: <PinLogin />,
+    path: "/Login-pin",
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <PinLogin />
+      </Suspense>
+    ),
   },
   {
     path: "/transfer",
-    element: <Transfer />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <Transfer />
+      </Suspense>
+    ),
   },
   {
-    path: "/transfer-detail",
-    element: <TransferDetail />,
+    path: "/detail-transfer",
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <TransferDetail />
+      </Suspense>
+    ),
   },
   {
     path: "/historyTransaction",
-    element: <HistoryTransaction />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <HistoryTransaction />
+      </Suspense>
+    ),
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <Profil />
+      </Suspense>
+    ),
   },
   {
     path: "/change-pin",
-    element: <ChangePin />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <ChangePin />
+      </Suspense>
+    ),
   },
   {
     path: "/change-password",
-    element: <ChangePass />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <ChangePass />
+      </Suspense>
+    ),
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <Dashboard />
+      </Suspense>
+    ),
   },
 ]);
 

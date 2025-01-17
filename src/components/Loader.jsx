@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Loader() {
   const [loading, setLoading] = useState(true);
+  const location = useLocation
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // Waktu tunggu loader (misalnya 2 detik)
+    }, 10000); 
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [location]);
 
-  return loading ? (
+  return loading && (
+    <div className='w-full h-screen flex justify-center items-center'>
     <div className="loader"></div>
-  ) : (
-    <div className="loader">Page Loaded</div>
+    </div>
   );
 }
 
