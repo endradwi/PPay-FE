@@ -17,12 +17,12 @@ function Dashboard() {
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"dashboard"} />
         <div className="flex box-border">
-          <Sidebar page={"dashboard"}/>
+          <Sidebar page={"dashboard"} side={"sidebar"}/>
           <main className="w-full p-4 md:p-8">
-            <section className="w-full max-md:max-w-full">
-              <div className="flex gap-5 max-xl:flex-col max-md:gap-0">
-                <div className="flex flex-col w-[33%] max-md:ml-0 max-xl:w-full">
-                  <div className="flex md:flex-col justify-between grow items-center md:items-start py-5 pr-16 pl-3.5 whitespace-nowrap rounded-3xl shadow-lg md:shadow-none md:rounded-md border-none md:border border-gray-200 md:border-solid max-md:pr-5 max-md:mt-5">
+            <section className="w-full  max-md:max-w-full">
+              <div className="flex gap-5 md:w-full w-[715px] md:top-0 top-14 md:rounded-none rounded-2xl md:px-0 px-10 max-xl:flex-col max-md:gap-0 md:static absolute shadow-lg md:shadow-none bg-white">
+                <div className="flex flex-col  w-[33%] max-md:ml-0 max-xl:w-full">
+                  <div className="flex md:flex-col justify-between grow items-center md:items-start py-5 pr-16 pl-3.5 rounded-none md:rounded-md border-none md:border md:border-solid max-md:pr-5 max-md:mt-5">
                     <div className="flex justify-start py-8 flex-col gap-3 text-base tracking-normal leading-6 text-gray-600">
                       {/* <img
                         loading="lazy"
@@ -30,7 +30,7 @@ function Dashboard() {
                         className="shrink-0 my-auto w-6 aspect-square"
                         alt="Balance"
                       /> */}
-                      <div>Balance</div>
+                      <div className="md:text-base text-xs">Balance</div>
                       <div className="md:mt-5 text-2xl font-medium tracking-normal leading-6 text-slate-900">
                         Rp.200000
                       </div>
@@ -72,13 +72,13 @@ function Dashboard() {
                     </div>
                     <div className="flex gap-7">
                       <div className="flex flex-col items-center gap-3">
-                        <button className="btn btn-primary text-neutral text-xl rounded w-16 shadow-lg h-6 md:hidden">
+                        <button className="btn btn-primary text-neutral text-xl rounded-full md:rounded w-12 md:w-16 shadow-lg h-6 md:hidden">
                           <FaPlus />
                         </button>
                         <div>Top Up</div>
                       </div>
                       <div className="flex flex-col items-center gap-3">
-                        <button className="btn btn-primary text-neutral text-xl rounded w-16 shadow-lg h-6 md:hidden">
+                        <button className="btn btn-primary text-neutral text-xl rounded-full md:rounded w-12 md:w-16 shadow-lg h-6 md:hidden">
                           <IoPaperPlane />
                         </button>
                         <div>Transfer</div>
@@ -121,7 +121,7 @@ function Dashboard() {
                 </div>
               </div>
             </section>
-            <section className="mt-4 w-full max-md:max-w-full">
+            <section className="mt-40 md:mt-4 w-full max-md:max-w-full ">
               <div className="flex gap-5 max-2xl:flex-col max-md:gap-0 w-full items-center 2xl:items-start 2xl:justify-between">
                 <div className="flex flex-col w-full 2xl:w-[67%] max-md:ml-0 max-md:w-full">
                   <FinancialChart />
@@ -133,6 +133,7 @@ function Dashboard() {
             </section>
           </main>
         </div>
+      <Sidebar page={"dashboard"} side={"dashboard"}/>
       </div>
     </>
   );

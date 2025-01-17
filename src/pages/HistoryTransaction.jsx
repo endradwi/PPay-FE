@@ -11,15 +11,15 @@ function HistoryTransaction() {
     <div>
       <NavbarDashboard />
       <div className="flex">
-        <Sidebar page={"historyTransaction"}/>
-        <div className="flex pl-10  pr-20 pb-16 flex-col gap-0 md:gap-y-8">
-          <div className="flex items-center gap-5 md:bg-transparent bg-primary h-20">
-            <RxCounterClockwiseClock className="text-primary w-7 h-7 hidden md:block" />
+        <Sidebar page={"historyTransaction"} side={"sidebar"}/>
+        <div className="flex md:pl-10 md:pt-4 md:pr-20 md:pb-16 flex-col">
+          <div className="flex items-center gap-3 md:bg-transparent bg-primary h-20">
+            <RxCounterClockwiseClock className="text-primary w-6 h-6 hidden md:block" />
             <div className="text-base font-semibold md:pl-0 pl-10">
               History Transaction
             </div>
           </div>
-          <div className="border pb-11 w-[1100px]">
+          <div className="border pb-11 w-[735px] md:w-[1100px]">
             <div className="px-8 py-6 ">
               <div>
                 <div className="flex flex-col md:flex-row justify-center items-start md:items-center md:justify-between gap-3">
@@ -196,6 +196,7 @@ function HistoryTransaction() {
           </div>
         </div>
       </div>
+      <Sidebar page={"historyTransaction"} side={"historyTransaction"}/>
     </div>
   );
 }
