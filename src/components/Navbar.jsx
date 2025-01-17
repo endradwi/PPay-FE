@@ -74,24 +74,27 @@ function Navbar() {
                 {profile?.fullname === "" ? profile?.email : profile?.fullname}
               </span>
             </div>
-            <div className="hidden md:block avatar placeholder">
-              <div className="w-8 md:w-12 flex justify-center items-center aspect-square bg-neutral text-sm text-neutral rounded-full">
+            <Link
+              to={"/profile"}
+              className="hidden md:block avatar placeholder"
+            >
+              <div className="w-8 md:w-12 flex justify-center items-center aspect-square bg-primary text-sm text-neutral rounded-full">
                 {profile?.image === null ? (
                   <img src={avatar} alt="avatar" />
                 ) : (
                   <img src={avatar} alt="avatar" />
                 )}
               </div>
-            </div>
+            </Link>
             {isShowLog && (
               <div className="md:flex hidden absolute top-24 flex-col bg-white w-48">
-                <div className="flex bg-primary text-white py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
+                {/* <div className="flex bg-primary text-white py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
                   <div>
                     <AiOutlineUser />
                   </div>
                   <div>Profile</div>
-                </div>
-                <div className="flex text-warning py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
+                </div> */}
+                <div className="flex bg-primary text-neutral py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
                   <div>
                     <BiLogOut />
                   </div>
@@ -127,7 +130,7 @@ function Navbar() {
       {isShow && token !== "" && (
         <div className="bg-white shadow-lg rounded-b-3xl absolute w-full top-16 flex flex-col justify-center md:hidden items-center px-5 py-5 flex-shrink-0 gap-2">
           <div className="block md:hidden avatar placeholder">
-            <div className="w-14 flex justify-center aspect-square bg-primary text-sm text-neutral rounded-full">
+            <div className="w-14 flex justify-center aspect-square bg-neutral text-sm text-neutral rounded-full">
               {profile?.image === null ? (
                 <img src={avatarWhite} alt="avatar" />
               ) : (
