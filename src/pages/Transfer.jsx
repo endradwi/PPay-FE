@@ -20,7 +20,7 @@ function Transfer() {
                   <Link to="/transfer-detail">
                   <GrSend className="w-5 h-5 text-primary"/>
                   </Link>
-                  <div className="text-base font-semibold">Transfer Money</div>
+                  <div className="hidden text-base font-semibold">Transfer Money</div>
                 </div>
                 <div className="hidden md:flex flex-row gap-3 items-center">
                   <div>
@@ -60,7 +60,7 @@ function Transfer() {
                     </div>
                   </div>
                 </div>
-                <div className="md:border h-[720px] w-[1061px]">
+                <div className="md:border h-[720px] w-full">
                   <div className="px-8 py-6">
                     <div>
                       <div className="flex flex-col md:flex-row justify-center items-start md:justify-between">
@@ -92,11 +92,13 @@ function Transfer() {
                           <td className="max-w-fit md:w-[1003px]">
                             <div className="flex flex-row justify-between items-center">
                               <div className="w-[69px] h-16 md:w-60 md:h-16 flex justify-center items-center">
-                                <img
-                                  src={arcane}
-                                  alt=""
-                                  className="h-12 w-12 rounded-md"
-                                />
+                                <Link to="/transfer-detail">
+                                  <img
+                                    src={arcane}
+                                    alt=""
+                                    className="h-12 w-12 rounded-md"
+                                  />
+                                </Link>
                               </div>
                               <div className="flex flex-col w-[188px] h-[72px] md:w-[435px] md:[h-75px] md:flex-row items-center">
                                 <div className="px-4 py-2 text-center md:w-[435px] md:[h-75px] justify-center">

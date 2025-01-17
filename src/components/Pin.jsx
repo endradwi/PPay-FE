@@ -9,7 +9,7 @@ function Pin() {
   };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-      <div className="bg-white rounded-lg p-8 shadow-lg">
+      <div className="bg-white rounded-lg p-8  shadow-lg">
         <div className="font-semibold">Transfer to Arcane</div>
         <div className="h-[510px] w-[556px] border">
           <div className="w-[556px] h-[377px] flex flex-col">
