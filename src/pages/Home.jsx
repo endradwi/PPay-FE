@@ -12,6 +12,7 @@ import microsoft from "../assets/icons/microsoft.svg";
 import star from "../assets/icons/star.svg";
 import mobile from "../assets/images/Mobile-dashboard.png";
 import avatar from "../assets/images/avatar.png";
+
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { CiHeadphones } from "react-icons/ci";

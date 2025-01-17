@@ -8,9 +8,25 @@ import { MdOutlineMail } from "react-icons/md";
 import { MdOutlineVpnKey } from "react-icons/md";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffSharp } from "react-icons/io5";
+// import { profileAtom as profileAtom } from "../jotai/data.js";
+// import { profile as profileData } from "../jotai/data.js";
+// import { tokenAtom } from "../jotai/data.js";
+// import { token } from "../jotai/data.js";
+// import { useAtom } from "jotai";
+import { useForm } from "react-hook-form";
 
 function Login() {
-  const [isShow, setShow] = useState(false)
+  const [isShow, setShow] = useState(false);
+  // const [dataProfile, setDataProfile] = useAtom(profileAtom);
+  // const [auth, setToken] = useAtom(tokenAtom);
+  const { handleSubmit, register } = useForm();
+
+  function formSubmit(value) {
+    // setDataProfile({ ...dataProfile, ...value });
+    // setDataProfile({});
+    // setToken(token);
+  }
+
   return (
     <div>
       <div className="md:flex block h-screen bg-primary">
@@ -24,10 +40,16 @@ function Login() {
           </div>
           <div className="w-full flex flex-row md:flex-col justify-center items-center gap-3">
             <div className="btn border-abuMuda rounded-full w-[360px] md:w-full h-10 border flex justify-between md:justify-center items-center">
-              <button className="w-full text-lg font-medium flex justify-center items-center gap-3 text-info"><FcGoogle /><span className="md:block hidden ">Sign In With Google</span></button>
+              <button className="w-full text-lg font-medium flex justify-center items-center gap-3 text-info">
+                <FcGoogle />
+                <span className="md:block hidden ">Sign In With Google</span>
+              </button>
             </div>
             <div className="btn border-abuMuda rounded-full w-[360px] md:w-full h-10 border flex justify-between md:justify-center items-center">
-              <button className="w-full text-lg font-medium flex justify-center items-center gap-3 text-info"><FaFacebook className="text-blue-700"/><span className="md:block hidden ">Sign In With Facebook</span></button>
+              <button className="w-full text-lg font-medium flex justify-center items-center gap-3 text-info">
+                <FaFacebook className="text-blue-700" />
+                <span className="md:block hidden ">Sign In With Facebook</span>
+              </button>
             </div>
           </div>
           <div className="flex justify-between items-center gap-5">
@@ -39,25 +61,50 @@ function Login() {
               <hr className="w-[200px] h-0.5 bg-info" />
             </div>
           </div>
-          <form className="w-full flex flex-col gap-2">
-          <label htmlFor="" className="flex flex-col gap-1">
+          <form
+            onSubmit={handleSubmit(formSubmit)}
+            className="w-full flex flex-col gap-2"
+          >
+            <label htmlFor="" className="flex flex-col gap-1">
               <div>
                 <span className="text-base font-medium">Email</span>
               </div>
               <div className="input border-info w-full h-11 pl-5 flex items-center gap-3">
-              <MdOutlineMail className="text-info"/>
-                <input type="text" placeholder="Enter Your Email" className="w-full box-border"/>
+                <MdOutlineMail className="text-info" />
+                <input
+                  type="text"
+                  placeholder="Enter Your Email"
+                  className="w-full box-border"
+                  {...register("email")}
+                />
               </div>
             </label>
             <label htmlFor="" className="flex flex-col gap-1">
               <span className="text-base font-medium">Password</span>
               <div className="w-full h-11 input border-info pl-5 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-              <MdOutlineVpnKey className="text-info"/>
-                {isShow ? <input type="text" placeholder="Enter Your Password" className="w-full box-border"/>  :  <input type="password" placeholder="Enter Your Password" className="w-full box-border"/> }
-              </div>
-                <div onClick={()=>setShow(!isShow)}>
-                {isShow ? <IoEyeOutline className="text-info" /> : <IoEyeOffSharp className="text-info" />} 
+                <div className="flex items-center gap-3">
+                  <MdOutlineVpnKey className="text-info" />
+                  {isShow ? (
+                    <input
+                      type="text"
+                      placeholder="Enter Your Password"
+                      className="w-full box-border"
+                    />
+                  ) : (
+                    <input
+                      type="password"
+                      placeholder="Enter Your Password"
+                      className="w-full box-border"
+                      {...register("password")}
+                    />
+                  )}
+                </div>
+                <div onClick={() => setShow(!isShow)}>
+                  {isShow ? (
+                    <IoEyeOutline className="text-info" />
+                  ) : (
+                    <IoEyeOffSharp className="text-info" />
+                  )}
                 </div>
               </div>
             </label>
