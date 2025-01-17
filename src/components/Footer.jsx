@@ -37,16 +37,16 @@ function Footer() {
         <div className="flex flex-col gap-6">
           <div className="text-lg font-semibold text-neutral">SOCIAL MEDIA</div>
           <div className="flex gap-5">
-            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary">
+            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary cursor-pointer">
               <FaTwitter />
             </div>
-            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary">
+            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary cursor-pointer">
               <FaFacebookF />
             </div>
-            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary">
+            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary cursor-pointer">
               <FaInstagram />
             </div>
-            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary">
+            <div className="w-11 aspect-square bg-neutral rounded-full flex justify-center items-center text-xl text-primary cursor-pointer">
               <FaGithub />
             </div>
           </div>
