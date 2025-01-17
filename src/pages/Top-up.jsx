@@ -45,7 +45,7 @@ function Top_up() {
                                 Ghaluh Wizard
                               </div>
                               <div className="text-info text-sm">(239) 555-0108</div>
-                              <span className="w-24 h-6 bg-[#2948FF] text-white rounded-md flex items-center gap-2 justify-center ">
+                              <span className="w-24 h-6 bg-primary text-white rounded-md flex items-center gap-2 justify-center ">
                                 <MdOutlineVerified /> Verified
                               </span>
                             </div>
