@@ -10,21 +10,20 @@ import Sidebar from "../components/Sidebar";
 
 function Profile() {
   return (
-    <div className="w-full flex flex-col box-border h-fit-content">
-      <NavbarDashboard page={"profile"} />
-      <div className="flex box-border">
-        <Sidebar page={"profile"} />
+    <>
+      <div className="w-full flex flex-col box-border h-fit-content">
 
-        <main className="w-full p-4 md:p-8">
-          <section className="px-9 py-4 flex flex-col gap-8">
-            <div className="flex gap-2 text-secondary font-bold text-base">
-              <div className="flex items-center gap-x-4 justify-center">
-                <CgProfile className="text-[#2948FF] w-4 h-4" />
-                <span>Profile</span>
+      <NavbarDashboard page={"profile"}/>
+      <div className="flex box-border">
+          <Sidebar page={"dashboard"} side={"sidebar"}/>
+          <main className="flex flex-col gap-8 w-full p-4 md:p-8">
+            <div className="flex gap-2">
+              <div className=" text-secondary">
+                <CgProfile className="text-primary w-6 h-6" />
               </div>
+              <div className="font-semibold text-base">Profile</div>
             </div>
-            <div className="flex gap-8">
-              <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
+            <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
                 <div className="flex flex-col gap-3">
                   <div className="text-secondary font-bold text-base">
                     Account Information
@@ -32,7 +31,7 @@ function Profile() {
                   <div className="flex gap-5 items-center">
                     <div className=" avatar">
                       <div className="w-32 h-32 rounded">
-                        <img src="https:img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                       </div>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -72,7 +71,6 @@ function Profile() {
                       placeholder="Type here"
                       className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
-                    {/* <span className="absolute left-14 flex items-center cursor-pointer"><LiaMoneyBillSolid className='w-10' /></span> */}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -90,7 +88,6 @@ function Profile() {
                       placeholder="Type here"
                       className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
-                    {/* <span className="absolute left-14 flex items-center cursor-pointer"><LiaMoneyBillSolid className='w-10' /></span> */}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -106,9 +103,8 @@ function Profile() {
                     <input
                       type="text"
                       placeholder="Type here"
-                      className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
+                      className="input focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
-                    {/* <span className="absolute left-14 flex items-center cursor-pointer"><LiaMoneyBillSolid className='w-10' /></span> */}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -141,11 +137,10 @@ function Profile() {
                   </button>
                 </div>
               </div>
-            </div>
-          </section>
-        </main>
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

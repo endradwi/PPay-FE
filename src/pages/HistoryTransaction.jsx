@@ -12,14 +12,14 @@ function HistoryTransaction() {
       <NavbarDashboard />
       <div className="flex">
         <Sidebar page={"historyTransaction"} side={"sidebar"}/>
-        <div className="flex md:pl-10 md:pt-4 md:pr-20 md:pb-16 flex-col">
+        <div className="flex flex-col gap-8 w-full p-4 md:p-8">
           <div className="flex items-center gap-3 md:bg-transparent bg-primary h-20">
             <RxCounterClockwiseClock className="text-primary w-6 h-6 hidden md:block" />
             <div className="text-base font-semibold md:pl-0 pl-10">
               History Transaction
             </div>
           </div>
-          <div className="border pb-11 w-[735px] md:w-[1100px]">
+          <div className="border pb-11 w-full md:w-full">
             <div className="px-8 py-6 ">
               <div>
                 <div className="flex flex-col md:flex-row justify-center items-start md:items-center md:justify-between gap-3">
@@ -157,37 +157,37 @@ function HistoryTransaction() {
               <div className="md:flex hidden justify-between items-center">
                 <div className="text-xs">Show 5 History of 100 History</div>
                 <div className="flex gap-3">
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     Prev
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     1
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     2
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     3
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     4
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     5
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     6
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     7
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     8
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     9
                   </button>
-                  <button className="btn hover:bg-info h-9 font-normal w-5 text-xs min-h-0">
+                  <button className="btn hover:bg-info hover:text-white h-9 font-normal w-5 text-xs min-h-0">
                     Next
                   </button>
                 </div>
