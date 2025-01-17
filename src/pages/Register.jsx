@@ -218,12 +218,6 @@ function Register() {
                 <Link to="/login">Login</Link>
               </span>
             </div>
-            <div className="w-full flex justify-center gap-1">
-              Have An Account?
-              <span className="link link-primary">
-                <Link to="/login">Login</Link>
-              </span>
-            </div>
           </div>
           <div className="flex-1 md:flex justify-center items-center hidden">
             <img src={image} />
