@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { API_URL } from "../config/api-config";
 import { tokenAtom, profileAtom } from "../jotai/data.js";
 import { useAtom } from "jotai";
+import avatarWhite from "../assets/images/avatar-white.svg";
 
 function Profile() {
   const [token, setToken] = useAtom(tokenAtom);
@@ -38,8 +39,38 @@ function Profile() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setProfile({ ...profile, ...data.data });
+        setProfile({
+          id: data.data.id,
+          fullname: data.data.fullname,
+          email: data.data.email,
+          phone: data.data.phone,
+          image: data.data.image,
+        });
       });
+  }
+
+  function setImage(e) {
+    const selected = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", selected);
+
+    fetch(`${API_URL}/users/:id`, {
+      method: "PATCH",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        setProfile({
+          id: data.data.id,
+          fullname: data.data.fullname,
+          email: data.data.email,
+          phone: data.data.phone,
+          image: data.data.image,
+        })
+      );
   }
 
   return (
@@ -67,16 +98,36 @@ function Profile() {
                   <div className="flex gap-5 items-center">
                     <div className=" avatar">
                       <div className="w-32 h-32 rounded">
-                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        {profile?.image === null ? (
+                          <img src={avatarWhite} alt="avatar" />
+                        ) : (
+                          <img
+                            src={`${API_URL}/${profile?.image}`}
+                            alt="avatar"
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="flex flex-col gap-4">
                       <div>
-                        <Link to="/change-pin">
+                        {/* <Link to="/change-pin">
                           <button className="justify-center items-center rounded-lg w-40 h-11 bg-[#2948FF] text-white flex gap-2">
                             <TbEdit className="w-6 h-6" /> Change Profile
                           </button>
-                        </Link>
+                        </Link> */}
+                        <label
+                          className="justify-center cursor-pointer items-center rounded-lg w-40 h-11 bg-[#2948FF] text-white flex gap-2"
+                          htmlFor="picture"
+                        >
+                          <TbEdit className="w-6 h-6" /> Change Profile
+                        </label>
+                        <input
+                          className="hidden"
+                          type="file"
+                          id="picture"
+                          name="image"
+                          onChange={setImage}
+                        />
                       </div>
                       <div>
                         <Link to="/change-password">
@@ -184,7 +235,7 @@ function Profile() {
                   </div>
                   <div className="flex">
                     <a className="text-[#2948FF]" href="">
-                      Change Password
+                      Change Pin
                     </a>
                   </div>
                 </div>
