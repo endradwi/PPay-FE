@@ -98,7 +98,7 @@ function Transfer() {
                           <td className="max-w-fit md:w-[1003px]">
                             <div className="flex flex-row justify-between items-center">
                               <div className="w-[69px] h-16 md:w-60 md:h-16 flex justify-center items-center">
-                                <Link to="/transfer-detail">
+                                <Link to="/detail-transfer">
                                   <img
                                     src={arcane}
                                     alt=""

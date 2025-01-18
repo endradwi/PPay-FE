@@ -13,7 +13,7 @@ const Topup = React.lazy(() => import("./pages/Top-up.jsx"));
 const Transfer = React.lazy(() => import("./pages/Transfer.jsx"));
 const TransferDetail = React.lazy(() => import("./pages/TransferDetail.jsx"));
 const HistoryTransaction = React.lazy(() => import("./pages/HistoryTransaction.jsx"));
-const Profil = React.lazy(() => import("./pages/ProfilePage.jsx"));
+const Profile = React.lazy(() => import("./pages/Profile.jsx"));
 const ChangePin = React.lazy(() => import("./pages/ChangePin.jsx"));
 const ChangePass = React.lazy(() => import("./pages/ChangePassword.jsx"));
 const Dashboard = React.lazy(() => import("./pages/Dashboard.jsx"));
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: (
       <Suspense fallback={<Loader/>}>
-        <Profil />
+        <Profile />
       </Suspense>
     ),
   },
