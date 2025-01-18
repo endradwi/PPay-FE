@@ -38,7 +38,12 @@ function Profile() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setProfile({ ...profile, ...data.data });
+        // setProfile({ ...profile, ...data.data });
+        setProfile({
+          fullname: data.data.fullname,
+          phone: data.data.phone,
+          email: data.data.email,
+        });
       });
   }
 

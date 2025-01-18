@@ -19,8 +19,6 @@ function Navbar() {
   const [isShow, setShow] = useState(false);
   const [isShowLog, setShowLog] = useState(false);
 
-  console.log(token);
-
   function logout() {
     setProfile({});
     setToken("");
@@ -34,7 +32,13 @@ function Navbar() {
         },
       })
     ).json();
-    setProfile({ ...profile, ...data.data });
+    console.log(data.data);
+    setProfile({
+      id: data.data.id,
+      fullname: data.data.fullname,
+      phone: data.data.phone,
+      email: data.data.email,
+    });
   }
 
   React.useEffect(() => {
