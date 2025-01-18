@@ -22,22 +22,25 @@ function Register() {
 
   const regisValidationSchema = yup.object({
     email: yup.string().required().min(8),
-    password: yup.string().required().min(6),
+    password: yup.string().required().min(8),
     confirm_password: yup
       .string()
       .oneOf([yup.ref("password")], "Your passwords doesnt match."),
   });
   function formRegister(value) {
-    const valJson = JSON.stringify(value);
+    // const valJson = JSON.stringify(value);
+    const query = new URLSearchParams(value);
+    const queryString = query.toString();
+
     fetch(`${API_URL}/auth/register`, {
       method: "POST",
-      body: valJson,
-      headers: { "content-type": "application/json" },
+      body: queryString,
+      headers: { "content-type": "application/x-www-form-urlencoded" },
     })
       .then((response) => response.json())
       .then((v) => {
         setStatus(v.status);
-        if (v.status === 500) {
+        if (v.status === 400) {
           setMessage(v.message);
         }
       });
@@ -97,7 +100,7 @@ function Register() {
                 <hr className="w-40 md:w-[250px] h-0.5 bg-info" />
               </div>
             </div>
-            {status === 500 && (
+            {status === 400 && (
               <>
                 <div role="alert" className="alert alert-error text-neutral">
                   <svg

@@ -1,15 +1,31 @@
 import React, { useState } from "react";
 import ppay from "../assets/icons/ppay_invert.svg";
-import avatar from "../assets/images/avatar.png";
+import avatar from "../assets/images/avatar.svg";
 import { IoIosArrowDown } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineUser } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { IoIosArrowUp } from "react-icons/io";
+import { tokenAtom, profileAtom } from "../jotai/data.js";
+import { useAtom } from "jotai";
 
 function NavbarDashboard(props) {
-  const [isShow, setShow] = useState(false)
+  const [token, setToken] = useAtom(tokenAtom);
+  const [profile, setProfile] = useAtom(profileAtom);
+  const [isShow, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  function logout() {
+    setProfile({});
+    setToken("");
+  }
+
+  React.useEffect(() => {
+    if (token === "") {
+      navigate("/");
+    }
+  }, [token]);
   return (
     <nav className="flex justify-between md:justify-between navbar border-solid shadow-md bg-primary md:bg-neutral px-5 md:px-7 py-4">
       <Link className="md:block hidden" to={"/"}>
@@ -17,24 +33,31 @@ function NavbarDashboard(props) {
       </Link>
       <div className="flex gap-3 md:gap-6 items-center">
         <div className="hidden md:block">
-          <span className="text-info">Ghaluh Wizard</span>
+          <span className="text-info">
+            {profile?.fullname === "" ? profile?.email : profile?.fullname}
+          </span>
         </div>
-        <div className="avatar online hidden md:block placeholder">
-          <div className="w-8 md:w-12 aspect-square rounded-full">
+        <div className="avatar hidden md:block placeholder">
+          <div className="w-8 bg-primary border-primary border-[4px] md:w-12 aspect-square rounded-full">
             <img src={avatar} alt="avatar" />
           </div>
         </div>
-        {isShow && 
+        {isShow && (
           <div className="md:flex hidden absolute top-24 flex-col bg-white w-48">
             <div className="flex bg-primary text-white py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
-              <div><AiOutlineUser /></div>
+              <div>
+                <AiOutlineUser />
+              </div>
               <div>Profile</div>
             </div>
             <div className="flex text-warning py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
-              <div><BiLogOut /></div>
-              <div>Keluar</div>
+              <div>
+                <BiLogOut />
+              </div>
+              <button onClick={() => logout()}>Log Out</button>
             </div>
-          </div>}
+          </div>
+        )}
         {props.page === "dashboard" && (
           <>
             <div className="avatar md:hidden  online placeholder">
@@ -44,7 +67,9 @@ function NavbarDashboard(props) {
             </div>
             <div className="md:hidden flex flex-col">
               <div className="text-xs text-neutral">Hello,</div>
-              <div className="text-md text-neutral">Ghaluh</div>
+              <div className="text-md text-neutral">
+                {profile?.fullname === "" ? profile?.email : profile?.fullname}
+              </div>
             </div>
           </>
         )}
@@ -56,12 +81,15 @@ function NavbarDashboard(props) {
             </div>
           </>
         )}
-        <div className="text-2xl hidden md:block cursor-pointer" onClick={()=>setShow(!isShow)}>
-          {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />} 
+        <div
+          className="text-2xl hidden md:block cursor-pointer"
+          onClick={() => setShow(!isShow)}
+        >
+          {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>
       </div>
-      <div className="block text-neutral text-2xl md:hidden" >
-        <RxHamburgerMenu/>
+      <div className="block text-neutral text-2xl md:hidden">
+        <RxHamburgerMenu />
       </div>
     </nav>
   );
