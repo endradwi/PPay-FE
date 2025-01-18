@@ -94,7 +94,7 @@ function HistoryTransaction() {
                       <div>082116304337</div>
                     </td>
                     <td className="text-warning">Rp.50.000</td>
-                    <td className="md:block hidde cursor-pointer">
+                    <td className="md:block hidden cursor-pointer">
                       <RiDeleteBin5Line className="text-warning" />
                     </td>
                   </tr>
