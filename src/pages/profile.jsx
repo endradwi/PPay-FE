@@ -1,14 +1,46 @@
 // import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import NavbarDashboard from "../components/NavbarDashboard";
+import NavbarDashboard from "../components/NavbarDashboard.jsx";
 import { TbEdit } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { LuPhone } from "react-icons/lu";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar.jsx";
+import { useForm } from "react-hook-form";
+import { API_URL } from "../config/api-config.js";
+import { tokenAtom, profileAtom } from "../jotai/data.js";
+import { useAtom } from "jotai";
 
 function Profile() {
+  const [token, setToken] = useAtom(tokenAtom);
+    const [profile, setProfile] = useAtom(profileAtom);
+  
+    const {
+      handleSubmit,
+      register,
+      formState: { errors },
+    } = useForm();
+  
+    function formProfile(value) {
+      const query = new URLSearchParams(value);
+      const queryString = query.toString();
+  
+      console.log(queryString);
+  
+      fetch(`${API_URL}/users/:id`, {
+        method: "PATCH",
+        body: queryString,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setProfile({ ...profile, ...data.data });
+        });
+    }
   return (
     <>
       <div className="w-full flex flex-col box-border h-fit-content">
@@ -23,7 +55,7 @@ function Profile() {
               </div>
               <div className="font-semibold text-base">Profile</div>
             </div>
-            <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
+            <form onSubmit={handleSubmit(formProfile)} className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
                 <div className="flex flex-col gap-3">
                   <div className="text-secondary font-bold text-base">
                     Account Information
@@ -58,51 +90,69 @@ function Profile() {
                 </div>
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-0.5">
-                    <div className="text-secondary font-semibold text-base">
+                  <label
+                      htmlFor="fullname"
+                      className="text-secondary font-semibold text-base"
+                    >
                       Full Name
-                    </div>
+                    </label>
                   </div>
                   <div className="flex">
                     <div className="">
                       <CgProfile className="ml-5 mt-3 absolute w-4 h-4" />
                     </div>
                     <input
+                      id="fullname"
                       type="text"
+                      defaultValue={profile?.fullname}
                       placeholder="Type here"
+                      {...register("fullname")}
                       className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-0.5">
-                    <div className="text-secondary font-semibold text-base">
+                  <label
+                      htmlFor="phone"
+                      className="text-secondary font-semibold text-base"
+                    >
                       Phone
-                    </div>
+                    </label>
                   </div>
                   <div className="flex">
                     <div className="">
                       <LuPhone className="ml-5 mt-3 absolute w-4 h-4" />
                     </div>
                     <input
+                      id="phone"
                       type="text"
+                      defaultValue={profile?.phone}
                       placeholder="Type here"
+                      {...register("phone")}
                       className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-0.5">
-                    <div className="text-secondary font-semibold text-base">
+                  <label
+                      htmlFor="email"
+                      className="text-secondary font-semibold text-base"
+                    >
                       Email
-                    </div>
+                    </label>
                   </div>
                   <div className="flex">
                     <div className="">
                       <MdOutlineEmail className=" ml-5 mt-3 absolute w-4 h-4" />
                     </div>
                     <input
+                      id="email"
                       type="text"
+                      defaultValue={profile?.email}
                       placeholder="Type here"
+                      {...register("email")}
                       className="input focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-11 rounded-md"
                     />
                   </div>
@@ -136,7 +186,7 @@ function Profile() {
                     Submit
                   </button>
                 </div>
-              </div>
+              </form>
           </main>
         </div>
       </div>
