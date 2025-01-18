@@ -36,16 +36,13 @@ function Navbar() {
     setProfile({
       id: data.data.id,
       fullname: data.data.fullname,
-      phone: data.data.phone,
       email: data.data.email,
+      phone: data.data.phone,
+      image: data.data.image,
     });
   }
 
   React.useEffect(() => {
-    if (token === undefined) {
-      setToken("");
-      return;
-    }
     if (token === "") {
       setProfile({});
     }
@@ -86,7 +83,7 @@ function Navbar() {
                 {profile?.image === null ? (
                   <img src={avatar} alt="avatar" />
                 ) : (
-                  <img src={avatar} alt="avatar" />
+                  <img src={`${API_URL}/${profile?.image}`} alt="avatar" />
                 )}
               </div>
             </Link>
@@ -134,11 +131,11 @@ function Navbar() {
       {isShow && token !== "" && (
         <div className="bg-white shadow-lg rounded-b-3xl absolute w-full top-16 flex flex-col justify-center md:hidden items-center px-5 py-5 flex-shrink-0 gap-2">
           <div className="block md:hidden avatar placeholder">
-            <div className="w-14 flex justify-center aspect-square bg-neutral text-sm text-neutral rounded-full">
+            <div className="w-14 border-primary border-[2px] flex justify-center aspect-square bg-neutral text-sm text-neutral rounded-full">
               {profile?.image === null ? (
                 <img src={avatarWhite} alt="avatar" />
               ) : (
-                <img src={avatar} alt="avatar" />
+                <img src={`${API_URL}/${profile?.image}`} alt="avatar" />
               )}
             </div>
           </div>
