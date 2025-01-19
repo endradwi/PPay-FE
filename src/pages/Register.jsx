@@ -183,6 +183,7 @@ function Register() {
                         type="text"
                         placeholder="Enter Your Password Again"
                         className="w-full box-border"
+                        {...register("confirm_password")}
                       />
                     ) : (
                       <input
