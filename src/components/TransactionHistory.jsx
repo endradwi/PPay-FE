@@ -1,9 +1,69 @@
 import React from "react";
-
+import { useAtom } from "jotai";
 import User1 from "../assets/icons/user1.svg";
 import User2 from "../assets/icons/user2.svg";
+import { tokenAtom, profileAtom } from "../jotai/data.js";
+import avatarWhite from "../assets/images/avatar-white.svg";
+import { API_URL } from "../config/api-config.js";
 
 function TransactionHistory() {
+  const [token] = useAtom(tokenAtom);
+  const [history, setHistory] = React.useState([]);
+  async function getHistory(tokenHistory) {
+    const data = await (
+      await fetch(`${API_URL}/transaction/history`, {
+        headers: {
+          Authorization: `Bearer ${tokenHistory}`,
+        },
+      })
+    ).json();
+    setHistory(data.data);
+  }
+
+  const table = (value, index) => {
+    return (
+      <div
+        className="flex gap-5 justify-between items-center mt-7 text-base p-4"
+        key={`list-fullname-${value.id}-${index}`}
+      >
+        <img
+          loading="lazy"
+          src={
+            value?.related_user_image !== null ? (
+              <img
+                src={avatarWhite}
+                alt="avatar"
+                className="w-12 h-12 rounded-xl"
+              />
+            ) : (
+              <img
+                src={`${API_URL}/${value?.related_user_image}`}
+                alt="avatar"
+              />
+            )
+          }
+          className="shrink-0 self-stretch w-14 aspect-square"
+          alt={`${value?.related_user_fullname}'s profile`}
+        />
+        <div className="flex flex-col self-stretch pr-2.5 my-auto">
+          <div className="font-semibold text-slate-900">
+            {value?.related_user_fullname}
+          </div>
+          <div className="mt-3 text-gray-600">{value?.transaction_type}</div>
+        </div>
+        <div className={`self-stretch my-auto font-semibold text-right`}>
+          Rp {value?.amount}
+        </div>
+      </div>
+    );
+  };
+  console.log();
+
+  React.useEffect(() => {
+    if (token !== "") {
+      getHistory(token);
+    }
+  }, [token]);
   const userId = 101;
   const transactions = [
     {
@@ -51,34 +111,8 @@ function TransactionHistory() {
             See All
           </button>
         </div>
-        {transactions.map((transaction) => (
-          <div
-            key={transaction.id}
-            className="flex gap-5 justify-between items-center mt-7 text-base p-4"
-          >
-            <img
-              loading="lazy"
-              src={transaction.sender_image}
-              className="shrink-0 self-stretch w-14 aspect-square"
-              alt={`${transaction.sender_fullname}'s profile`}
-            />
-            <div className="flex flex-col self-stretch pr-2.5 my-auto">
-              <div className="font-semibold text-slate-900">
-                {transaction.sender_fullname}
-              </div>
-              <div className="mt-3 text-gray-600">{transaction.type}</div>
-            </div>
-            <div
-              className={`self-stretch my-auto font-semibold text-right ${
-                transaction.sender_id === userId
-                  ? "text-red-700"
-                  : "text-green-500"
-              }`}
-            >
-              Rp {transaction.transfer_amount.toLocaleString("id-ID")}
-            </div>
-          </div>
-        ))}
+        {/* {transactions.map(transaction)} */}
+        {history?.map(table)}
       </div>
     </>
   );

@@ -73,7 +73,7 @@ function Transfer() {
           <Sidebar page={"transfer"} side={"sidebar"} />
           {/* <button className="w-full h-1 bg-black">sfsdf</button> */}
 
-          <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
+          <div className="md:px-8 md:py-14 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
             <div className="hidden md:flex flex-row gap-4 items-center">
               <Link to="/transfer-detail">
                 <GrSend className="w-5 h-5 text-primary" />

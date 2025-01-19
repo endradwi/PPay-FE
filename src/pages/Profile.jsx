@@ -77,7 +77,7 @@ function Profile() {
       <NavbarDashboard />
       <div className="flex">
         <Sidebar page={"profile"} side={"sidebar"} />
-        <div className="flex flex-col gap-8 pt-6">
+        <div className="flex flex-col gap-8 pt-10">
           <section className="px-9 py-4 flex flex-col gap-8">
             <div className="flex gap-2">
               <div className=" text-secondary">
