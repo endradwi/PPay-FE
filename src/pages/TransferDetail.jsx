@@ -8,7 +8,7 @@ import Pin from "../components/Pin";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
 import { MdOutlineVerified } from "react-icons/md";
-import {  useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { API_URL } from "../config/api-config";
 import { tokenAtom } from "../jotai/data.js";
 import { useAtom } from "jotai";
@@ -18,69 +18,64 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 function TransferDetail() {
   const [isOpen, setIsOpen] = useState(false);
-  const params = useParams()
+  const params = useParams();
   const [usersTf, setUsersTf] = useState([]);
   const [transfer, setTransfer] = useState([]);
   const [token, setToken] = useAtom(tokenAtom);
-  
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
   const transferValidationSchema = yup.object({
-      amount: yup.string()
-    });
+    amount: yup.string(),
+  });
 
   const {
-      handleSubmit,
-      register,
-      formState: { errors },
-    }  = useForm({ resolver: yupResolver(transferValidationSchema) });
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(transferValidationSchema) });
 
-    function formTransfer(value) {
-      const query = new URLSearchParams(value);
+  function formTransfer(value) {
+    const query = new URLSearchParams(value);
     const queryString = query.toString();
-    console.log(value)
-      fetch(`${API_URL}/transfer/${params.id}`, {
-        method: "POST",
-        body: queryString,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Bearer ${token}`,
-        },
+    console.log(value);
+    fetch(`${API_URL}/transfer/${params.id}`, {
+      method: "POST",
+      body: queryString,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        return response.json();
       })
-        .then((response) => {
-          return response.json();
-        })
-        .then((v) => {
-          setTransfer(v.data);
-        })
-    }
-
-    
-
-    
+      .then((v) => {
+        setTransfer(v.data);
+      });
+  }
 
   useEffect(() => {
-    fetch(`${API_URL}/users/transfer/${params.id}`,{
+    fetch(`${API_URL}/users/transfer/${params.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        return response.json(); 
+        return response.json();
       })
       .then((data) => {
         setUsersTf(data.data);
-      })
+      });
   }, [params, token]);
   return (
     <div>
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"Transfer"} />
         <div className="flex box-border w-full">
-          <Sidebar page={"transfer"} side={"sidebar"}/>
+          <Sidebar page={"transfer"} side={"sidebar"} />
           <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
             <div className="hidden md:flex flex-row gap-4 items-center">
               <img src={Send} alt="" className="h-6 w-6" />
@@ -124,7 +119,10 @@ function TransferDetail() {
                 </div>
               </div>
             </div>
-            <form onSubmit={handleSubmit(formTransfer)} className="md:border h-[720px] w-full">
+            <form
+              onSubmit={handleSubmit(formTransfer)}
+              className="md:border h-[720px] w-full"
+            >
               <div className="px-5 py-4 md:px-8 md:py-6">
                 <div>
                   <div className="font-semibold pb-5">People Information</div>
@@ -139,9 +137,11 @@ function TransferDetail() {
                       </div>
                       <div className="flex flex-col gap-2">
                         <div className="text-secondary font-bold text-sm">
-                        {usersTf?.Fullname}
+                          {usersTf?.Fullname}
                         </div>
-                        <div className="text-info text-sm">{usersTf?.Phone}</div>
+                        <div className="text-info text-sm">
+                          {usersTf?.Phone}
+                        </div>
                         <span className="w-24 h-6 bg-primary text-white rounded-md flex items-center gap-2 justify-center ">
                           <MdOutlineVerified /> Verified
                         </span>
@@ -163,16 +163,16 @@ function TransferDetail() {
                       <img src={money} alt="" />
                       <input
                         type="text"
-                        placeholder="Enter Number Or Full Name"
+                        placeholder="Enter Nominal Transfer"
                         className="h-5 w-[294px] text-start"
                         id="amount"
                         {...register("amount")}
                       />
                       {errors.amount?.message && (
-                  <div className="text-error opacity-80">
-                    {errors.amount?.message}{" "}
-                  </div>
-                )}
+                        <div className="text-error opacity-80">
+                          {errors.amount?.message}{" "}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

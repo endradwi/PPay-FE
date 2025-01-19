@@ -37,7 +37,7 @@ function Transfer() {
                 <img
                   src={`${API_URL}/${value?.image}`}
                   alt=""
-                  className="h-12 w-12 rounded-md"
+                  className="h-12 rounded-md"
                 />
               </Link>
             </div>
