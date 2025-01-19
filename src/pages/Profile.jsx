@@ -211,9 +211,9 @@ function Profile() {
                   </div>
                 </div>
                 <div className="flex">
-                  <a className="text-[#2948FF]" href="">
+                  <Link to={"/change-password"} className="text-[#2948FF]">
                     Change Password
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="flex flex-col gap-4">
@@ -223,9 +223,9 @@ function Profile() {
                   </div>
                 </div>
                 <div className="flex">
-                  <a className="text-[#2948FF]" href="">
-                    Change Password
-                  </a>
+                  <Link to={"/change-pin"} className="text-[#2948FF]" href="">
+                    Change Pin
+                  </Link>
                 </div>
               </div>
               <div>

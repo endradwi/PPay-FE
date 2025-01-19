@@ -67,7 +67,11 @@ function NavbarDashboard(props) {
           <>
             <div className="avatar md:hidden  online placeholder">
               <div className="w-8 md:w-12 aspect-square rounded-full">
-                <img src={avatar} alt="avatar" />
+                {profile?.image === null ? (
+                  <img src={avatar} alt="avatar" />
+                ) : (
+                  <img src={`${API_URL}/${profile?.image}`} alt="avatar" />
+                )}
               </div>
             </div>
             <div className="md:hidden flex flex-col">
