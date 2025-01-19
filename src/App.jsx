@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/lupaKata-Sandi",
+    path: "/forgotPass",
     element: (
       <Suspense fallback={<Loader/>}>
         <ForgotPass />
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/Login-pin",
+    path: "/pinLogin",
     element: (
       <Suspense fallback={<Loader/>}>
         <PinLogin />
