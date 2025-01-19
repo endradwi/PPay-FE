@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import NavbarDashboard from "../components/NavbarDashboard";
-// import Sidebar from '../components/Sidebar'
+import Sidebar from '../components/Sidebar'
 import { BiKey } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { API_URL } from "../config/api-config";
@@ -82,11 +82,12 @@ function ChangePass() {
     }
   }, [status, showSuccess, showWarn]);
   return (
+    <>
     <div className="flex flex-col gap-8">
       <NavbarDashboard />
       <div className="flex">
-        {/* <Sidebar/> */}
-        <section className="px-9 py-4 flex flex-col gap-8">
+        <Sidebar page={"profile"} side={"sidebar"}/>
+        <section className="flex flex-col gap-8 w-full p-4 md:p-8">
           <div className="flex gap-2 text-secondary font-bold text-base">
             <CgProfile className="text-[#2948FF] w-4 h-4" /> Profile
           </div>
@@ -223,6 +224,7 @@ function ChangePass() {
         </section>
       </div>
     </div>
+    </>
   );
 }
 
