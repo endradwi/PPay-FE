@@ -8,10 +8,10 @@ function Loader() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 10000); 
+    }, 5000); 
 
     return () => clearTimeout(timer);
-  }, [location]);
+  }, []);
 
   return loading && (
     <div className='w-full h-screen flex justify-center items-center'>
