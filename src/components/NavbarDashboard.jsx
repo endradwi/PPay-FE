@@ -51,12 +51,12 @@ function NavbarDashboard(props) {
         </div>
         {isShow && (
           <div className="md:flex hidden absolute top-24 flex-col bg-white w-48">
-            <div className="flex bg-primary text-white py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
+            <Link to="/profile"><div className="flex bg-primary text-white py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
               <div>
                 <AiOutlineUser />
               </div>
               <div>Profile</div>
-            </div>
+            </div></Link>
             <div className="flex text-warning py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
               <div>
                 <BiLogOut />
