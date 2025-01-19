@@ -10,14 +10,37 @@ import FinancialChart from "../components/FinancialChart";
 import TransactionHistory from "../components/TransactionHistory";
 import { FaPlus } from "react-icons/fa6";
 import { IoPaperPlane } from "react-icons/io5";
+import React, { useState } from "react";
+import { useAtom } from "jotai";
+import { tokenAtom, profileAtom } from "../jotai/data.js";
+import { API_URL } from "../config/api-config";
 
 function Dashboard() {
+  const [token, setToken] = useAtom(tokenAtom);
+  const [balance, setBalance] = useState("");
+
+  async function getBalance(tokenProfile) {
+    const data = await (
+      await fetch(`${API_URL}/users/balance/:id`, {
+        headers: {
+          Authorization: `Bearer ${tokenProfile}`,
+        },
+      })
+    ).json();
+    setBalance(data.data.balance);
+  }
+
+  React.useEffect(() => {
+    if (token !== "") {
+      getBalance(token);
+    }
+  }, [token]);
   return (
     <>
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"dashboard"} />
         <div className="flex box-border">
-          <Sidebar page={"dashboard"} side={"sidebar"}/>
+          <Sidebar page={"dashboard"} side={"sidebar"} />
           <main className="w-full p-4 md:p-8">
             <section className="w-full  max-md:max-w-full">
               <div className="flex gap-5 md:w-full w-[715px] md:top-0 top-14 md:rounded-none rounded-2xl md:px-0 px-10 max-xl:flex-col max-md:gap-0 md:static absolute shadow-lg md:shadow-none bg-white">
@@ -32,7 +55,7 @@ function Dashboard() {
                       /> */}
                       <div className="md:text-base text-xs">Balance</div>
                       <div className="md:mt-5 text-2xl font-medium tracking-normal leading-6 text-slate-900">
-                        Rp.200000
+                        {balance}
                       </div>
                     </div>
                     {/* <div className="md:mt-5 text-2xl font-medium tracking-normal leading-6 text-slate-900">
@@ -133,7 +156,7 @@ function Dashboard() {
             </section>
           </main>
         </div>
-      <Sidebar page={"dashboard"} side={"dashboard"}/>
+        <Sidebar page={"dashboard"} side={"dashboard"} />
       </div>
     </>
   );
