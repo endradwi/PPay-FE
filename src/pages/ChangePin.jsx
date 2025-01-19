@@ -26,10 +26,10 @@ function ChangePin() {
   }
   return (
     <div>
-      <NavbarDashboard />
+      <NavbarDashboard page={"Change Pin"}/>
       <div className="flex">
-        <Sidebar />
-        <div className="flex flex-col gap-8">
+        <Sidebar page={"profile"} side={"sidebar"}/>
+        <div className="flex flex-col gap-8 w-full h-[433px] p-4 md:p-8">
           <section className="px-9 py-4 flex flex-col gap-8">
             <div className="flex gap-2 text-secondary font-bold text-base">
               <CgProfile className="text-primary w-4 h-4" /> Profile
