@@ -1,20 +1,80 @@
 import Send from "../assets/icons/Send.svg";
-import arcane from "../assets/images/arcane.jpg";
+// import arcane from "../assets/images/arcane.jpg";
 import StarBigger from "../assets/icons/StarBigger.svg";
 // import verified from "../assets/icons/verified.svg";
 import money from "../assets/icons/u_money-bill.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pin from "../components/Pin";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
 import { MdOutlineVerified } from "react-icons/md";
+import {  useParams } from 'react-router-dom';
+import { API_URL } from "../config/api-config";
+import { tokenAtom } from "../jotai/data.js";
+import { useAtom } from "jotai";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function TransferDetail() {
   const [isOpen, setIsOpen] = useState(false);
+  const params = useParams()
+  const [usersTf, setUsersTf] = useState([]);
+  const [transfer, setTransfer] = useState([]);
+  const [token, setToken] = useAtom(tokenAtom);
+  
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+
+  const transferValidationSchema = yup.object({
+      amount: yup.string()
+    });
+
+  const {
+      handleSubmit,
+      register,
+      formState: { errors },
+    }  = useForm({ resolver: yupResolver(transferValidationSchema) });
+
+    function formTransfer(value) {
+      const query = new URLSearchParams(value);
+    const queryString = query.toString();
+    console.log(value)
+      fetch(`${API_URL}/transfer/${params.id}`, {
+        method: "POST",
+        body: queryString,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((v) => {
+          setTransfer(v.data);
+        })
+    }
+
+    
+
+    
+
+  useEffect(() => {
+    fetch(`${API_URL}/users/transfer/${params.id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        return response.json(); 
+      })
+      .then((data) => {
+        setUsersTf(data.data);
+      })
+  }, [params, token]);
   return (
     <div>
       <div className="w-full flex flex-col box-border h-fit-content">
@@ -64,7 +124,7 @@ function TransferDetail() {
                 </div>
               </div>
             </div>
-            <form className="md:border h-[720px] w-full">
+            <form onSubmit={handleSubmit(formTransfer)} className="md:border h-[720px] w-full">
               <div className="px-5 py-4 md:px-8 md:py-6">
                 <div>
                   <div className="font-semibold pb-5">People Information</div>
@@ -74,14 +134,14 @@ function TransferDetail() {
                     <div className="flex items-center gap-2.5">
                       <div className="avatar">
                         <div className="w-20 h-20 rounded">
-                          <img src={arcane} />
+                          <img src={`${API_URL}/${usersTf?.Image}`} />
                         </div>
                       </div>
                       <div className="flex flex-col gap-2">
                         <div className="text-secondary font-bold text-sm">
-                        Arcane
+                        {usersTf?.Fullname}
                         </div>
-                        <div className="text-info text-sm">(239) 555-0108</div>
+                        <div className="text-info text-sm">{usersTf?.Phone}</div>
                         <span className="w-24 h-6 bg-primary text-white rounded-md flex items-center gap-2 justify-center ">
                           <MdOutlineVerified /> Verified
                         </span>
@@ -105,7 +165,14 @@ function TransferDetail() {
                         type="text"
                         placeholder="Enter Number Or Full Name"
                         className="h-5 w-[294px] text-start"
+                        id="amount"
+                        {...register("amount")}
                       />
+                      {errors.amount?.message && (
+                  <div className="text-error opacity-80">
+                    {errors.amount?.message}{" "}
+                  </div>
+                )}
                     </div>
                   </div>
                 </div>

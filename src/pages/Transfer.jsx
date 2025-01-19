@@ -31,7 +31,7 @@ function Transfer() {
           <td className="max-w-fit md:w-[1003px]">
             <div className="flex flex-row justify-between items-center">
               <div className="w-[69px] h-16 md:w-60 md:h-16 flex justify-center items-center">
-                <Link to="/detail-transfer">
+                <Link to={`/users/transfer/${value.id}`}>
                   <img
                     src={`${API_URL}/${value?.image}`}
                     alt=""
