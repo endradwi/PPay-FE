@@ -51,7 +51,7 @@ function Login() {
           return;
         }
         setToken(v.data.token);
-        navigate("/Login-pin");
+        navigate("/pin-login");
         // fetch(`${API_URL}/auth/pin`)
         //   .then((response) => response.json())
         //   .then((v) => {

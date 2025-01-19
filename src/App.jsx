@@ -11,7 +11,9 @@ const PinLogin = React.lazy(() => import("./pages/PinLogin.jsx"));
 const Topup = React.lazy(() => import("./pages/Top-up.jsx"));
 const Transfer = React.lazy(() => import("./pages/Transfer.jsx"));
 const TransferDetail = React.lazy(() => import("./pages/TransferDetail.jsx"));
-const HistoryTransaction = React.lazy(() => import("./pages/HistoryTransaction.jsx"));
+const HistoryTransaction = React.lazy(() =>
+  import("./pages/HistoryTransaction.jsx")
+);
 const Profile = React.lazy(() => import("./pages/Profile.jsx"));
 const ChangePin = React.lazy(() => import("./pages/ChangePin.jsx"));
 const ChangePass = React.lazy(() => import("./pages/ChangePassword.jsx"));
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Home />
       </Suspense>
     ),
@@ -30,7 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/top-up",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Topup />
       </Suspense>
     ),
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Register />
       </Suspense>
     ),
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Login />
       </Suspense>
     ),
@@ -54,15 +56,15 @@ const router = createBrowserRouter([
   {
     path: "/forgotPass",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <ForgotPass />
       </Suspense>
     ),
   },
   {
-    path: "/pinLogin",
+    path: "/pin-login",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <PinLogin />
       </Suspense>
     ),
@@ -70,15 +72,15 @@ const router = createBrowserRouter([
   {
     path: "/transfer",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Transfer />
       </Suspense>
     ),
   },
   {
-    path: "/detail-transfer",
+    path: "/users/transfer/:id",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <TransferDetail />
       </Suspense>
     ),
@@ -86,7 +88,7 @@ const router = createBrowserRouter([
   {
     path: "/historyTransaction",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <HistoryTransaction />
       </Suspense>
     ),
@@ -94,7 +96,7 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Profile />
       </Suspense>
     ),
@@ -102,7 +104,7 @@ const router = createBrowserRouter([
   {
     path: "/change-pin",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <ChangePin />
       </Suspense>
     ),
@@ -110,7 +112,7 @@ const router = createBrowserRouter([
   {
     path: "/change-password",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <ChangePass />
       </Suspense>
     ),
@@ -118,7 +120,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Dashboard />
       </Suspense>
     ),
