@@ -27,13 +27,13 @@ function Transfer() {
     
   const table = (value, index) => {
     return (
-        <tr className="odd:bg-gray-100 even:bg-white px-8" key={`list-fullname-${value.fullname}-${index}`}>
+        <tr className="odd:bg-gray-100 even:bg-white px-8" key={`list-fullname-${value.id}-${index}`}>
           <td className="max-w-fit md:w-[1003px]">
             <div className="flex flex-row justify-between items-center">
               <div className="w-[69px] h-16 md:w-60 md:h-16 flex justify-center items-center">
                 <Link to="/detail-transfer">
                   <img
-                    src={`${API_URL}/users/public/images/${value.image}`}
+                    src={`${API_URL}/${value?.image}`}
                     alt=""
                     className="h-12 w-12 rounded-md"
                   />

@@ -7,6 +7,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineUser } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { IoIosArrowUp } from "react-icons/io";
+import { API_URL } from "../config/api-config";
 import { tokenAtom, profileAtom } from "../jotai/data.js";
 import { useAtom } from "jotai";
 
@@ -38,8 +39,12 @@ function NavbarDashboard(props) {
           </span>
         </div>
         <div className="avatar hidden md:block placeholder">
-          <div className="w-8 bg-primary border-primary border-[4px] md:w-12 aspect-square rounded-full">
-            <img src={avatar} alt="avatar" />
+          <div className="w-8 bg-primary border-primary border-[2px] md:w-12 aspect-square rounded-full">
+            {profile?.image === null ? (
+              <img src={avatar} alt="avatar" />
+            ) : (
+              <img src={`${API_URL}/${profile?.image}`} alt="avatar" />
+            )}
           </div>
         </div>
         {isShow && (
