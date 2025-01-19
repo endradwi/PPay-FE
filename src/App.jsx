@@ -76,7 +76,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/detail-transfer",
+    path: "/users/transfer/:id",
     element: (
       <Suspense fallback={<Loader/>}>
         <TransferDetail />
