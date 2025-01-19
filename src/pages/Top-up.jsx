@@ -45,7 +45,7 @@ function Top_up() {
         <NavbarDashboard page={"profile"} />
         <div className="flex box-border">
           <Sidebar page={"top-up"} side={"sidebar"} />
-          <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
+          <div className=" md:py-10 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
             <section className="px-9 py-4 flex flex-col gap-8">
               <div className="flex gap-3 items-center text-primary">
                 <div>

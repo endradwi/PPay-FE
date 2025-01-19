@@ -112,7 +112,7 @@ function TransactionHistory() {
           </button>
         </div>
         {/* {transactions.map(transaction)} */}
-        {history.map(table)}
+        {history?.map(table)}
       </div>
     </>
   );
