@@ -113,10 +113,11 @@ const Sidebar = (props) => {
         </main>
       )}
       {isShow && (
-        <div className="w-96 h-96 top-[15rem] left-[50rem] absolute bg-white rounded-2xl flex flex-col justify-center items-center gap-10 shadow-xl">
+        <div className="w-96 h-96 top-[15rem] left-[50rem] absolute bg-white rounded-2xl flex flex-col justify-center items-center gap-5 shadow-xl">
           <div>
             <BsFillQuestionCircleFill className="w-32 h-32 text-primary" />
           </div>
+          <div className="text-2xl font-extrabold">Are You Sure?</div>
           <div className="flex gap-10">
             <button onClick={() => logout()}>
               <div className="cursor-pointer btn border border-info py-3 px-10 hover:bg-primary hover:border-0 hover:text-neutral rounded-xl">
