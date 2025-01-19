@@ -66,7 +66,7 @@ function PinLogin() {
                   <label key={index} htmlFor="">
                     <input
                       type="password"
-                      className="w-16 h-24 input focus:outline-none focus:border-t-0 focus:border-l-0 focus:border-r-0 text-5xl rounded-none border-b-info box-border pl-5"
+                      className="focus:border-primary focus:border-b-2 w-16 h-24 input focus:outline-none focus:border-t-0 focus:border-l-0 focus:border-r-0 text-5xl rounded-none border-b-info box-border pl-5"
                       maxLength="1"
                       // {...register(`pin-${index}`)}
                       onChange={(e) => {
