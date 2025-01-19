@@ -93,7 +93,7 @@ function PinLogin() {
             onSubmit={handleSubmit(formPin)}
             className="w-full flex flex-col gap-14 md:gap-28 md:pt-24"
           >
-            <div className="flex gap-16">
+            <div className="flex gap-3 md:gap-10 justify-center">
               {new Array(6).fill(1).map((_, index) => {
                 const { onChange, onBlur, name, ref } = register(
                   `pin-${index}`
@@ -102,7 +102,7 @@ function PinLogin() {
                   <label key={index} htmlFor="">
                     <input
                       type="password"
-                      className="focus:border-primary focus:border-b-2 w-16 h-24 input focus:outline-none focus:border-t-0 focus:border-l-0 focus:border-r-0 text-5xl rounded-none border-b-info box-border pl-5"
+                      className="focus:border-primary focus:border-b-2 min-w-2 w-full  max-w-16 h-24 input focus:outline-none focus:border-t-0 focus:border-l-0 focus:border-r-0 text-5xl rounded-none border-b-info box-border pl-5"
                       maxLength="1"
                       // {...register(`pin-${index}`)}
                       onChange={(e) => {
