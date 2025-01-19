@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import NavbarDashboard from '../components/NavbarDashboard'
+import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from '../components/Sidebar'
 import { BiKey } from "react-icons/bi";
 import { useForm } from "react-hook-form";
