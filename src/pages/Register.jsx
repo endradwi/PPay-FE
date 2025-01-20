@@ -77,11 +77,11 @@ function Register() {
               that for you!
             </div>
             <div className=" flex flex-row md:flex-col justify-between md:justify-center w-full items-center gap-3">
-              <div className="btn border-primary rounded-full  h-10 border py-3.5 px-20 md:px-44 flex items-center">
+              <div className="btn border-abuMuda rounded-full  h-10 border py-3.5 px-20 md:px-44 flex items-center">
                 <FcGoogle />
                 <span className="md:block hidden ">Sign In With Google</span>
               </div>
-              <div className="btn border-primary rounded-full  h-10 border py-3.5 px-20 md:px-[10.5rem] flex items-center">
+              <div className="btn border-abuMuda rounded-full  h-10 border py-3.5 px-20 md:px-[10.5rem] flex items-center">
                 <FaFacebook className="text-blue-700" />
                 <span className="md:block hidden ">Sign In With Facebook</span>
               </div>

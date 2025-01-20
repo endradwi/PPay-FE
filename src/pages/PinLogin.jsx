@@ -1,12 +1,16 @@
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 import image from "../assets/images/Pin_Image.svg";
 import logo from "../assets/icons/ppay_logo2.png";
 import { Link, useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
+import { API_URL } from "../config/api-config";
 import { useForm } from "react-hook-form";
+import { useAtom } from "jotai";
+import { tokenAtom } from "../jotai/data.js";
 
 function PinLogin() {
   const { handleSubmit, register } = useForm();
+  const [statusPin, setStatusPin] = useState(0);
+  const [token, setToken] = useAtom(tokenAtom);
   const navigate = useNavigate();
   const pinRef = useRef([]);
 
@@ -21,7 +25,23 @@ function PinLogin() {
 
     const query = new URLSearchParams(pinVal);
     const queryString = query.toString();
-    console.log(queryString);
+
+    fetch(`${API_URL}/users/:id`, {
+      method: "PATCH",
+      body: queryString,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((v) => {
+        // console.log(v.status);
+        if (v.status === 200) {
+          navigate("/");
+          return;
+        }
+      });
   }
 
   function moveFocus(e, index) {
@@ -40,6 +60,22 @@ function PinLogin() {
       pinRef.current[index - 1].focus();
     }
   }
+
+  React.useEffect(() => {
+    fetch(`${API_URL}/auth/pin`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((v) => {
+        console.log(v.status);
+        if (v.status === 200) {
+          navigate("/");
+          return;
+        }
+      });
+  }, [token]);
   return (
     <div>
       <div className="flex h-screen bg-primary md:py-0 px-5 md:px-0 py-40">
@@ -57,7 +93,7 @@ function PinLogin() {
             onSubmit={handleSubmit(formPin)}
             className="w-full flex flex-col gap-14 md:gap-28 md:pt-24"
           >
-            <div className="flex gap-16">
+            <div className="flex gap-3 md:gap-10 justify-center">
               {new Array(6).fill(1).map((_, index) => {
                 const { onChange, onBlur, name, ref } = register(
                   `pin-${index}`
@@ -66,7 +102,7 @@ function PinLogin() {
                   <label key={index} htmlFor="">
                     <input
                       type="password"
-                      className="focus:border-primary focus:border-b-2 w-16 h-24 input focus:outline-none focus:border-t-0 focus:border-l-0 focus:border-r-0 text-5xl rounded-none border-b-info box-border pl-5"
+                      className="focus:border-primary focus:border-b-2 min-w-2 w-full  max-w-16 h-24 input focus:outline-none focus:border-t-0 focus:border-l-0 focus:border-r-0 text-5xl rounded-none border-b-info box-border pl-5"
                       maxLength="1"
                       // {...register(`pin-${index}`)}
                       onChange={(e) => {

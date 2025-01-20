@@ -1,17 +1,64 @@
-// import React from "react";
+import React from "react";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import search from "../assets/icons/Search.svg";
 import image from "../assets/images/avatar2.png";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
+import { API_URL } from "../config/api-config";
+import { useState } from "react";
+import { useAtom } from "jotai";
+import { tokenAtom, profileAtom } from "../jotai/data.js";
+import avatarWhite from "../assets/images/avatar-white.svg";
 
 function HistoryTransaction() {
+  const [token] = useAtom(tokenAtom);
+  // const [profile,] = useAtom(profileAtom);
+  const [history, setHistory] = useState([]);
+  async function getHistory(tokenHistory) {
+    const data = await (
+      await fetch(`${API_URL}/transaction/history`, {
+        headers: {
+          Authorization: `Bearer ${tokenHistory}`,
+        },
+      })
+    ).json();
+    setHistory(data.data);
+  }
+  const table = (value, index) => {
+    return (
+      <tr className="border-0 flex justify-between items-center px-10 odd:bg-gray-300 even:bg-neutral py-5 " key={`list-fullname-${value.id}-${index}`}>
+        <td className="md:flex hidden justify-center items-center">
+          {history?.related_user_image !== null ? (
+            <img src={avatarWhite} alt="avatar" className="w-12 h-12 rounded-xl"/>
+          ) : (
+            <img src={`${API_URL}/${value?.related_user_image}`} alt="avatar" />
+          )}
+        </td>
+        <td className="md:block items-center hidden">{value?.related_user_fullname || "Unknown"}</td>
+        <td className="">
+          <div className="md:hidden block">{value?.related_user_fullname}</div>
+          <div>{value?.related_user_phone || "Undifined"}</div>
+        </td>
+        <td>{value?.amount}</td>
+        <td className="md:block hidden cursor-pointer">
+          <RiDeleteBin5Line className="text-warning" />
+        </td>
+      </tr>
+    );
+  };
+  console.log()
+
+  React.useEffect(() => {
+    if (token !== "") {
+      getHistory(token);
+    }
+  }, [token]);
   return (
     <div>
       <NavbarDashboard />
       <div className="flex">
-        <Sidebar page={"historyTransaction"} side={"sidebar"}/>
+        <Sidebar page={"historyTransaction"} side={"sidebar"} />
         <div className="flex flex-col gap-8 w-full p-4 md:p-8">
           <div className="flex items-center gap-3 md:bg-transparent bg-primary h-20">
             <RxCounterClockwiseClock className="text-primary w-6 h-6 hidden md:block" />
@@ -44,7 +91,8 @@ function HistoryTransaction() {
             <div className="px-8 flex flex-col gap-5">
               <table className="border-collapse border-none md:border item flex justify-center text-base">
                 <tbody className="w-full flex flex-col gap-5">
-                  <tr className="border-0 flex justify-between items-center px-10 ">
+                {history?.map(table)}
+                  {/* <tr className="border-0 flex justify-between items-center px-10 ">
                     <td className="md:flex hidden justify-center items-center">
                       <img
                         src={image}
@@ -151,7 +199,7 @@ function HistoryTransaction() {
                     <td className="md:block hidden cursor-pointer">
                       <RiDeleteBin5Line className="text-warning" />
                     </td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
               <div className="md:flex hidden justify-between items-center">
@@ -196,7 +244,7 @@ function HistoryTransaction() {
           </div>
         </div>
       </div>
-      <Sidebar page={"historyTransaction"} side={"historyTransaction"}/>
+      <Sidebar page={"historyTransaction"} side={"historyTransaction"} />
     </div>
   );
 }

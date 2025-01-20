@@ -20,6 +20,7 @@ function Login() {
   const [status, setStatus] = useState(0);
   const [token, setToken] = useAtom(tokenAtom);
   const [message, setMessage] = useState("");
+  // const [statusPin, setStatusPin] = useState(0);
   const navigate = useNavigate();
 
   const loginValidationSchema = yup.object({
@@ -44,17 +45,39 @@ function Login() {
     })
       .then((response) => response.json())
       .then((v) => {
-        console.log(v);
         setStatus(v.status);
         if (v.status === 400) {
           setMessage(v.message);
           return;
         }
         setToken(v.data.token);
+        navigate("/pin-login");
+        // fetch(`${API_URL}/auth/pin`)
+        //   .then((response) => response.json())
+        //   .then((v) => {
+        //     setStatusPin(v.status);
+        //     console.log(v.status);
+        //     if (v.status === 200) {
+        //       navigate("/");
+        //       return;
+        //     }
+        //     if (v.status === 404) {
+        //       navigate("/Login-pin");
+        //       return;
+        //     }
+        //   });
       });
   }
 
   React.useEffect(() => {
+    // if (statusPin === 404) {
+    //   navigate("/Login-pin");
+    //   return;
+    // }
+    // if (statusPin === 200) {
+    //   navigate("/");
+    //   return;
+    // }
     if (token !== undefined && token !== "") {
       navigate("/");
       return;
