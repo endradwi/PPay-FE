@@ -20,6 +20,8 @@ function Register() {
   const [message, setMessage] = React.useState("");
   const navigate = useNavigate();
 
+  console.log("register message", message); //butuh modal untuk menampilkan pesan
+
   const regisValidationSchema = yup.object({
     email: yup.string().required().min(8),
     password: yup.string().required().min(8),
@@ -57,7 +59,7 @@ function Register() {
       navigate("/login");
       return;
     }
-  }, [status]);
+  }, [status, navigate]);
 
   return (
     <>

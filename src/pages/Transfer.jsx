@@ -1,6 +1,6 @@
 import { useState } from "react";
 import search from "../assets/icons/Search.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
 import { GrSend } from "react-icons/gr";
@@ -8,21 +8,46 @@ import { FaRegStar } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { useEffect } from "react";
 import { API_URL } from "../config/api-config";
+import { useForm } from "react-hook-form";
 
 function Transfer() {
   const [isShow, setShow] = useState(false);
 
   const [users, setUsers] = useState([]);
+  const { handleSubmit, register } = useForm();
+  const [info, setInfo] = useState({});
+  const [searchInput, setSearchInput] = useState({});
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
 
   useEffect(() => {
-    fetch(`${API_URL}/users`)
+    const qs = new URLSearchParams(location.search);
+    fetchData(qs.get("search"));
+  }, []);
+
+  const fetchData = (search) => {
+    const url = new URL(`${API_URL}/users`);
+    const params = new URLSearchParams();
+    if (search) {
+      url.searchParams.append("search", search);
+      params.set("search", search);
+    }
+    fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setUsers(data.data);
+        setInfo(data.pageInfo);
+        setSearchParams(params);
       });
-  }, []);
+  };
+
+  const searchData = (q) => {
+    setSearchInput(q);
+    fetchData(q.search);
+  };
 
   const table = (value, index) => {
     return (
@@ -129,18 +154,24 @@ function Transfer() {
                         Find People
                       </div>
                       <div className="hidden md:flex text-info font-medium text-xs">
-                        8 Results Found For Ghaluh
+                        {info.totalData} Results Found For{" "}
+                        {searchInput.search || ""}
                       </div>
                     </div>
                     <div>
-                      <div className="h-10 w-[340px] border flex justify-between items-center px-3">
+                      <form
+                        onSubmit={handleSubmit(searchData)}
+                        className="h-10 w-[340px] border flex justify-between items-center px-3"
+                      >
                         <input
                           type="text"
                           placeholder="Enter Number Or Full Name"
                           className="h-5 md:w-[294px] text-start"
+                          {...register("search")}
                         />
+                        <button className="hidden">submit</button>
                         <img src={search} alt="" className="ml-2" />
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
