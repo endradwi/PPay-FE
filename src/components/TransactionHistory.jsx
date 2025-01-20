@@ -30,25 +30,20 @@ function TransactionHistory() {
         <img
           loading="lazy"
           src={
-            value?.related_user_image !== null ? (
-              <img
-                src={avatarWhite}
-                alt="avatar"
-                className="w-12 h-12 rounded-xl"
-              />
-            ) : (
-              <img
-                src={`${API_URL}/${value?.related_user_image}`}
-                alt="avatar"
-              />
-            )
+            value?.related_user_image
+              ? `${API_URL}/${value.related_user_image}` // Use the image URL if it's not null
+              : avatarWhite // Default to avatarWhite if null
           }
-          className="shrink-0 self-stretch w-14 aspect-square"
-          alt={`${value?.related_user_fullname}'s profile`}
+          className="shrink-0 self-stretch w-14 h-14 rounded-xl"
+          alt={
+            value?.related_user_fullname
+              ? `${value.related_user_fullname}'s profile`
+              : "Default avatar"
+          }
         />
         <div className="flex flex-col self-stretch pr-2.5 my-auto">
           <div className="font-semibold text-slate-900">
-            {value?.related_user_fullname}
+            {value?.related_user_fullname || "Unknown"}
           </div>
           <div className="mt-3 text-gray-600">{value?.transaction_type}</div>
         </div>
@@ -66,6 +61,7 @@ function TransactionHistory() {
       </div>
     );
   };
+
   console.log();
 
   React.useEffect(() => {

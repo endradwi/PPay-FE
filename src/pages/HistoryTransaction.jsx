@@ -35,10 +35,10 @@ function HistoryTransaction() {
             <img src={`${API_URL}/${value?.related_user_image}`} alt="avatar" />
           )}
         </td>
-        <td className="md:block items-center hidden">{value?.related_user_fullname}</td>
+        <td className="md:block items-center hidden">{value?.related_user_fullname || "Unknown"}</td>
         <td className="">
           <div className="md:hidden block">{value?.related_user_fullname}</div>
-          <div>{value?.related_user_phone}</div>
+          <div>{value?.related_user_phone || "Undifined"}</div>
         </td>
         <td>{value?.amount}</td>
         <td className="md:block hidden cursor-pointer">
