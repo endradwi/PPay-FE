@@ -14,10 +14,12 @@ import * as yup from "yup";
 
 function ChangePass() {
   const [token, setToken] = useAtom(tokenAtom);
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const [status, setStatus] = useState(0);
   const [showWarn, setShowWarn] = useState("");
   const [showSuccess, setShowSuccess] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
 
   const passValidationSchema = yup.object({
     exist_password: yup.string().required(),
@@ -48,7 +50,11 @@ function ChangePass() {
         console.log(v.status);
         if (v.status === 400) {
           setStatus(v.status);
-          setMessage("Invalid password");
+          // setMessage("Invalid password");
+          setIsOpen2(true);
+              setTimeout(() => {
+                setIsOpen2(false);
+              }, 3000)
           return;
         } else {
           fetch(`${API_URL}/users/:id`, {
@@ -61,12 +67,15 @@ function ChangePass() {
           })
             .then((response) => response.json())
             .then((v) => {
-              if (v === 200) {
                 setStatus(v.status);
-                setMessage("Password changed success");
+                // setMessage("Password changed success");
+                setIsOpen(true);
+              setTimeout(() => {
+                setIsOpen(false);
+              }, 3000)
                 return;
               }
-            });
+            )
         }
       });
   }
@@ -91,6 +100,9 @@ function ChangePass() {
           <div className="flex gap-2 text-secondary font-bold text-base">
             <CgProfile className="text-[#2948FF] w-4 h-4" /> Profile
           </div>
+          <div>
+          
+          </div>
           <div className="flex gap-8">
             <form
               onSubmit={handleSubmit(formPassword)}
@@ -99,52 +111,38 @@ function ChangePass() {
               <div className="text-secondary font-semibold text-base">
                 Change Password
               </div>
-              {status === 200 && (
-                <>
-                  <div
-                    role="alert"
-                    className={`${showSuccess} alert alert-success text-neutral`}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 shrink-0 stroke-current"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span className="text-neutral">{message}</span>
-                  </div>
-                </>
-              )}
-              {status === 400 && (
-                <>
-                  <div
-                    role="alert"
-                    className={`${showWarn} alert alert-error text-neutral`}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 shrink-0 stroke-current"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span className="text-neutral">{message}</span>
-                  </div>
-                </>
-              )}
+              {isOpen && (
+                  <div role="alert" className="alert alert-success">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-white h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-white">Password changed success</span>
+                </div>
+                )}
+                {isOpen2 && (
+                  <div role="alert" className="alert alert-error">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-white h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-white">Invalid password</span>
+                </div>
+                )}
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-0.5">
                   <label
