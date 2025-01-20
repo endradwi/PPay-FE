@@ -1,12 +1,16 @@
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 import image from "../assets/images/Pin_Image.svg";
 import logo from "../assets/icons/ppay_logo2.png";
 import { Link, useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
+import { API_URL } from "../config/api-config";
 import { useForm } from "react-hook-form";
+import { useAtom } from "jotai";
+import { tokenAtom } from "../jotai/data.js";
 
 function PinLogin() {
   const { handleSubmit, register } = useForm();
+  const [statusPin, setStatusPin] = useState(0);
+  const [token, setToken] = useAtom(tokenAtom);
   const navigate = useNavigate();
   const pinRef = useRef([]);
 
@@ -21,7 +25,23 @@ function PinLogin() {
 
     const query = new URLSearchParams(pinVal);
     const queryString = query.toString();
-    console.log(queryString);
+
+    fetch(`${API_URL}/users/:id`, {
+      method: "PATCH",
+      body: queryString,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((v) => {
+        // console.log(v.status);
+        if (v.status === 200) {
+          navigate("/");
+          return;
+        }
+      });
   }
 
   function moveFocus(e, index) {
@@ -40,6 +60,22 @@ function PinLogin() {
       pinRef.current[index - 1].focus();
     }
   }
+
+  React.useEffect(() => {
+    fetch(`${API_URL}/auth/pin`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((v) => {
+        console.log(v.status);
+        if (v.status === 200) {
+          navigate("/");
+          return;
+        }
+      });
+  }, [token]);
   return (
     <div>
       <div className="flex h-screen bg-primary md:py-0 px-5 md:px-0 py-40">

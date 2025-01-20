@@ -3,7 +3,6 @@ import React, { Suspense } from "react";
 import "./App.css";
 import Loader from "./components/Loader.jsx";
 
-// Lazy load pages
 const Home = React.lazy(() => import("./pages/Home.jsx"));
 const Register = React.lazy(() => import("./pages/Register.jsx"));
 const Login = React.lazy(() => import("./pages/Login.jsx"));
@@ -17,6 +16,7 @@ const Profile = React.lazy(() => import("./pages/Profile.jsx"));
 const ChangePin = React.lazy(() => import("./pages/ChangePin.jsx"));
 const ChangePass = React.lazy(() => import("./pages/ChangePassword.jsx"));
 const Dashboard = React.lazy(() => import("./pages/Dashboard.jsx"));
+// import Dashboard from "./pages/Dashboard.jsx"
 
 const router = createBrowserRouter([
   {
