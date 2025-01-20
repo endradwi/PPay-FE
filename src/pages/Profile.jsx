@@ -270,7 +270,7 @@ function Profile() {
                     </div>
                   </div>
                   <div className="flex">
-                    <a className="text-[#2948FF]" href="">
+                    <a className="text-[#2948FF]" href="/change-password">
                       Change Password
                     </a>
                   </div>
@@ -282,7 +282,7 @@ function Profile() {
                     </div>
                   </div>
                   <div className="flex">
-                    <a className="text-[#2948FF]" href="">
+                    <a className="text-[#2948FF]" href="/change-pin">
                       Change Pin
                     </a>
                   </div>
