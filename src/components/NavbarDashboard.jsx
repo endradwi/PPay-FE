@@ -24,9 +24,36 @@ function NavbarDashboard(props) {
     setToken("");
   }
 
+  async function getProfile(tokenProfile) {
+    const data = await (
+      await fetch(`${API_URL}/users/:id`, {
+        headers: {
+          Authorization: `Bearer ${tokenProfile}`,
+        },
+      })
+    ).json();
+    console.log(data.data);
+    setProfile({
+      id: data.data.id,
+      fullname: data.data.fullname,
+      email: data.data.email,
+      phone: data.data.phone,
+      image: data.data.image,
+    });
+  }
+
   React.useEffect(() => {
     if (token === "") {
       navigate("/");
+      return;
+    }
+    if (token === "") {
+      setProfile({});
+      return;
+    }
+    if (token !== "") {
+      getProfile(token);
+      return;
     }
   }, [token]);
   return (
@@ -51,12 +78,14 @@ function NavbarDashboard(props) {
         </div>
         {isShow && (
           <div className="md:flex hidden absolute top-24 flex-col bg-white w-48">
-            <Link to="/profile"><div className="flex bg-primary text-white py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
-              <div>
-                <AiOutlineUser />
+            <Link to="/profile">
+              <div className="flex bg-primary text-white py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
+                <div>
+                  <AiOutlineUser />
+                </div>
+                <div>Profile</div>
               </div>
-              <div>Profile</div>
-            </div></Link>
+            </Link>
             <div className="flex text-warning py-2.5 px-3 gap-3 items-center rounded cursor-pointer">
               <div>
                 <BiLogOut />
@@ -99,14 +128,19 @@ function NavbarDashboard(props) {
           {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>
       </div>
-      <div className="block text-neutral text-2xl md:hidden" onClick={() => setShow(!isShow)}>
-      {isShow ? <AiOutlineAlignRight /> : <RxHamburgerMenu />}
+      <div
+        className="block text-neutral text-2xl md:hidden"
+        onClick={() => setShow(!isShow)}
+      >
+        {isShow ? <AiOutlineAlignRight /> : <RxHamburgerMenu />}
       </div>
       {isShow && token !== "" && (
         <div className="bg-white shadow-lg rounded-b-3xl absolute w-full top-16 left-0 flex flex-col justify-center md:hidden items-center px-5 py-5 flex-shrink-0 gap-2">
-          <Link to="/profile"><button className="btn btn-primary text-neutral px-6">
-            Profile
-          </button></Link>
+          <Link to="/profile">
+            <button className="btn btn-primary text-neutral px-6">
+              Profile
+            </button>
+          </Link>
           <button
             onClick={() => logout()}
             className="btn text-primary px-5 bg-neutral"
@@ -116,7 +150,6 @@ function NavbarDashboard(props) {
         </div>
       )}
     </nav>
-    
   );
 }
 
