@@ -1,20 +1,38 @@
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function FinancialChart() {
   // Data dummy
   const balanceData = [
     { date: "2023-01-01", balance_in: 1000, balance_out: 500 },
-    { date: "2023-01-02", balance_in: 1200, balance_out: 700 },
-    { date: "2023-01-03", balance_in: 1500, balance_out: 800 },
-    { date: "2023-01-04", balance_in: 1300, balance_out: 600 },
+    { date: "2023-02-02", balance_in: 1200, balance_out: 700 },
+    { date: "2023-03-03", balance_in: 1500, balance_out: 800 },
+    { date: "2023-04-04", balance_in: 1300, balance_out: 600 },
   ];
 
   const data = {
     labels: balanceData.map((item) =>
-      new Date(item.date).toLocaleDateString("en-US", { month: "long", day: "numeric" })
+      new Date(item.date).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+      })
     ),
     datasets: [
       {
