@@ -45,9 +45,9 @@ const Transfer = () => {
 
   useEffect(() => {
     if (
-      profile.fullname === "" ||
-      profile.phone === null ||
-      profile.phone === ""
+      profile?.fullname === "" ||
+      profile?.phone === null ||
+      profile?.phone === ""
     ) {
       navigate("/profile");
       return;
@@ -204,7 +204,7 @@ const Transfer = () => {
                 <table className="border-collapse md:border w-full border-gray-300">
                   <tbody>
                     {users
-                      .filter((value) => profile.id !== value.id)
+                      .filter((value) => profile?.id !== value.id)
                       .map(table)}
                   </tbody>
                 </table>
