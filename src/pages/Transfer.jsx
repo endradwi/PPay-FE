@@ -1,6 +1,6 @@
 import { useState } from "react";
 import search from "../assets/icons/Search.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
 import { GrSend } from "react-icons/gr";
@@ -8,13 +8,25 @@ import { FaRegStar } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { useEffect } from "react";
 import { API_URL } from "../config/api-config";
+import { profileAtom } from "../jotai/data.js";
+import { useAtom } from "jotai";
+import avatar from "../assets/images/avatar-white.svg";
 
 function Transfer() {
   const [isShow, setShow] = useState(false);
-
+  const [profile, setProfile] = useAtom(profileAtom);
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (
+      profile.fullname === "" ||
+      profile.phone === null ||
+      profile.phone === ""
+    ) {
+      navigate("/profile");
+      return;
+    }
     fetch(`${API_URL}/users`)
       .then((response) => {
         return response.json();
@@ -22,31 +34,44 @@ function Transfer() {
       .then((data) => {
         setUsers(data.data);
       });
-  }, []);
+  }, [profile]);
 
   const table = (value, index) => {
     return (
       <tr
-        className="odd:bg-gray-100 even:bg-white px-8"
+        className="odd:bg-gray-100 flex w-full even:bg-white px-8"
         key={`list-fullname-${value.id}-${index}`}
       >
-        <td className="max-w-fit md:w-[1003px]">
-          <div className="flex flex-row justify-between items-center">
-            <div className="w-[69px] h-16 md:w-60 md:h-16 flex justify-center items-center">
-              <Link to={`/users/transfer/${value.id}`}>
+        <td className="w-full">
+          <div className="flex px-2 md:px-24 flex-row w-full justify-between items-center">
+            <div className="h-16 flex justify-center items-center">
+              <Link
+                className="w-12 h-12 rounded-lg shadow-md flex justify-center items-center overflow-hidden"
+                to={`/users/transfer/${value.id}`}
+              >
                 <img
-                  src={`${API_URL}/${value?.image}`}
+                  src={
+                    value?.image === null
+                      ? avatar
+                      : `${API_URL}/${value?.image}`
+                  }
                   alt=""
-                  className="h-12 rounded-md"
+                  className="w-full rounded-md"
                 />
               </Link>
             </div>
-            <div className="flex flex-col w-[188px] h-[72px] md:w-[435px] md:[h-75px] md:flex-row items-center">
-              <div className="px-4 py-2 text-center md:w-[435px] md:[h-75px] justify-center">
-                {value.fullname}
+            <div className="flex md:block text-left md:text-center flex-row">
+              <div>
+                {value?.fullname === "" ? value?.email : value?.fullname}
+                <div className="block md:hidden">{value.phone}</div>
               </div>
-              <div className="md:w-[243px] md:h-[72px] flex items-center">
+              {/* <div className="flex md:hidden">
                 <div className="px-4 py-2">{value.phone}</div>
+              </div> */}
+            </div>
+            <div className="hidden md:block md:text-center">
+              <div>
+                <div>{value.phone}</div>
               </div>
             </div>
             <div

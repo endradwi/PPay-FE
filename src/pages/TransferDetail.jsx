@@ -10,7 +10,7 @@ import Sidebar from "../components/Sidebar";
 import { MdOutlineVerified } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../config/api-config";
-import { tokenAtom } from "../jotai/data.js";
+import { tokenAtom, amountAtom } from "../jotai/data.js";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -21,41 +21,47 @@ function TransferDetail() {
   const params = useParams();
   const [usersTf, setUsersTf] = useState([]);
   const [transfer, setTransfer] = useState([]);
+  const [amount, setAmount] = useAtom(amountAtom);
   const [token, setToken] = useAtom(tokenAtom);
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
-
   const transferValidationSchema = yup.object({
-    amount: yup.string(),
+    amount: yup.number().required(),
   });
 
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(transferValidationSchema) });
 
   function formTransfer(value) {
-    const query = new URLSearchParams(value);
-    const queryString = query.toString();
-    console.log(value);
-    fetch(`${API_URL}/transfer/${params.id}`, {
-      method: "POST",
-      body: queryString,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((v) => {
-        setTransfer(v.data);
-      });
+    setAmount(value.amount);
+    // const query = new URLSearchParams(value);
+    // const queryString = query.toString();
+    // console.log(value);
+    // fetch(`${API_URL}/transfer/${params.id}`, {
+    //   method: "POST",
+    //   body: queryString,
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // })
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((v) => {
+    //     setTransfer(v.data);
+    //   });
+    reset();
   }
+  // const togglePopup = () => {
+  //   if (errors.amount?.message === false) {
+  //     setIsOpen(!isOpen);
+  //     return;
+  //   }
+  // };
 
   useEffect(() => {
     fetch(`${API_URL}/users/transfer/${params.id}`, {
@@ -153,7 +159,12 @@ function TransferDetail() {
                   </div>
                 </div>
                 <div>
-                  <div className="font-medium text-sm md:text-base">Amount</div>
+                  <label
+                    htmlFor="amount"
+                    className="font-medium cursor-pointer text-sm md:text-base"
+                  >
+                    Amount
+                  </label>
                   <div className="pb-4 max-w-[335px] md:max-w-fit text-xs md:text-sm">
                     Type the amount you want to transfer and then press continue
                     to the next steps.
@@ -162,22 +173,27 @@ function TransferDetail() {
                     <div className="h-16 w-full border flex justify-right gap-2 items-center px-3">
                       <img src={money} alt="" />
                       <input
-                        type="text"
+                        type="number"
                         placeholder="Enter Nominal Transfer"
-                        className="h-5 w-[294px] text-start"
+                        className="w-full h-full outline-none text-start"
                         id="amount"
                         {...register("amount")}
                       />
-                      {errors.amount?.message && (
-                        <div className="text-error opacity-80">
-                          {errors.amount?.message}{" "}
-                        </div>
-                      )}
                     </div>
+                    {errors.amount?.message && (
+                      <div className="text-error opacity-80">
+                        {errors.amount?.message}{" "}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div>
-                  <div className="font-medium text-sm md:text-base">Notes</div>
+                  <label
+                    htmlFor="notes"
+                    className="font-medium cursor-pointer text-sm md:text-base"
+                  >
+                    Notes
+                  </label>
                   <div className="pb-4 max-w-[335px] md:max-w-fit text-xs md:text-sm">
                     You can add some notes for this transfer such as payment
                     coffee or something
@@ -185,9 +201,10 @@ function TransferDetail() {
                   <div>
                     <div className="h-[223px] w-full border flex justify-right gap-2 items-start px-3">
                       <input
+                        id="notes"
                         type="text"
                         placeholder="Enter Some Notes"
-                        className="h-5 w-[294px] text-start px-2 py-2"
+                        className="h-5 w-[294px] text-start outline-none px-2 py-5"
                       />
                     </div>
                   </div>
@@ -195,7 +212,7 @@ function TransferDetail() {
                 <div>
                   <button
                     className="w-full h-[45px] bg-primary"
-                    onClick={togglePopup}
+                    // onClick={togglePopup}
                   >
                     <div className="text-white font-normal text-sm">
                       Submit & Transfer
@@ -205,7 +222,7 @@ function TransferDetail() {
               </div>
             </form>
           </div>
-          {isOpen && <Pin />}
+          {amount > 0 && <Pin name={`${usersTf?.Fullname}`} />}
         </div>
       </div>
     </div>

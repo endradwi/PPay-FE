@@ -38,7 +38,7 @@ function PinLogin() {
       .then((v) => {
         // console.log(v.status);
         if (v.status === 200) {
-          navigate("/");
+          navigate("/profile");
           return;
         }
       });
