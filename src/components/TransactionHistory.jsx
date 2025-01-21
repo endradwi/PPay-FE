@@ -5,13 +5,14 @@ import User2 from "../assets/icons/user2.svg";
 import { tokenAtom, profileAtom } from "../jotai/data.js";
 import avatarWhite from "../assets/images/avatar-white.svg";
 import { API_URL } from "../config/api-config.js";
+import { Link } from "react-router-dom";
 
 function TransactionHistory() {
   const [token] = useAtom(tokenAtom);
   const [history, setHistory] = React.useState([]);
   async function getHistory(tokenHistory) {
     const data = await (
-      await fetch(`${API_URL}/transaction/history`, {
+      await fetch(`${API_URL}/transaction/history?limit=4`, {
         headers: {
           Authorization: `Bearer ${tokenHistory}`,
         },
@@ -103,9 +104,11 @@ function TransactionHistory() {
           <h2 className="flex-auto text-base font-semibold tracking-normal leading-6 text-slate-900">
             Transaction History
           </h2>
+          <Link to="/historyTransaction">
           <button className="text-xs font-medium tracking-normal leading-6 text-blue-600">
             See All
           </button>
+          </Link>
         </div>
         {/* {transactions.map(transaction)} */}
         {history?.map(table)}

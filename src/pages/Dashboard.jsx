@@ -63,8 +63,8 @@ function Dashboard() {
   }, [token]);
   return (
     <>
-      <div className="w-full flex flex-col box-border h-fit-content">
-        <NavbarDashboard page={"dashboard"} />
+      <div className="w-full flex flex-col box-border">
+        <NavbarDashboard page={"dashboard"}/>
         <div className="flex box-border">
           <Sidebar page={"dashboard"} side={"sidebar"} />
 
