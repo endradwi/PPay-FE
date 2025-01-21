@@ -8,9 +8,9 @@ import Pin from "../components/Pin";
 import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
 import { MdOutlineVerified } from "react-icons/md";
-import {  useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { API_URL } from "../config/api-config";
-import { tokenAtom } from "../jotai/data.js";
+import { tokenAtom, amountAtom } from "../jotai/data.js";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -18,69 +18,70 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 function TransferDetail() {
   const [isOpen, setIsOpen] = useState(false);
-  const params = useParams()
+  const params = useParams();
   const [usersTf, setUsersTf] = useState([]);
   const [transfer, setTransfer] = useState([]);
+  const [amount, setAmount] = useAtom(amountAtom);
   const [token, setToken] = useAtom(tokenAtom);
-  
-
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
 
   const transferValidationSchema = yup.object({
-      amount: yup.string()
-    });
+    amount: yup.string().required(),
+  });
 
   const {
-      handleSubmit,
-      register,
-      formState: { errors },
-    }  = useForm({ resolver: yupResolver(transferValidationSchema) });
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(transferValidationSchema) });
 
-    function formTransfer(value) {
-      const query = new URLSearchParams(value);
-    const queryString = query.toString();
-    console.log(value)
-      fetch(`${API_URL}/transfer/${params.id}`, {
-        method: "POST",
-        body: queryString,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((v) => {
-          setTransfer(v.data);
-        })
-    }
-
-    
-
-    
+  function formTransfer(value) {
+    setAmount(value.amount);
+    // const query = new URLSearchParams(value);
+    // const queryString = query.toString();
+    // console.log(value);
+    // fetch(`${API_URL}/transfer/${params.id}`, {
+    //   method: "POST",
+    //   body: queryString,
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // })
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((v) => {
+    //     setTransfer(v.data);
+    //   });
+    reset();
+  }
+  // const togglePopup = () => {
+  //   if (errors.amount?.message === false) {
+  //     setIsOpen(!isOpen);
+  //     return;
+  //   }
+  // };
 
   useEffect(() => {
-    fetch(`${API_URL}/users/transfer/${params.id}`,{
+    fetch(`${API_URL}/users/transfer/${params.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        return response.json(); 
+        return response.json();
       })
       .then((data) => {
         setUsersTf(data.data);
-      })
+      });
   }, [params, token]);
   return (
     <div>
       <div className="w-full flex flex-col box-border h-fit-content">
         <NavbarDashboard page={"Transfer"} />
         <div className="flex box-border w-full">
-          <Sidebar page={"transfer"} side={"sidebar"}/>
+          <Sidebar page={"transfer"} side={"sidebar"} />
           <div className="md:px-9 md:py-4 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
             <div className="hidden md:flex flex-row gap-4 items-center">
               <img src={Send} alt="" className="h-6 w-6" />
@@ -124,7 +125,10 @@ function TransferDetail() {
                 </div>
               </div>
             </div>
-            <form onSubmit={handleSubmit(formTransfer)} className="md:border h-[720px] w-full">
+            <form
+              onSubmit={handleSubmit(formTransfer)}
+              className="md:border h-[720px] w-full"
+            >
               <div className="px-5 py-4 md:px-8 md:py-6">
                 <div>
                   <div className="font-semibold pb-5">People Information</div>
@@ -139,9 +143,11 @@ function TransferDetail() {
                       </div>
                       <div className="flex flex-col gap-2">
                         <div className="text-secondary font-bold text-sm">
-                        {usersTf?.Fullname}
+                          {usersTf?.Fullname}
                         </div>
-                        <div className="text-info text-sm">{usersTf?.Phone}</div>
+                        <div className="text-info text-sm">
+                          {usersTf?.Phone}
+                        </div>
                         <span className="w-24 h-6 bg-primary text-white rounded-md flex items-center gap-2 justify-center ">
                           <MdOutlineVerified /> Verified
                         </span>
@@ -153,7 +159,12 @@ function TransferDetail() {
                   </div>
                 </div>
                 <div>
-                  <div className="font-medium text-sm md:text-base">Amount</div>
+                  <label
+                    htmlFor="amount"
+                    className="font-medium cursor-pointer text-sm md:text-base"
+                  >
+                    Amount
+                  </label>
                   <div className="pb-4 max-w-[335px] md:max-w-fit text-xs md:text-sm">
                     Type the amount you want to transfer and then press continue
                     to the next steps.
@@ -162,22 +173,27 @@ function TransferDetail() {
                     <div className="h-16 w-full border flex justify-right gap-2 items-center px-3">
                       <img src={money} alt="" />
                       <input
-                        type="text"
-                        placeholder="Enter Number Or Full Name"
-                        className="h-5 w-[294px] text-start"
+                        type="number"
+                        placeholder="Enter Nominal Transfer"
+                        className="w-full h-full outline-none text-start"
                         id="amount"
                         {...register("amount")}
                       />
-                      {errors.amount?.message && (
-                  <div className="text-error opacity-80">
-                    {errors.amount?.message}{" "}
-                  </div>
-                )}
                     </div>
+                    {errors.amount?.message && (
+                      <div className="text-error opacity-80">
+                        {errors.amount?.message}{" "}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div>
-                  <div className="font-medium text-sm md:text-base">Notes</div>
+                  <label
+                    htmlFor="notes"
+                    className="font-medium cursor-pointer text-sm md:text-base"
+                  >
+                    Notes
+                  </label>
                   <div className="pb-4 max-w-[335px] md:max-w-fit text-xs md:text-sm">
                     You can add some notes for this transfer such as payment
                     coffee or something
@@ -185,9 +201,10 @@ function TransferDetail() {
                   <div>
                     <div className="h-[223px] w-full border flex justify-right gap-2 items-start px-3">
                       <input
+                        id="notes"
                         type="text"
                         placeholder="Enter Some Notes"
-                        className="h-5 w-[294px] text-start px-2 py-2"
+                        className="h-5 w-[294px] text-start outline-none px-2 py-5"
                       />
                     </div>
                   </div>
@@ -195,7 +212,7 @@ function TransferDetail() {
                 <div>
                   <button
                     className="w-full h-[45px] bg-primary"
-                    onClick={togglePopup}
+                    // onClick={togglePopup}
                   >
                     <div className="text-white font-normal text-sm">
                       Submit & Transfer
@@ -205,7 +222,7 @@ function TransferDetail() {
               </div>
             </form>
           </div>
-          {isOpen && <Pin />}
+          {amount > 0 && <Pin name={`${usersTf?.Fullname}`} />}
         </div>
       </div>
     </div>
