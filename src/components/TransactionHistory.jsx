@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { tokenAtom } from "../jotai/data.js";
 import avatarWhite from "../assets/images/avatar-white.svg";
 import { API_URL } from "../config/api-config.js";
+import topupimage from "../assets/images/topupimage.png";
 import { Link } from "react-router-dom";
 
 function TransactionHistory() {
@@ -18,7 +19,7 @@ function TransactionHistory() {
         },
       })
     ).json();
-    setHistory(data.data);
+    setHistory(data?.data || []);
     console.log(data.data);
   }
 
@@ -62,8 +63,6 @@ function TransactionHistory() {
       </div>
     );
   };
-
-  console.log();
 
   React.useEffect(() => {
     if (token !== "") {
@@ -114,13 +113,27 @@ function TransactionHistory() {
             Transaction History
           </h2>
           <Link to="/historyTransaction">
-          <button className="text-xs font-medium tracking-normal leading-6 text-blue-600">
-            See All
-          </button>
+            <button className="text-xs font-medium tracking-normal leading-6 text-blue-600">
+              See All
+            </button>
           </Link>
         </div>
         {/* {transactions.map(transaction)} */}
-        {history?.map(table)}
+        {history?.length === 0 ? (
+          <Link to="/top-up">
+            <div className="flex justify-center pt-5">
+              <img src={topupimage} alt="Topup Image" />
+            </div>
+            <div
+              to="/top-up"
+              className="flex justify-center text-primary font-bold text-2xl"
+            >
+              Yuk Topup !
+            </div>
+          </Link>
+        ) : (
+          history.map((value, index) => table(value, index)) // Tampilkan transaksi jika ada
+        )}
       </div>
     </>
   );
