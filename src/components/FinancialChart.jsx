@@ -1,3 +1,4 @@
+import { incomeAtom, expenseAtom } from "../jotai/data.js";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useAtom } from "jotai";
 import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -19,12 +21,21 @@ ChartJS.register(
 );
 
 function FinancialChart() {
+  const [incomeAtomValue] = useAtom(incomeAtom);
+  const [expenseAtomValue] = useAtom(expenseAtom);
+
+  const incomeNumber = parseInt(incomeAtomValue?.toString(), 10) || 0;
+  const expenseNumber = parseInt(expenseAtomValue?.toString(), 10) || 0;
   // Data dummy
   const balanceData = [
-    { date: "2023-01-01", balance_in: 1000, balance_out: 500 },
-    { date: "2023-02-02", balance_in: 1200, balance_out: 700 },
-    { date: "2023-03-03", balance_in: 1500, balance_out: 800 },
-    { date: "2023-04-04", balance_in: 1300, balance_out: 600 },
+    {
+      date: "2023-01-01",
+      balance_in: incomeNumber,
+      balance_out: expenseNumber,
+    },
+    { date: "2023-02-02", balance_in: 0, balance_out: 0 },
+    { date: "2023-03-03", balance_in: 0, balance_out: 0 },
+    { date: "2023-04-04", balance_in: 0, balance_out: 0 },
   ];
 
   const data = {

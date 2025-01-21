@@ -16,3 +16,7 @@ export const amountAtom = atom(0);
 export const formTopupAtom = atom("");
 
 export const statusAtom = atom(0);
+
+export const incomeAtom = atom(0);
+
+export const expenseAtom = atom(0);
