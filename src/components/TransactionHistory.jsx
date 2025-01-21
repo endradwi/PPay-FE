@@ -1,8 +1,8 @@
 import React from "react";
 import { useAtom } from "jotai";
-import User1 from "../assets/icons/user1.svg";
-import User2 from "../assets/icons/user2.svg";
-import { tokenAtom, profileAtom } from "../jotai/data.js";
+// import User1 from "../assets/icons/user1.svg";
+// import User2 from "../assets/icons/user2.svg";
+import { tokenAtom } from "../jotai/data.js";
 import avatarWhite from "../assets/images/avatar-white.svg";
 import { API_URL } from "../config/api-config.js";
 import { Link } from "react-router-dom";
@@ -19,6 +19,7 @@ function TransactionHistory() {
       })
     ).json();
     setHistory(data.data);
+    console.log(data.data);
   }
 
   const table = (value, index) => {
@@ -47,13 +48,21 @@ function TransactionHistory() {
           </div>
           <div className="mt-3 text-gray-600">{value?.transaction_type}</div>
         </div>
-        <div className="self-stretch my-auto font-semibold text-right">
-          Rp {value?.amount}
+        <div
+          className={
+            value?.transaction_type === "Sent"
+              ? "self-stretch my-auto font-semibold text-right text-warning"
+              : "self-stretch my-auto font-semibold text-right text-success"
+          }
+        >
+          {value?.transaction_type === "Sent"
+            ? `-Rp ${value?.amount}`
+            : `+Rp ${value?.amount}`}
         </div>
       </div>
     );
   };
-  
+
   console.log();
 
   React.useEffect(() => {
@@ -61,41 +70,41 @@ function TransactionHistory() {
       getHistory(token);
     }
   }, [token]);
-  const userId = 101;
-  const transactions = [
-    {
-      id: 1,
-      sender_id: 101,
-      sender_fullname: "John Doe",
-      sender_image: User1,
-      type: "Transfer",
-      transfer_amount: 150000,
-    },
-    {
-      id: 2,
-      sender_id: 102,
-      sender_fullname: "Jane Smith",
-      sender_image: User2,
-      type: "Payment",
-      transfer_amount: 250000,
-    },
-    {
-      id: 3,
-      sender_id: 103,
-      sender_fullname: "Alice Johnson",
-      sender_image: User1,
-      type: "Refund",
-      transfer_amount: 50000,
-    },
-    {
-      id: 4,
-      sender_id: 104,
-      sender_fullname: "Bob Brown",
-      sender_image: User2,
-      type: "Transfer",
-      transfer_amount: 100000,
-    },
-  ];
+  // const userId = 101;
+  // const transactions = [
+  //   {
+  //     id: 1,
+  //     sender_id: 101,
+  //     sender_fullname: "John Doe",
+  //     sender_image: User1,
+  //     type: "Transfer",
+  //     transfer_amount: 150000,
+  //   },
+  //   {
+  //     id: 2,
+  //     sender_id: 102,
+  //     sender_fullname: "Jane Smith",
+  //     sender_image: User2,
+  //     type: "Payment",
+  //     transfer_amount: 250000,
+  //   },
+  //   {
+  //     id: 3,
+  //     sender_id: 103,
+  //     sender_fullname: "Alice Johnson",
+  //     sender_image: User1,
+  //     type: "Refund",
+  //     transfer_amount: 50000,
+  //   },
+  //   {
+  //     id: 4,
+  //     sender_id: 104,
+  //     sender_fullname: "Bob Brown",
+  //     sender_image: User2,
+  //     type: "Transfer",
+  //     transfer_amount: 100000,
+  //   },
+  // ];
 
   return (
     <>
