@@ -6,11 +6,12 @@ import NavbarDashboard from "../components/NavbarDashboard";
 import Sidebar from "../components/Sidebar";
 import { API_URL } from "../config/api-config";
 import { useAtom } from "jotai";
-import { tokenAtom } from "../jotai/data.js";
+import { tokenAtom, profileAtom } from "../jotai/data.js";
 import avatarWhite from "../assets/images/avatar-white.svg";
 
 function HistoryTransaction() {
   const [token] = useAtom(tokenAtom);
+  const [profile] = useAtom(profileAtom);
   const [history, setHistory] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
   const [totalPages, setTotalPages] = useState(1); // Track total pages
@@ -33,6 +34,13 @@ function HistoryTransaction() {
     setHistory(data.data);
     setTotalPages(data.pageInfo.totalPage);
   }
+
+  const formatRupiah = (number) => {
+    return number.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+  };
 
   // Handle search input change
   const handleSearchChange = (e) => {
@@ -59,11 +67,13 @@ function HistoryTransaction() {
       >
         <td className="md:flex hidden justify-center items-center">
           {value?.related_user_image ? (
-            <img
-              src={`${API_URL}/${value.related_user_image}`}
-              alt="avatar"
-              className="w-12 h-12 rounded-xl"
-            />
+            <div className="flex justify-center items-center w-12 h-12 rounded-xl overflow-hidden">
+              <img
+                src={`${API_URL}/${value.related_user_image}`}
+                alt="avatar"
+                className="w-full"
+              />
+            </div>
           ) : (
             <img
               src={avatarWhite}
@@ -72,13 +82,24 @@ function HistoryTransaction() {
             />
           )}
         </td>
-        <td className="md:block hidden">
+        <td className="md:flex hidden">
           {value?.related_user_fullname || "Unknown"}
         </td>
         <td>
-          <div>{value?.related_user_phone || "Undefined"}</div>
+          <div>
+            {value?.related_user_phone === undefined
+              ? profile?.phone
+              : value?.related_user_phone}
+          </div>
         </td>
-        <td>{value?.amount}</td>
+        {/* <td>{value?.amount}</td> */}
+        <td
+          className={
+            value?.transaction_type === "Sent" ? "text-warning" : "text-success"
+          }
+        >
+          {formatRupiah(value?.amount)}
+        </td>
         <td className="md:block hidden cursor-pointer">
           <RiDeleteBin5Line className="text-warning" />
         </td>
@@ -139,7 +160,7 @@ function HistoryTransaction() {
                 </div>
                 <div className="flex gap-2">
                   <button
-                    className="btn hover:bg-info hover:text-white h-9 font-normal px-3 text-xs min-h-0"
+                    className="btn hover:bg-primary border-none hover:text-white h-9 font-normal px-3 text-xs min-h-0"
                     disabled={currentPage === 1}
                     onClick={() => handlePageChange(currentPage - 1)}
                   >
@@ -148,10 +169,10 @@ function HistoryTransaction() {
                   {Array.from({ length: totalPages || 1 }, (_, i) => (
                     <button
                       key={i}
-                      className={`btn h-9 font-normal px-3 text-xs min-h-0 ${
+                      className={`btn h-9 font-normal border-none px-3 text-xs min-h-0 ${
                         currentPage === i + 1
-                          ? "bg-info text-white"
-                          : "hover:bg-info hover:text-white"
+                          ? "bg-primary cursor-not-allowed hover:bg-primary text-white"
+                          : "hover:bg-primary hover:text-white"
                       }`}
                       onClick={() => handlePageChange(i + 1)}
                     >
@@ -159,7 +180,7 @@ function HistoryTransaction() {
                     </button>
                   ))}
                   <button
-                    className="btn hover:bg-info hover:text-white h-9 font-normal px-3 text-xs min-h-0"
+                    className="btn hover:bg-primary hover:text-white h-9 border-none font-normal px-3 text-xs min-h-0"
                     disabled={currentPage === totalPages}
                     onClick={() => handlePageChange(currentPage + 1)}
                   >
@@ -177,10 +198,6 @@ function HistoryTransaction() {
 }
 
 export default HistoryTransaction;
-
-
-
-
 
 // import React from "react";
 // import { RxCounterClockwiseClock } from "react-icons/rx";

@@ -24,7 +24,7 @@ const Sidebar = (props) => {
   return (
     <>
       {props.side === "sidebar" && (
-        <main className="hidden md:inline-block px-5 py-6 text-sm text-gray-600 bg-white border-r border-gray-200 border-solid w-[261px] flex-shrink-0 font-montserrat shadow-lg">
+        <main className="hidden md:inline-block px-5 py-6 text-sm text-gray-600 bg-white border-r border-gray-200 border-solid w-[261px] h-screen flex-shrink-0 font-montserrat shadow-lg">
           <div className="inline-block w-full">
             {props.page == "dashboard" ? (
               <Link to="/dashboard">

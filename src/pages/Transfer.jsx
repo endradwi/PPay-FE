@@ -202,7 +202,11 @@ const Transfer = () => {
 
               <div className="px-8">
                 <table className="border-collapse md:border w-full border-gray-300">
-                  <tbody>{users.map(table)}</tbody>
+                  <tbody>
+                    {users
+                      .filter((value) => profile.id !== value.id)
+                      .map(table)}
+                  </tbody>
                 </table>
               </div>
             </div>

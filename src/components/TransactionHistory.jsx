@@ -10,6 +10,14 @@ import { Link } from "react-router-dom";
 function TransactionHistory() {
   const [token] = useAtom(tokenAtom);
   const [history, setHistory] = React.useState([]);
+
+  const formatRupiah = (number) => {
+    return number.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+  };
+
   async function getHistory(tokenHistory) {
     const data = await (
       await fetch(`${API_URL}/transaction/history?limit=4`, {
@@ -28,20 +36,22 @@ function TransactionHistory() {
         className="flex gap-5 justify-between items-center mt-7 text-base p-4"
         key={`list-fullname-${value.id}-${index}`}
       >
-        <img
-          loading="lazy"
-          src={
-            value?.related_user_image
-              ? `${API_URL}/${value.related_user_image}` // Use the image URL if it's not null
-              : avatarWhite // Default to avatarWhite if null
-          }
-          className="shrink-0 self-stretch w-14 h-14 rounded-xl"
-          alt={
-            value?.related_user_fullname
-              ? `${value.related_user_fullname}'s profile`
-              : "Default avatar"
-          }
-        />
+        <div className="w-14 h-14 rounded-xl overflow-hidden flex justify-center items-center">
+          <img
+            loading="lazy"
+            src={
+              value?.related_user_image
+                ? `${API_URL}/${value.related_user_image}` // Use the image URL if it's not null
+                : avatarWhite // Default to avatarWhite if null
+            }
+            className="w-full rounded-xl"
+            alt={
+              value?.related_user_fullname
+                ? `${value.related_user_fullname}'s profile`
+                : "Default avatar"
+            }
+          />
+        </div>
         <div className="flex flex-col self-stretch pr-2.5 my-auto">
           <div className="font-semibold text-slate-900">
             {value?.related_user_fullname || "Unknown"}
@@ -56,8 +66,8 @@ function TransactionHistory() {
           }
         >
           {value?.transaction_type === "Sent"
-            ? `-Rp ${value?.amount}`
-            : `+Rp ${value?.amount}`}
+            ? `-${formatRupiah(value?.amount)}`
+            : `+${formatRupiah(value?.amount)}`}
         </div>
       </div>
     );
@@ -114,9 +124,9 @@ function TransactionHistory() {
             Transaction History
           </h2>
           <Link to="/historyTransaction">
-          <button className="text-xs font-medium tracking-normal leading-6 text-blue-600">
-            See All
-          </button>
+            <button className="text-xs font-medium tracking-normal leading-6 text-blue-600">
+              See All
+            </button>
           </Link>
         </div>
         {/* {transactions.map(transaction)} */}
