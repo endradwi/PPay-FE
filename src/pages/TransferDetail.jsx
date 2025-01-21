@@ -25,7 +25,7 @@ function TransferDetail() {
   const [token, setToken] = useAtom(tokenAtom);
 
   const transferValidationSchema = yup.object({
-    amount: yup.number().required(),
+    amount: yup.string().required(),
   });
 
   const {

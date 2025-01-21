@@ -63,8 +63,8 @@ function Dashboard() {
   }, [token]);
   return (
     <>
-      <div className="w-full flex flex-col box-border h-fit-content">
-        <NavbarDashboard page={"dashboard"} />
+      <div className="w-full flex flex-col box-border">
+        <NavbarDashboard page={"dashboard"}/>
         <div className="flex box-border">
           <Sidebar page={"dashboard"} side={"sidebar"} />
 
@@ -126,7 +126,7 @@ function Dashboard() {
                         Fast Service
                       </div>
                       <div className="flex gap-3.5 text-white leading-[150%]">
-                        <Link to={"/user/transfer"}>
+                        <Link to={"/transfer"}>
                           <button className="flex gap-2 py-1 pr-3 pl-2 whitespace-nowrap bg-blue-600 rounded-md">
                             <img
                               loading="lazy"
@@ -137,7 +137,7 @@ function Dashboard() {
                             <span>Transfer</span>
                           </button>
                         </Link>
-                        <Link to={"/user/topup"}>
+                        <Link to={"/topup-up"}>
                           <button className="flex gap-2 py-1 pr-3 pl-2 bg-blue-600 rounded-md">
                             <img
                               loading="lazy"
