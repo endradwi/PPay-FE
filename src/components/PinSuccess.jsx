@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { tokenAtom, amountAtom } from "../jotai/data.js";
+import { useAtom } from "jotai";
 import responseSuccess from "../assets/icons/responseSuccess.svg";
 import PinFail from "./PinFail";
 
-function PinSuccess() {
+function PinSuccess(props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [amount, setAmount] = useAtom(amountAtom);
 
   const togglePopupResponse = () => {
     setIsOpen(!isOpen);
@@ -11,7 +14,7 @@ function PinSuccess() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="bg-white rounded-lg p-8 shadow-lg">
-        <div className="font-semibold">Transfer to Arcane</div>
+        <div className="font-semibold">Transfer to {props.name}</div>
         <div className="h-[510px] w-[556px] border">
           <div className="w-[556px] h-[377px] flex flex-col gap-3">
             <div className="flex justify-center">
@@ -33,7 +36,7 @@ function PinSuccess() {
               <div>
                 <button
                   className="w-[556px] h-[50px] bg-primary rounded-md text-white"
-                  onClick={togglePopupResponse}
+                  onClick={() => setAmount(0)}
                 >
                   Done
                 </button>
