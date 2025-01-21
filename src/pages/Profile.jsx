@@ -4,7 +4,7 @@ import { TbEdit } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { LuPhone } from "react-icons/lu";
 import { MdOutlineEmail } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useForm } from "react-hook-form";
 import { API_URL } from "../config/api-config";
@@ -12,12 +12,18 @@ import { tokenAtom, profileAtom } from "../jotai/data.js";
 import { useAtom } from "jotai";
 import avatarWhite from "../assets/images/avatar-white.svg";
 import { useState } from "react";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
+import { FaCheckCircle } from "react-icons/fa";
 
 function Profile() {
   const [token, setToken] = useAtom(tokenAtom);
   const [profile, setProfile] = useAtom(profileAtom);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
+  const [picture, setPicture] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const [notdeleted, setnotDeleted] = useState(false);
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -48,7 +54,6 @@ function Profile() {
           phone: data.data.phone,
           image: data.data.image,
         });
-        // alert("update profile sukses")
         setIsOpen(true);
         setTimeout(() => {
           setIsOpen(false);
@@ -59,8 +64,29 @@ function Profile() {
         setIsOpen2(true);
         setTimeout(() => {
           setIsOpen2(false);
-        }, 3000);
+        }, 3000)
       });
+  }
+
+  function deletedProfile(params) {
+    fetch(`${API_URL}/users/:id`,{
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then((res)=>res.json())
+    .then(()=>{
+      setnotDeleted(!notdeleted)
+    })
+  }
+
+  function logout() {
+    setTimeout(() => {
+      setProfile({});
+      setToken("");
+      
+    }, 2000);
   }
 
   function setImage(e) {
@@ -76,15 +102,19 @@ function Profile() {
       },
     })
       .then((response) => response.json())
-      .then((data) =>
+      .then((data) => {
         setProfile({
           id: data.data.id,
           fullname: data.data.fullname,
           email: data.data.email,
           phone: data.data.phone,
           image: data.data.image,
-        })
-      );
+        });
+        setPicture(!picture);
+        setTimeout(() => {
+          setPicture(picture);
+        }, 3000);
+      });
   }
 
   return (
@@ -92,6 +122,66 @@ function Profile() {
       <NavbarDashboard />
       <div className="flex">
         <Sidebar page={"profile"} side={"sidebar"} />
+        {picture && (
+          <div className="w-96 h-96 ml-96 mt-10 left-5 absolute">
+            <div role="alert" className="alert alert-success">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-white h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="text-white">Profile Image Updated</span>
+            </div>
+          </div>
+        )}
+        {isOpen && (
+          <div className="w-96 h-96 ml-96 mt-10 left-5 absolute">
+            <div role="alert" className="alert alert-success">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-white h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="text-white">Profile updated successfully</span>
+            </div>
+          </div>
+        )}
+        {isOpen2 && (
+          <div className="w-96 h-96 ml-96 mt-10 left-5 absolute">
+            <div role="alert" className="alert alert-error">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-white h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="text-white">Your email must not be empty</span>
+            </div>
+          </div>
+        )}
         <div className="flex flex-col gap-8 pt-10">
           <section className="px-9 py-4 flex flex-col gap-8">
             <div className="flex gap-2">
@@ -101,46 +191,6 @@ function Profile() {
                 </div>
                 <div className="font-semibold text-base">Profile</div>
               </div>
-              {isOpen && (
-                <div role="alert" className="alert alert-success">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-white h-6 w-6 shrink-0 stroke-current"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span className="text-white">
-                    Profile updated successfully
-                  </span>
-                </div>
-              )}
-              {isOpen2 && (
-                <div role="alert" className="alert alert-error">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-white h-6 w-6 shrink-0 stroke-current"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span className="text-white">
-                    Error! Task failed successfully.
-                  </span>
-                </div>
-              )}
             </div>
             <div className="flex gap-8">
               <form
@@ -185,13 +235,10 @@ function Profile() {
                           onChange={setImage}
                         />
                       </div>
-                      <div>
-                        <Link to="/change-password">
-                          <button className="justify-center items-center rounded-lg border border-[#D00000] text-[#D00000] w-40 h-11 flex gap-2">
-                            <AiOutlineDelete className="w-6 h-6" /> Delete
-                            Profile
-                          </button>
-                        </Link>
+                      <div onClick={() => setDeleted(!deleted)}>
+                        <div className="justify-center items-center rounded-lg border border-[#D00000] text-[#D00000] w-40 h-11 flex gap-2 cursor-pointer">
+                          <AiOutlineDelete className="w-6 h-6" /> Delete Profile
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -309,6 +356,35 @@ function Profile() {
           </section>
         </div>
       </div>
+      {deleted && (
+        <div className="w-96 h-96 top-[15rem] left-[50rem] absolute bg-white rounded-2xl flex flex-col justify-center items-center gap-5 shadow-xl">
+          <div>
+            <BsFillQuestionCircleFill className="w-32 h-32 text-primary" />
+          </div>
+          <div className="text-2xl font-extrabold">Are You Sure?</div>
+          <div className="flex gap-10">
+            <button onClick={() => deletedProfile(logout())}>
+              <div className="cursor-pointer btn border border-info py-3 px-10 hover:bg-primary hover:border-0 hover:text-neutral rounded-xl">
+                Yes
+              </div>
+            </button>
+            <div
+              onClick={() => setDeleted(!deleted)}
+              className="cursor-pointer btn bg-warning text-neutral border hover:text-black hover:border-warning py-3 px-10 rounded-xl"
+            >
+              No
+            </div>
+          </div>
+        </div>
+      )}
+      {notdeleted && (
+        <div className="w-96 h-96 top-[15rem] left-[50rem] absolute bg-white rounded-2xl flex flex-col justify-center items-center gap-5 shadow-xl">
+          <div>
+            <FaCheckCircle className="w-32 h-32 text-success" />
+          </div>
+          <div className="text-2xl font-extrabold">Deleted successfully</div>
+        </div>
+      )}
     </>
   );
 }
