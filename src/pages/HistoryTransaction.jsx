@@ -62,7 +62,7 @@ function HistoryTransaction() {
   const table = (value, index) => {
     return (
       <tr
-        className="border-0 flex justify-between items-center px-10 odd:bg-gray-300 even:bg-neutral py-5"
+        className="border-0 flex justify-between items-center px-10 odd:bg-gray-100 even:bg-neutral py-5"
         key={`list-fullname-${value.id}-${index}`}
       >
         <td className="md:flex hidden justify-center items-center">
@@ -148,7 +148,7 @@ function HistoryTransaction() {
               </div>
             </div>
             <div className="px-8 flex flex-col gap-5">
-              <table className="border-collapse border-none md:border item flex justify-center text-base">
+              <table className="border-collapse border-gray-300 md:border item flex justify-center text-base">
                 <tbody className="w-full flex flex-col gap-5">
                   {history?.map(table)}
                 </tbody>

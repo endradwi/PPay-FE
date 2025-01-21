@@ -12,14 +12,26 @@ import { FaPlus } from "react-icons/fa6";
 import { IoPaperPlane } from "react-icons/io5";
 import React, { useState } from "react";
 import { useAtom } from "jotai";
-import { tokenAtom, profileAtom } from "../jotai/data.js";
+import {
+  tokenAtom,
+  profileAtom,
+  incomeAtom,
+  expenseAtom,
+} from "../jotai/data.js";
 import { API_URL } from "../config/api-config";
 
 function Dashboard() {
   const [token, setToken] = useAtom(tokenAtom);
   const [balance, setBalance] = useState("");
-  const [income, setIncome] = useState("");
-  const [expense, setExpense] = useState("");
+  const [income, setIncome] = useAtom(incomeAtom);
+  const [expense, setExpense] = useAtom(expenseAtom);
+
+  const formatRupiah = (number) => {
+    return number.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+  };
 
   async function getBalance(tokenProfile) {
     const data = await (
@@ -64,7 +76,7 @@ function Dashboard() {
   return (
     <>
       <div className="w-full flex flex-col box-border">
-        <NavbarDashboard page={"dashboard"}/>
+        <NavbarDashboard page={"dashboard"} />
         <div className="flex box-border">
           <Sidebar page={"dashboard"} side={"sidebar"} />
 
@@ -83,7 +95,7 @@ function Dashboard() {
                       <div>Balance</div>
                     </div>
                     <div className="mt-5 text-2xl font-medium tracking-normal leading-6 text-slate-900">
-                      Rp.{balance}
+                      {formatRupiah(balance)}
                     </div>
                     <div className="flex gap-5 mt-6 text-xs">
                       <div className="flex flex-col flex-1">
