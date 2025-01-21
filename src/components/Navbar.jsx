@@ -120,17 +120,23 @@ function Navbar() {
       </nav>
       {isShow && token === "" && (
         <div className="bg-white shadow-lg rounded-b-3xl absolute w-full top-16 flex flex-col justify-center md:hidden items-center px-5 py-5 flex-shrink-0 gap-2">
-          <div className="btn btn-primary rounded-xl bg-abuMuda py-3 px-32 w-full h-20">
+          <Link
+            to={"/login"}
+            className="btn btn-primary rounded-xl bg-abuMuda py-3 px-32 w-full h-20"
+          >
             Sign In
-          </div>
-          <div className="btn btn-primary rounded-xl bg-whitepy-3 px-32 w-full h-20">
+          </Link>
+          <Link
+            to={"/register"}
+            className="btn btn-primary rounded-xl bg-whitepy-3 px-32 w-full h-20"
+          >
             Sign Up
-          </div>
+          </Link>
         </div>
       )}
       {isShow && token !== "" && (
         <div className="bg-white shadow-lg rounded-b-3xl absolute w-full top-16 flex flex-col justify-center md:hidden items-center px-5 py-5 flex-shrink-0 gap-2">
-          <div className="block md:hidden avatar placeholder">
+          <Link to={"/profile"} className="block md:hidden avatar placeholder">
             <div className="w-14 border-primary border-[2px] flex justify-center aspect-square bg-neutral text-sm text-neutral rounded-full">
               {profile?.image === null ? (
                 <img src={avatarWhite} alt="avatar" />
@@ -138,7 +144,7 @@ function Navbar() {
                 <img src={`${API_URL}/${profile?.image}`} alt="avatar" />
               )}
             </div>
-          </div>
+          </Link>
           <button
             onClick={() => logout()}
             className="btn btn-primary text-neutral"

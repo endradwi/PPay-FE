@@ -5,19 +5,29 @@ import { useAtom } from "jotai";
 import { tokenAtom } from "../jotai/data.js";
 import avatarWhite from "../assets/images/avatar-white.svg";
 import { API_URL } from "../config/api-config.js";
+import topupimage from "../assets/images/topupimage.png";
+import { Link } from "react-router-dom";
 
 function TransactionHistory() {
   const [token] = useAtom(tokenAtom);
   const [history, setHistory] = React.useState([]);
+
+  const formatRupiah = (number) => {
+    return number.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+  };
+
   async function getHistory(tokenHistory) {
     const data = await (
-      await fetch(`${API_URL}/transaction/history`, {
+      await fetch(`${API_URL}/transaction/history?limit=4`, {
         headers: {
           Authorization: `Bearer ${tokenHistory}`,
         },
       })
     ).json();
-    setHistory(data.data);
+    setHistory(data?.data || []);
     console.log(data.data);
   }
 
@@ -27,20 +37,22 @@ function TransactionHistory() {
         className="flex gap-5 justify-between items-center mt-7 text-base p-4"
         key={`list-fullname-${value.id}-${index}`}
       >
-        <img
-          loading="lazy"
-          src={
-            value?.related_user_image
-              ? `${API_URL}/${value.related_user_image}` // Use the image URL if it's not null
-              : avatarWhite // Default to avatarWhite if null
-          }
-          className="shrink-0 self-stretch w-14 h-14 rounded-xl"
-          alt={
-            value?.related_user_fullname
-              ? `${value.related_user_fullname}'s profile`
-              : "Default avatar"
-          }
-        />
+        <div className="w-14 h-14 rounded-xl overflow-hidden flex justify-center items-center">
+          <img
+            loading="lazy"
+            src={
+              value?.related_user_image
+                ? `${API_URL}/${value.related_user_image}` // Use the image URL if it's not null
+                : avatarWhite // Default to avatarWhite if null
+            }
+            className="w-full rounded-xl"
+            alt={
+              value?.related_user_fullname
+                ? `${value.related_user_fullname}'s profile`
+                : "Default avatar"
+            }
+          />
+        </div>
         <div className="flex flex-col self-stretch pr-2.5 my-auto">
           <div className="font-semibold text-slate-900">
             {value?.related_user_fullname || "Unknown"}
@@ -55,14 +67,12 @@ function TransactionHistory() {
           }
         >
           {value?.transaction_type === "Sent"
-            ? `-Rp ${value?.amount}`
-            : `+Rp ${value?.amount}`}
+            ? `-${formatRupiah(value?.amount)}`
+            : `+${formatRupiah(value?.amount)}`}
         </div>
       </div>
     );
   };
-
-  console.log();
 
   React.useEffect(() => {
     if (token !== "") {
@@ -112,12 +122,28 @@ function TransactionHistory() {
           <h2 className="flex-auto text-base font-semibold tracking-normal leading-6 text-slate-900">
             Transaction History
           </h2>
-          <button className="text-xs font-medium tracking-normal leading-6 text-blue-600">
-            See All
-          </button>
+          <Link to="/historyTransaction">
+            <button className="text-xs font-medium tracking-normal leading-6 text-blue-600">
+              See All
+            </button>
+          </Link>
         </div>
         {/* {transactions.map(transaction)} */}
-        {history?.map(table)}
+        {history?.length === 0 ? (
+          <Link to="/top-up">
+            <div className="flex justify-center pt-5">
+              <img src={topupimage} alt="Topup Image" />
+            </div>
+            <div
+              to="/top-up"
+              className="flex justify-center text-primary font-bold text-2xl"
+            >
+              Yuk Topup !
+            </div>
+          </Link>
+        ) : (
+          history.map((value, index) => table(value, index)) // Tampilkan transaksi jika ada
+        )}
       </div>
     </>
   );

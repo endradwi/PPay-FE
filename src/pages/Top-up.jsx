@@ -4,6 +4,7 @@ import Dana from "../assets/icons/dana.png";
 import Bca from "../assets/icons/bca.png";
 import Gopay from "../assets/icons/gopay.png";
 import Ovo from "../assets/icons/ovo.png";
+import PinTopup from "../components/Pintopup";
 import { MdOutlineVerified } from "react-icons/md";
 import { PiUpload } from "react-icons/pi";
 import NavbarDashboard from "../components/NavbarDashboard";
@@ -12,32 +13,72 @@ import { useAtom } from "jotai";
 import avatarWhite from "../assets/images/avatar-white.svg";
 import { API_URL } from "../config/api-config";
 import { set, useForm } from "react-hook-form";
-import { tokenAtom, profileAtom } from "../jotai/data.js";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  tokenAtom,
+  profileAtom,
+  amountAtom,
+  formTopupAtom,
+  statusAtom,
+} from "../jotai/data.js";
+import React, { useState } from "react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { use } from "react";
 
 function Top_up() {
   const [token, setToken] = useAtom(tokenAtom);
   const [profile, setProfile] = useAtom(profileAtom);
-  const { handleSubmit, register } = useForm();
-  const [amount, setAmount] = useState(0);
+  const navigate = useNavigate();
+  const [amount, setAmount] = useAtom(amountAtom);
+  const [amountTemp, setAmountTemp] = useState(0);
+  const [topupFrom, setTopupForm] = useAtom(formTopupAtom);
+  const [status, setStatus] = useAtom(statusAtom);
+  const [alert, setAlert] = useState("hidden");
 
-  function setTotal(e) {
-    setAmount(e.target.value);
-  }
+  const transferValidationSchema = yup.object({
+    amount: yup.string().required("You must fill the amount"),
+    payment_method_id: yup
+      .string()
+      .required("You must choose the payment method"),
+  });
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(transferValidationSchema),
+  });
 
   function formTopUp(value) {
     const query = new URLSearchParams(value);
     const queryString = query.toString();
 
-    fetch(`${API_URL}/topup`, {
-      method: "POST",
-      body: queryString,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    setTopupForm(queryString);
+    setAmount(value.amount);
+
+    reset();
   }
+
+  React.useEffect(() => {
+    if (
+      profile?.fullname === "" ||
+      profile?.phone === null ||
+      profile?.phone === ""
+    ) {
+      navigate("/profile");
+      return;
+    }
+    if (status !== 200) {
+      setAlert("hidden");
+      return;
+    }
+    if (status === 200) {
+      setAlert("block");
+    }
+  }, [profile, status]);
 
   return (
     <div>
@@ -53,6 +94,25 @@ function Top_up() {
                 </div>
                 <div className="text-secondary font-semibold text-base">
                   Top Up Account
+                </div>
+                <div
+                  role="alert"
+                  className={`alert alert-success w-2/3 text-neutral ${alert}`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>Top up success, your balance is already updated!</span>
                 </div>
               </div>
               <form onSubmit={handleSubmit(formTopUp)} className="flex gap-8">
@@ -104,12 +164,21 @@ function Top_up() {
                     <div className="flex">
                       <input
                         {...register("amount")}
-                        onChange={() => setTotal()}
+                        // onChange={() => setTotal()}
+                        onChange={(e) => {
+                          setAmountTemp(e.target.value);
+                        }}
+                        // name={name}
                         type="number"
                         placeholder="Type here"
                         className="focus:outline-none py-5 px-14 border-2 border-abuMuda w-full h-16"
                       />
                     </div>
+                    {errors.amount?.message && (
+                      <div className="text-error opacity-80">
+                        {errors.amount?.message}{" "}
+                      </div>
+                    )}
                   </div>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-0.5">
@@ -120,61 +189,92 @@ function Top_up() {
                         Choose your payment method for top up account
                       </div>
                     </div>
+                    {errors.payment_method_id?.message && (
+                      <div className="text-error opacity-80">
+                        {errors.payment_method_id?.message}{" "}
+                      </div>
+                    )}
                     <div className="flex flex-col gap-5">
-                      <div className="flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda">
+                      <label
+                        htmlFor="bri"
+                        className="cursor-pointer flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda"
+                      >
                         <input
                           type="radio"
+                          id="bri"
                           {...register("payment_method_id")}
                           className=" radio radio-info"
                           value={1}
                         />
                         <img className="w-9" src={Bri} alt="" />
-                        <div className="text-info text-base">
+                        <label htmlFor="bri" className="text-info text-base">
                           Bank Rakyat Indonesia
-                        </div>
-                      </div>
-                      <div className="flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda">
+                        </label>
+                      </label>
+                      <label
+                        htmlFor="dana"
+                        className="cursor-pointer flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda"
+                      >
                         <input
                           type="radio"
+                          id="dana"
                           {...register("payment_method_id")}
                           className=" radio radio-info"
                           value={2}
                         />
                         <img className="w-9" src={Dana} alt="" />
-                        <div className="text-info text-base">Dana</div>
-                      </div>
-                      <div className="flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda">
+                        <label htmlFor="dana" className="text-info text-base">
+                          Dana
+                        </label>
+                      </label>
+                      <label
+                        htmlFor="bca"
+                        className="cursor-pointer flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda"
+                      >
                         <input
                           type="radio"
+                          id="bca"
                           {...register("payment_method_id")}
                           className="btn-primary radio radio-info"
                           value={3}
                         />
                         <img className="w-9" src={Bca} alt="" />
-                        <div className="text-info text-base">
+                        <label htmlFor="bca" className="text-info text-base">
                           Bank Central Asia
-                        </div>
-                      </div>
-                      <div className="flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda">
+                        </label>
+                      </label>
+                      <label
+                        htmlFor="gopay"
+                        className="cursor-pointer flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda"
+                      >
                         <input
                           type="radio"
+                          id="gopay"
                           {...register("payment_method_id")}
                           className="btn-primary radio radio-info"
                           value={4}
                         />
                         <img className="w-9" src={Gopay} alt="" />
-                        <div className="text-info text-base">Gopay</div>
-                      </div>
-                      <div className="flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda">
+                        <label htmlFor="gopay" className="text-info text-base">
+                          Gopay
+                        </label>
+                      </label>
+                      <label
+                        htmlFor="ovo"
+                        className="cursor-pointer flex gap-7 py-3.5 pl-4 items-center rounded-lg w-full h-14 bg-abuMuda"
+                      >
                         <input
                           type="radio"
+                          id="ovo"
                           {...register("payment_method_id")}
                           className="btn-primary radio radio-info"
                           value={5}
                         />
                         <img className="w-9" src={Ovo} alt="" />
-                        <div className="text-info text-base">Ovo</div>
-                      </div>
+                        <label htmlFor="ovo" className="text-info text-base">
+                          Ovo
+                        </label>
+                      </label>
                     </div>
                   </div>
                   <div className="md:hidden flex flex-col gap-7">
@@ -187,7 +287,7 @@ function Top_up() {
                           Amount
                         </div>
                         <div className="text-secendary font-semibold text-base">
-                          Rp.{amount}
+                          Rp.{amountTemp}
                         </div>
                       </div>
                       {/* <div className="flex justify-between">
@@ -212,7 +312,7 @@ function Top_up() {
                           Sub Total
                         </div>
                         <div className="text-secendary font-semibold text-base">
-                          Rp.{amount}
+                          Rp.{amountTemp}
                         </div>
                       </div>
                       <button className="bg-[#2948FF] w-full h-11 text-white text-base rounded-md">
@@ -234,7 +334,7 @@ function Top_up() {
                         Amount
                       </div>
                       <div className="text-secendary font-semibold text-base">
-                        Rp.{amount}
+                        Rp.{amountTemp}
                       </div>
                     </div>
                     {/* <div className="flex justify-between">
@@ -259,7 +359,7 @@ function Top_up() {
                         Sub Total
                       </div>
                       <div className="text-secendary font-semibold text-base">
-                        Rp.{amount}
+                        Rp.{amountTemp}
                       </div>
                     </div>
                     <button className="bg-[#2948FF] w-full h-11 text-white text-base rounded-md">
@@ -273,6 +373,7 @@ function Top_up() {
               </form>
             </section>
           </div>
+          {amount > 0 && <PinTopup />}
         </div>
       </div>
     </div>
