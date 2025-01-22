@@ -24,6 +24,8 @@ const Transfer = () => {
   const [searchInput, setSearchInput] = useState({});
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [val, setVal] = useState(false);
+  const [enter, setEnter] = useState(false);
 
   // Fetch data function
   const fetchData = (search) => {
@@ -49,7 +51,8 @@ const Transfer = () => {
       profile?.phone === null ||
       profile?.phone === ""
     ) {
-      navigate("/profile");
+      setVal(!val);
+      // navigate("/profile");
       return;
     }
 
@@ -118,7 +121,32 @@ const Transfer = () => {
         <NavbarDashboard page={"Transfer"} />
         <div className="flex box-border">
           <Sidebar page={"transfer"} side={"sidebar"} />
-
+          {val && (
+            <div
+              role="alert"
+              className="alert absolute w-[35rem] left-96 ml-32 top-24"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-info h-6 w-6 shrink-0"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>Please enter your complete biodata first</span>
+              <span className="btn btn-primary border border-info rounded-lg py-2 px-5  text-neutral">
+                <Link to="/profile">
+                  <button>Profile</button>
+                </Link>
+              </span>
+            </div>
+          )}
           <div className="md:px-8 md:py-14 flex flex-col gap-4 w-full h-[746px] md:border-2 md:border-abuMuda">
             <div className="hidden md:flex flex-row gap-4 items-center">
               <Link to="/transfer-detail">
