@@ -13,7 +13,7 @@ import { useAtom } from "jotai";
 import avatarWhite from "../assets/images/avatar-white.svg";
 import { API_URL } from "../config/api-config";
 import { set, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   tokenAtom,
   profileAtom,
@@ -35,6 +35,7 @@ function Top_up() {
   const [topupFrom, setTopupForm] = useAtom(formTopupAtom);
   const [status, setStatus] = useAtom(statusAtom);
   const [alert, setAlert] = useState("hidden");
+  const [val, setVal] = useState(false);
 
   const transferValidationSchema = yup.object({
     amount: yup.string().required("You must fill the amount"),
@@ -68,8 +69,9 @@ function Top_up() {
       profile?.phone === null ||
       profile?.phone === ""
     ) {
-      navigate("/profile");
-      return;
+      setVal(!val);
+      //   navigate("/profile");
+      //   return;
     }
     if (status !== 200) {
       setAlert("hidden");
@@ -373,7 +375,26 @@ function Top_up() {
               </form>
             </section>
           </div>
-          {amount > 0 && <PinTopup />}
+          {val ? 
+            <div role="alert" className="alert absolute w-[35rem]  left-96 ml-32 top-32">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-info h-6 w-6 shrink-0"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>Please enter your complete biodata first</span>
+              <span className="btn btn-primary border border-info rounded-lg py-2 px-5  text-neutral"><Link to="/profile"><button>Profile</button></Link></span>
+            </div> : amount > 0 && <PinTopup /> 
+          }
+          {/* {amount > 0 && <PinTopup />} */}
         </div>
       </div>
     </div>
